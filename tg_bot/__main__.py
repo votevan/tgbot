@@ -84,7 +84,7 @@ Más comandos:
 
 DONATE_STRING = """
 ¡Hola! Parece que buscas información acerca de donaciones. Mi mantenedor [votevan](t.me/votevan) no las acepta, \
-aunque puedes donar a [mi creador](t.me/SonOfLars), quien con mucho esfuerzo me ha programado. 
+aunque puedes donar a [mi creador original](t.me/SonOfLars), quien con mucho esfuerzo me ha programado. 
 
 Si quieres donarle a él, existen 2 opciones; vía [PayPal](paypal.me/PaulSonOfLars), o \
 [Monzo](monzo.me/paulnionvestergaardlarsen). ¡Gracias!
@@ -187,7 +187,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text("Qué pasa?") #Original: Yo, whadup?
+        update.effective_message.reply_text("¿Qué necesitas de mí?") #Original: Yo, whadup?
 
 
 # for test purposes
@@ -315,7 +315,7 @@ def send_settings(chat_id, user_id, user=False):
         if CHAT_SETTINGS:
             chat_name = dispatcher.bot.getChat(chat_id).title
             dispatcher.bot.send_message(user_id,
-                                        text="Verificar la configuración de un módulo de {}?".format(
+                                        text="¿Para qué módulo quieres verificar la configuración de {}?".format(
                                              #Original: Which module would you like to check {}'s settings for?
                                             chat_name),
                                         reply_markup=InlineKeyboardMarkup(
@@ -433,9 +433,9 @@ def donate(bot: Bot, update: Update):
     if chat.type == "private":
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-        if OWNER_ID != 254318997 and DONATION_LINK:
-            update.effective_message.reply_text("You can also donate to the person currently running me "
-                                                "[here]({})".format(DONATION_LINK),
+        if OWNER_ID != 495341018 and DONATION_LINK:
+            update.effective_message.reply_text("Puedes donar a la persona a la que obedezco "
+                                                "[aquí]({})".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
 
     else:
