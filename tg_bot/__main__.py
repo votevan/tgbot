@@ -23,7 +23,9 @@ Hola {}, mi nombre es {}! Si tienes dudas sobre como usarme, lee /help.
 Soy un bot administrador de grupos traducido al español con la ayuda de @Ccheca22 y @monsta97.
 
 Estoy mantenido por [esta maravillosa persona](tg://user?id={}) y construido en python3, usando \
-la libreria python-telegram-bot. Soy completamente opensource. Puedes encontrar el \
+la libreria python-telegram-bot. 
+
+Soy completamente opensource. Puedes encontrar el \
 [proyecto original](github.com/PaulSonOfLars/tgbot) \
 o \
 [a mi](github.com/votevan/tgbot)!
