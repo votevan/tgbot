@@ -22,7 +22,7 @@ def afk(bot: Bot, update: Update):
         reason = ""
 
     sql.set_afk(update.effective_user.id, reason)
-    update.effective_message.reply_text("{} is now AFK!".format(update.effective_user.first_name))
+    update.effective_message.reply_text("¡{} ahora está AFK!".format(update.effective_user.first_name)) #Original: {} is now AFK!
 
 
 @run_async
@@ -34,7 +34,7 @@ def no_longer_afk(bot: Bot, update: Update):
 
     res = sql.rm_afk(user.id)
     if res:
-        update.effective_message.reply_text("{} is no longer AFK!".format(update.effective_user.first_name))
+        update.effective_message.reply_text("¡{} ha vuelto de AFK!".format(update.effective_user.first_name)) #Original: {} is no longer AFK!
 
 
 @run_async
@@ -61,18 +61,24 @@ def reply_afk(bot: Bot, update: Update):
             if sql.is_afk(user_id):
                 user = sql.check_afk_status(user_id)
                 if not user.reason:
-                    res = "{} is AFK!".format(fst_name)
+                    res = "¡{} ahora está AFK!".format(fst_name) #Original: {} is AFK!
                 else:
-                    res = "{} is AFK! says its because of:\n{}".format(fst_name, user.reason)
+                    res = "¡{} ahora está AFK! Razón:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
                 message.reply_text(res)
 
 
 __help__ = """
- - /afk <reason>: mark yourself as AFK.
- - brb <reason>: same as the afk command - but not a command.
+ - /afk <motivo>: entra en modo AFK.
+ - brb <motivo>: igual al comando /afk - pero no es un comando.
 
-When marked as AFK, any mentions will be replied to with a message to say you're not available!
+Cuando entras en modo AFK, cualquier mención será respondida con un mensaje que diga que no estás disponible.
 """
+
+#   Original
+#- /afk <reason>: mark yourself as AFK.
+#- brb <reason>: same as the afk command - but not a command.
+
+# When marked as AFK, any mentions will be replied to with a message to say you're not available!
 
 __mod_name__ = "AFK"
 

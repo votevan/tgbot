@@ -17,116 +17,104 @@ from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.helper_funcs.filters import CustomFilters
 
 RUN_STRINGS = (
-    "Where do you think you're going?",
-    "Huh? what? did they get away?",
-    "ZZzzZZzz... Huh? what? oh, just them again, nevermind.",
-    "Get back here!",
-    "Not so fast...",
-    "Look out for the wall!",
-    "Don't leave me alone with them!!",
-    "You run, you die.",
-    "Jokes on you, I'm everywhere",
-    "You're gonna regret that...",
-    "You could also try /kickme, I hear that's fun.",
-    "Go bother someone else, no-one here cares.",
-    "You can run, but you can't hide.",
-    "Is that all you've got?",
-    "I'm behind you...",
-    "You've got company!",
-    "We can do this the easy way, or the hard way.",
-    "You just don't get it, do you?",
-    "Yeah, you better run!",
-    "Please, remind me how much I care?",
-    "I'd run faster if I were you.",
-    "That's definitely the droid we're looking for.",
-    "May the odds be ever in your favour.",
-    "Famous last words.",
-    "And they disappeared forever, never to be seen again.",
-    "\"Oh, look at me! I'm so cool, I can run from a bot!\" - this person",
-    "Yeah yeah, just tap /kickme already.",
-    "Here, take this ring and head to Mordor while you're at it.",
-    "Legend has it, they're still running...",
-    "Unlike Harry Potter, your parents can't protect you from me.",
-    "Fear leads to anger. Anger leads to hate. Hate leads to suffering. If you keep running in fear, you might "
-    "be the next Vader.",
-    "Multiple calculations later, I have decided my interest in your shenanigans is exactly 0.",
-    "Legend has it, they're still running.",
-    "Keep it up, not sure we want you here anyway.",
-    "You're a wiza- Oh. Wait. You're not Harry, keep moving.",
-    "NO RUNNING IN THE HALLWAYS!",
+    "¿A dónde crees que vas?",
+    "¿Huh? ¿Qué? se escaparon?",
+    "ZZzzZZzz... Huh? ¿Qué? oh, solo ellos otra vez, no importa.",
+    "¡Regresa aquí!",
+    "No tan rapido...",
+    "¡Cuidado con la pared!",
+    "¡No me dejes solo con ellos!",
+    "Usted corre, usted muere.",
+    "Bromas sobre ti, estoy en todas partes",
+    "Te arrepentirás de ...",
+    "También puedes probar / kickme, escuché que es divertido.",
+    "Ve a molestar a alguien más, aquí a nadie le importa..",
+    "Puedes correr, pero no puedes esconderte.",
+    "¿Es todo lo que tienes?",
+    "Estoy detrás tuyo...",
+    "¡Tienes compañía!",
+    "Podemos hacer esto de la manera fácil o por el camino difícil.",
+    "Simplemente no lo entiendes, ¿verdad?",
+    "Sí, será mejor que corras!",
+    "Por favor, recuérdame cuánto me importa??",
+    "Yo correría más rápido si fuera tú.",
+    "Ese es definitivamente el droide que estamos buscando.",
+    "Que las probabilidades estén siempre a tu favor.",
+    "¿Tus últimas palabras?",
+    "Y desaparecieron para siempre, nunca más serán vistos.",
+    "\"¡Oh, mírame! ¡Soy tan genial, puedo huir de un robot!\" - esta persona",
+    "Sí, sí, solo toca /kickme ya.",
+    "Aquí, toma este anillo y dirígete a Mordor mientras lo haces.",
+    "Cuenta la leyenda, todavía están funcionando ...",
+    "A diferencia de Harry Potter, tus padres no pueden protegerte de mí.",
+    "El miedo lleva a la ira. La ira conduce al odio. El odio lleva al sufrimiento. Si sigues corriendo con miedo, es posible que... "
+    "Sé el próximo Vader.",
+    "Múltiples cálculos más tarde, he decidido que mi interés en tus chistes y es exactamente 0.",
+    "Cuenta la leyenda, todavía están en ejecución.",
+    "Sigue así, no estoy seguro de que te queramos aquí de todos modos.",
+    "Eres una hechi... Oh. Espere. No, eres Harry.",
+    "NO HAY CORRER EN LOS PASILLOS!",
     "Hasta la vista, baby.",
-    "Who let the dogs out?",
-    "It's funny, because no one cares.",
-    "Ah, what a waste. I liked that one.",
-    "Frankly, my dear, I don't give a damn.",
-    "My milkshake brings all the boys to yard... So run faster!",
-    "You can't HANDLE the truth!",
-    "A long time ago, in a galaxy far far away... Someone would've cared about that. Not anymore though.",
-    "Hey, look at them! They're running from the inevitable banhammer... Cute.",
-    "Han shot first. So will I.",
-    "What are you running after, a white rabbit?",
-    "As The Doctor would say... RUN!",
+    "¿Quién soltó los perros?",
+    "Es gracioso, porque a nadie le importa.",
+    "Ah, qué desperdicio. Me gustó ese.",
+    "Francamente, querida, no me importa nada.",
+    "Mi batido trae a todos los niños al patio ... ¡Así que corre más rápido!",
+    "¡No puedes MANEJAR la verdad!",
+    "Hace mucho tiempo, en una galaxia muy lejana ... Alguien se habría preocupado por eso. Sin embargo, a nadie le importo.",
+    "¡Oye, míralos! Están huyendo del inevitable y lindo banhammer...",
+    "Han disparó primero. Yo lo haré.",
+    "¿Qué estás persiguiendo, un conejo blanco?",
+    "Como el Doctor diría ... ¡CORRE!",
 )
 
 SLAP_TEMPLATES = (
-    "{user1} {hits} {user2} with a {item}.",
-    "{user1} {hits} {user2} in the face with a {item}.",
-    "{user1} {hits} {user2} around a bit with a {item}.",
-    "{user1} {throws} a {item} at {user2}.",
-    "{user1} grabs a {item} and {throws} it at {user2}'s face.",
-    "{user1} launches a {item} in {user2}'s general direction.",
-    "{user1} starts slapping {user2} silly with a {item}.",
-    "{user1} pins {user2} down and repeatedly {hits} them with a {item}.",
-    "{user1} grabs up a {item} and {hits} {user2} with it.",
-    "{user1} ties {user2} to a chair and {throws} a {item} at them.",
-    "{user1} gave a friendly push to help {user2} learn to swim in lava."
+    "{user1} {hits} a {user2} con  un {item}.",
+    "{user1} {hits} a {user2} en la cara con un {item}.",
+    "{user1} {hits} a {user2} un ratito con un {item}.",
+    "{user1} {throws} un {item} en {user2}.",
+    "{user1} toma un {item} y lo {throws} en la cara de {user2}.",
+    "{user1} lanza un {item} en la dirección de {user2}.",
+    "{user1} comienza a abofetear a {user2} con un {item}.",
+    "{user1} le saca los ojos a {user2} con un {item}.",
+    "{user1} toma un {item} y {hits} a {user2} con él.",
+    "{user1} ata a {user2} a una silla y {throws} un {item} a ellos",
+    "{user1} da un empujón amistoso para ayudar a {user2} a aprender a nadar en lava",
 )
 
 ITEMS = (
-    "cast iron skillet",
-    "large trout",
-    "baseball bat",
-    "cricket bat",
-    "wooden cane",
-    "nail",
-    "printer",
-    "shovel",
-    "CRT monitor",
-    "physics textbook",
-    "toaster",
-    "portrait of Richard Stallman",
-    "television",
-    "five ton truck",
-    "roll of duct tape",
-    "book",
-    "laptop",
-    "old television",
-    "sack of rocks",
-    "rainbow trout",
-    "rubber chicken",
-    "spiked bat",
-    "fire extinguisher",
-    "heavy rock",
-    "chunk of dirt",
-    "beehive",
-    "piece of rotten meat",
-    "bear",
-    "ton of bricks",
+     "bate de béisbol",
+     "bate de cricket",
+     "Monitor CRT",
+     "libro de texto de física",
+     "Nokia 1100",
+     "retrato",
+     "televisor",
+     "camión de cinco toneladas",
+     "rollo de cinta adhesiva",
+     "libro",
+     "ordenador portátil",
+     "televisor antiguo",
+     "saco de rocas",
+     "pollo de goma",
+     "bate de púas",
+     "extintor de incendios",
+     "pedazo de tierra",
+     "pedazo de carne podrida",
+     "oso de peluche",
+     "ladrillo",
+     "destornillador",
 )
 
 THROW = (
-    "throws",
-    "flings",
-    "chucks",
-    "hurls",
+     "tira",
+     "arroja",
+     "tira",
+     "lanza",
 )
 
 HIT = (
-    "hits",
-    "whacks",
-    "slaps",
-    "smacks",
-    "bashes",
+     "golpea",
 )
 
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
@@ -193,7 +181,7 @@ def get_id(bot: Bot, update: Update, args: List[str]):
             user1 = update.effective_message.reply_to_message.from_user
             user2 = update.effective_message.reply_to_message.forward_from
             update.effective_message.reply_text(
-                "The original sender, {}, has an ID of `{}`.\nThe forwarder, {}, has an ID of `{}`.".format(
+                "El remitente original, {}, tiene la ID `{}`.\nEl reenviador, {}, tiene la ID `{}`.".format(
                     escape_markdown(user2.first_name),
                     user2.id,
                     escape_markdown(user1.first_name),
@@ -201,16 +189,16 @@ def get_id(bot: Bot, update: Update, args: List[str]):
                 parse_mode=ParseMode.MARKDOWN)
         else:
             user = bot.get_chat(user_id)
-            update.effective_message.reply_text("{}'s id is `{}`.".format(escape_markdown(user.first_name), user.id),
+            update.effective_message.reply_text("La ID de {} es `{}`.".format(escape_markdown(user.first_name), user.id),
                                                 parse_mode=ParseMode.MARKDOWN)
     else:
         chat = update.effective_chat  # type: Optional[Chat]
         if chat.type == "private":
-            update.effective_message.reply_text("Your id is `{}`.".format(chat.id),
+            update.effective_message.reply_text("Tu ID es `{}`.".format(chat.id),
                                                 parse_mode=ParseMode.MARKDOWN)
 
         else:
-            update.effective_message.reply_text("This group's id is `{}`.".format(chat.id),
+            update.effective_message.reply_text("La ID de este grupo es `{}`.".format(chat.id),
                                                 parse_mode=ParseMode.MARKDOWN)
 
 
@@ -228,38 +216,38 @@ def info(bot: Bot, update: Update, args: List[str]):
     elif not msg.reply_to_message and (not args or (
             len(args) >= 1 and not args[0].startswith("@") and not args[0].isdigit() and not msg.parse_entities(
         [MessageEntity.TEXT_MENTION]))):
-        msg.reply_text("I can't extract a user from this.")
+        msg.reply_text("No puedo extraer la información de un usuario a partir de la información proporcionada.")
         return
 
     else:
         return
 
-    text = "<b>User info</b>:" \
+    text = "<b>Información del usuario:</b>:" \
            "\nID: <code>{}</code>" \
-           "\nFirst Name: {}".format(user.id, html.escape(user.first_name))
+           "\nNombre: {}".format(user.id, html.escape(user.first_name))
 
     if user.last_name:
-        text += "\nLast Name: {}".format(html.escape(user.last_name))
+        text += "\nApellido: {}".format(html.escape(user.last_name))
 
     if user.username:
-        text += "\nUsername: @{}".format(html.escape(user.username))
+        text += "\nUsuario: @{}".format(html.escape(user.username))
 
-    text += "\nPermanent user link: {}".format(mention_html(user.id, "link"))
+    text += "\nLink del usuario: {}".format(mention_html(user.id, "link"))
 
     if user.id == OWNER_ID:
-        text += "\n\nThis person is my owner - I would never do anything against them!"
+        text += "\n\nEsta persona es mi dueño. ¡Nunca haría nada contra el!"
     else:
         if user.id in SUDO_USERS:
-            text += "\nThis person is one of my sudo users! " \
-                    "Nearly as powerful as my owner - so watch it."
+            text += "\nEsta persona es uno de mis usuarios sudo! Es" \
+                    "casi tan poderoso como mi dueño, así que ten cuidado."
         else:
             if user.id in SUPPORT_USERS:
-                text += "\nThis person is one of my support users! " \
-                        "Not quite a sudo user, but can still gban you off the map."
+                text += "\n¡Esta persona es uno de mis usuarios de soporte! " \
+                        "No es exactamente un usuario sudo, pero puede eliminarte del mapa."
 
             if user.id in WHITELIST_USERS:
-                text += "\nThis person has been whitelisted! " \
-                        "That means I'm not allowed to ban/kick them."
+                text += "\n¡Esta persona ha sido incluida en la lista blanca! " \
+                        "Eso significa que no puedo banearlo/expulsarlo."
 
     for mod in USER_INFO:
         mod_info = mod.__user_info__(user.id).strip()
@@ -273,7 +261,7 @@ def info(bot: Bot, update: Update, args: List[str]):
 def get_time(bot: Bot, update: Update, args: List[str]):
     location = " ".join(args)
     if location.lower() == bot.first_name.lower():
-        update.effective_message.reply_text("Its always banhammer time for me!")
+        update.effective_message.reply_text("¡Siempre hay tiempo del martillo de ban para mi!")
         bot.send_sticker(update.effective_chat.id, BAN_STICKER)
         return
 
@@ -323,34 +311,34 @@ def echo(bot: Bot, update: Update):
 
 
 MARKDOWN_HELP = """
-Markdown is a very powerful formatting tool supported by telegram. {} has some enhancements, to make sure that \
-saved messages are correctly parsed, and to allow you to create buttons.
+Markdown es una herramienta de formato muy potente compatible con Telegram. {} tiene algunas mejoras, para asegurarse de que \
+los mensajes guardados se analicen correctamente y permitirte crear botones.
 
-- <code>_italic_</code>: wrapping text with '_' will produce italic text
-- <code>*bold*</code>: wrapping text with '*' will produce bold text
-- <code>`code`</code>: wrapping text with '`' will produce monospaced text, also known as 'code'
-- <code>[sometext](someURL)</code>: this will create a link - the message will just show <code>sometext</code>, \
-and tapping on it will open the page at <code>someURL</code>.
-EG: <code>[test](example.com)</code>
+- <code>_italic _</code>: al envolver el texto con '_' se generará texto en cursiva.
+- <code>*bold*</code>: al envolver el texto con '*' se generará texto en negrita.
+- <code>`código`</ code>: al envolver el texto con '' 'se generará texto monoespaciado, también conocido como'código' \
+- <code>[texto](URL)</code>: esto creará un enlace; el mensaje solo mostrará <code>texto</code>, \
+y al tocarlo se abrirá la página en <code>URL</code>.
+Ejemplo: <code>[test](example.com)</code>
 
-- <code>[buttontext](buttonurl:someURL)</code>: this is a special enhancement to allow users to have telegram \
-buttons in their markdown. <code>buttontext</code> will be what is displayed on the button, and <code>someurl</code> \
-will be the url which is opened.
-EG: <code>[This is a button](buttonurl:example.com)</code>
+- <code>[buttontext](buttonurl:someURL)</code>: esta es una mejora especial para permitir que los usuarios tengan \
+botones en su markdown. <code>buttontext</code> será lo que se muestra en el botón, y <code>someurl</code> \
+será la URL que se abre.
+Ejemplo: <code>[Este es un botón](buttonurl:example.com)</code>
 
-If you want multiple buttons on the same line, use :same, as such:
+Si desea tener varios botones en la misma línea, use: mismo, como tal:
 <code>[one](buttonurl://example.com)
 [two](buttonurl://google.com:same)</code>
-This will create two buttons on a single line, instead of one button per line.
+Esto creará dos botones en una sola línea, en lugar de un botón por línea.
 
-Keep in mind that your message <b>MUST</b> contain some text other than just a button!
+¡Tenga en cuenta que su mensaje <b>DEBE</b> contener algún texto que no sea solo un botón!
 """.format(dispatcher.bot.first_name)
 
 
 @run_async
 def markdown_help(bot: Bot, update: Update):
     update.effective_message.reply_text(MARKDOWN_HELP, parse_mode=ParseMode.HTML)
-    update.effective_message.reply_text("Try forwarding the following message to me, and you'll see!")
+    update.effective_message.reply_text("Intenta reenviar el siguiente mensaje a mí, ¡y lo verás!")
     update.effective_message.reply_text("/save test This is a markdown test. _italics_, *bold*, `code`, "
                                         "[URL](example.com) [button](buttonurl:github.com) "
                                         "[button2](buttonurl://google.com:same)")
@@ -358,21 +346,21 @@ def markdown_help(bot: Bot, update: Update):
 
 @run_async
 def stats(bot: Bot, update: Update):
-    update.effective_message.reply_text("Current stats:\n" + "\n".join([mod.__stats__() for mod in STATS]))
+    update.effective_message.reply_text("EStado actual:\n" + "\n".join([mod.__stats__() for mod in STATS]))
 
 
 # /ip is for private use
 __help__ = """
- - /id: get the current group id. If used by replying to a message, gets that user's id.
- - /runs: reply a random string from an array of replies.
- - /slap: slap a user, or get slapped if not a reply.
- - /time <place>: gives the local time at the given place.
- - /info: get information about a user.
+  - /id: obtener la ID del grupo actual. Si se usa respondiendo a un mensaje, obtiene la ID de ese usuario.
+  - /runs: responde una cadena aleatoria de respuestas.
+  - /slap: abofetear a un usuario, o recibir una bofetada si no es una respuesta.
+  - /time <lugar>: da la hora local en el lugar dado.
+  - /info: obtener información sobre un usuario.
 
- - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
+  - /markdownhelp: resumen rápido de cómo funciona el markdown en telegram: solo se puede usar en chats privados.
 """
 
-__mod_name__ = "Misc"
+__mod_name__ = "Miscelanea"
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
@@ -396,4 +384,4 @@ dispatcher.add_handler(SLAP_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
-dispatcher.add_handler(STATS_HANDLER)
+dispatcher.add_handler(STATS_HANDLER)     

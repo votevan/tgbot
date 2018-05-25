@@ -24,27 +24,29 @@ def report_setting(bot: Bot, update: Update, args: List[str]):
         if len(args) >= 1:
             if args[0] in ("yes", "on"):
                 sql.set_user_setting(chat.id, True)
-                msg.reply_text("Turned on reporting! You'll be notified whenever anyone reports something.")
+                msg.reply_text("Reportes activados! Se te notificará cada vez que alguien reporte algo.")
 
             elif args[0] in ("no", "off"):
                 sql.set_user_setting(chat.id, False)
-                msg.reply_text("Turned off reporting! You wont get any reports.")
+                msg.reply_text("Reportes desactivados! No obtendrás ningún reporte.")
         else:
-            msg.reply_text("Your current report preference is: `{}`".format(sql.user_should_report(chat.id)),
+            msg.reply_text("Sus preferencias actuales de reportes es: `{}`".format(sql.user_should_report(chat.id)),
                            parse_mode=ParseMode.MARKDOWN)
 
     else:
         if len(args) >= 1:
             if args[0] in ("yes", "on"):
                 sql.set_chat_setting(chat.id, True)
-                msg.reply_text("Turned on reporting! Admins who have turned on reports will be notified when /report "
-                               "or @admin are called.")
+                msg.reply_text("Reportes activados! Los administradores que hayan activado los informes, "
+                               "recibirán una notificación cuando los miembros de un grupo utilicen el "
+                               "comando /report o @admin, siempre que seas administrador del grupo.")
 
             elif args[0] in ("no", "off"):
                 sql.set_chat_setting(chat.id, False)
-                msg.reply_text("Turned off reporting! No admins will be notified on /report or @admin.")
+                msg.reply_text("Reportes desactivados! No se notificará a los administradores cuando "
+                               "alguien utilice /report o @admin.")
         else:
-            msg.reply_text("This chat's current setting is: `{}`".format(sql.chat_should_report(chat.id)),
+            msg.reply_text("Preferencias actuales de reportes: `{}`".format(sql.chat_should_report(chat.id)),
                            parse_mode=ParseMode.MARKDOWN)
 
 
@@ -63,8 +65,8 @@ def report(bot: Bot, update: Update) -> str:
 
         if chat.username and chat.type == Chat.SUPERGROUP:
             msg = "<b>{}:</b>" \
-                  "\n<b>Reported user:</b> {} (<code>{}</code>)" \
-                  "\n<b>Reported by:</b> {} (<code>{}</code>)".format(html.escape(chat.title),
+                  "\n<b>Usuario reportado:</b> {} (<code>{}</code>)" \
+                  "\n<b>Reportado por:</b> {} (<code>{}</code>)".format(html.escape(chat.title),
                                                                       mention_html(
                                                                           reported_user.id,
                                                                           reported_user.first_name),
@@ -78,7 +80,7 @@ def report(bot: Bot, update: Update) -> str:
             should_forward = False
 
         else:
-            msg = "{} is calling for admins in \"{}\"!".format(mention_html(user.id, user.first_name),
+            msg = "{} Está llamando a los administradores de: \"{}\"!".format(mention_html(user.id, user.first_name),
                                                                html.escape(chat_name))
             link = ""
             should_forward = True
@@ -123,14 +125,14 @@ def __user_settings__(user_id):
 __mod_name__ = "Reporting"
 
 __help__ = """
- - /report <reason>: reply to a message to report it to admins.
- - @admin: reply to a message to report it to admins.
-NOTE: neither of these will get triggered if used by admins
+ - /report <motivo>: responde a un mensaje para reportarlo a los administradores.
+ - @admin: responde a un mensaje para reportarlo a los administradores.
+NOTA: ninguno de estos se activará si es utilizado por los administradores.
 
-*Admin only:*
- - /reports <on/off>: change report setting, or view current status.
-   - If done in pm, toggles your status.
-   - If in chat, toggles that chat's status.
+*Solo para administradores:*
+ - /reports <on/off>: cambiar la configuración de reportes, o ver la configuracion actual.
+   - Si lo haces en chat privado, cambia tu estado.
+   - Si lo haces en el grupo, cambia el estado de ese grupo.
 """
 
 REPORT_HANDLER = CommandHandler("report", report, filters=Filters.group)

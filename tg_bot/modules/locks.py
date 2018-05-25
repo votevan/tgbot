@@ -17,18 +17,18 @@ from tg_bot.modules.helper_funcs.filters import CustomFilters
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import users_sql
 
-LOCK_TYPES = {'sticker': Filters.sticker,
-              'audio': Filters.audio,
-              'voice': Filters.voice,
-              'document': Filters.document,
-              'video': Filters.video,
-              'contact': Filters.contact,
-              'photo': Filters.photo,
-              'gif': Filters.document & CustomFilters.mime_type("video/mp4"),
-              'url': Filters.entity(MessageEntity.URL) | Filters.caption_entity(MessageEntity.URL),
+LOCK_TYPES = {'stickers': Filters.sticker,
+              'audios': Filters.audio,
+              'voz': Filters.voice,
+              'documentos': Filters.document,
+              'videos': Filters.video,
+              'contactos': Filters.contact,
+              'fotos': Filters.photo,
+              'gifs': Filters.document & CustomFilters.mime_type("video/mp4"),
+              'urls': Filters.entity(MessageEntity.URL) | Filters.caption_entity(MessageEntity.URL),
               'bots': Filters.status_update.new_chat_members,
-              'forward': Filters.forwarded,
-              'game': Filters.game
+              'reenvios': Filters.forwarded,
+              'juegos': Filters.game
               }
 
 GIF = Filters.document & CustomFilters.mime_type("video/mp4")
@@ -91,7 +91,7 @@ def lock(bot: Bot, update: Update, args: List[str]) -> str:
         if len(args) >= 1:
             if args[0] in LOCK_TYPES:
                 sql.update_lock(chat.id, args[0], locked=True)
-                message.reply_text("Locked {} messages for all non-admins!".format(args[0]))
+                message.reply_text("Bloqueado {} mensajes para todos los no-admins!".format(args[0]))
 
                 return "<b>{}:</b>" \
                        "\n#LOCK" \
@@ -105,7 +105,7 @@ def lock(bot: Bot, update: Update, args: List[str]) -> str:
                     members = users_sql.get_chat_members(str(chat.id))
                     restr_members(bot, chat.id, members, messages=True, media=True, other=True)
 
-                message.reply_text("Locked {} for all non-admins!".format(args[0]))
+                message.reply_text("Bloqueado {} mensajes para todos los no-admins!".format(args[0]))
                 return "<b>{}:</b>" \
                        "\n#LOCK" \
                        "\n<b>Admin:</b> {}" \
@@ -113,10 +113,10 @@ def lock(bot: Bot, update: Update, args: List[str]) -> str:
                                                           mention_html(user.id, user.first_name), args[0])
 
             else:
-                message.reply_text("What are you trying to lock...? Try /locktypes for the list of lockables")
+                message.reply_text("¿Qué estás tratando de bloquear? Intenta /locktypes para la ver lista de bloqueables")
 
     else:
-        message.reply_text("I'm not an administrator, or haven't got delete rights.")
+        message.reply_text("No soy administrador, o tengo permisos de eliminación.")
 
     return ""
 
@@ -132,7 +132,7 @@ def unlock(bot: Bot, update: Update, args: List[str]) -> str:
         if len(args) >= 1:
             if args[0] in LOCK_TYPES:
                 sql.update_lock(chat.id, args[0], locked=False)
-                message.reply_text("Unlocked {} for everyone!".format(args[0]))
+                message.reply_text("Desbloqueado {} para todos!".format(args[0]))
                 return "<b>{}:</b>" \
                        "\n#UNLOCK" \
                        "\n<b>Admin:</b> {}" \
@@ -158,12 +158,12 @@ def unlock(bot: Bot, update: Update, args: List[str]) -> str:
                 elif args[0] == "all":
                     unrestr_members(bot, chat.id, members, True, True, True, True)
                 """
-                message.reply_text("Unlocked {} for everyone!".format(args[0]))
+                message.reply_text("Desbloqueado {} para todos!".format(args[0]))
                 message.reply_text(
-                    "NOTE: due to a recent abuse of locking, {} will now only be deleting messages, and not "
-                    "restricting users via the tg api. This shouldn't affect all you users though, so dont worry! "
-                    "Just means that any restricted users should be manually unrestricted from the chat "
-                    "admin pannel.".format(bot.first_name))
+                    "NOTA: debido a un abuso reciente de bloqueo, {} ahora solo eliminará mensajes y no "
+                    "restringirá a los usuarios a través de tg api. Sin embargo, esto no debería afectar "
+                    "a todos sus usuarios, ¡así que no se preocupe! Solo significa que cualquier usuario "
+                    "restringido debe ser restringido manualmente desde el panel de administración de chat.".format(bot.first_name))
 
                 return "<b>{}:</b>" \
                        "\n#UNLOCK" \
@@ -171,7 +171,7 @@ def unlock(bot: Bot, update: Update, args: List[str]) -> str:
                        "\nUnlocked <code>{}</code>.".format(html.escape(chat.title),
                                                             mention_html(user.id, user.first_name), args[0])
             else:
-                message.reply_text("What are you trying to unlock...? Try /locktypes for the list of lockables")
+                message.reply_text("¿Qué estás tratando de bloquear? Intenta /locktypes para la ver lista de bloqueables")
 
         else:
             bot.sendMessage(chat.id, "What are you trying to unlock...?")
@@ -192,12 +192,12 @@ def del_lockables(bot: Bot, update: Update):
                 for new_mem in new_members:
                     if new_mem.is_bot:
                         if not is_bot_admin(chat, bot.id):
-                            message.reply_text("I see a bot, and I've been told to stop them joining... "
-                                               "but I'm not admin!")
+                            message.reply_text("Veo un bot, y me he dicho que deje de unirse..."
+                                               "pero no soy administrador!")
                             return
 
                         chat.kick_member(new_mem.id)
-                        message.reply_text("Only admins are allowed to add bots to this chat! Get outta here.")
+                        message.reply_text("¡Solo los administradores pueden agregar bots a este chat! Fuera de aquí.")
             else:
                 try:
                     message.delete()
@@ -278,21 +278,21 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- - /locktypes: a list of possible locktypes
+ - /locktypes: lista de posibles tipos de bloqueo.
 
-*Admin only:*
- - /lock <type>: lock items of a certain type (not available in private)
- - /unlock <type>: unlock items of a certain type (not available in private)
- - /locks: the current list of locks in this chat.
+*Solo para administradores:*
+ - /lock <tipo>: bloquear elementos de cierto tipo (no disponible en privado)
+ - /unlock <tipo>: desbloquea elementos de cierto tipo (no disponible en privado)
+ - /locks: lista actual de bloqueos en este chat.
 
-Locks can be used to restrict a group's users.
-eg:
-Locking urls will auto-delete all messages with urls which haven't been whitelisted, locking stickers will delete all \
-stickers, etc.
-Locking bots will stop non-admins from adding bots to the chat.
+Los bloqueos se pueden usar para restringir a los usuarios de un grupo.
+por ejemplo:
+Bloquear URL eliminará automáticamente todos los mensajes con URL que no se hayan incluido en la lista blanca, bloqueando etiquetas eliminarán todos \
+pegatinas, etc.
+Bloquear bots evitará que los no-administradores agreguen bots al chat.
 """
 
-__mod_name__ = "Locks"
+__mod_name__ = "Bloqueos"
 
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes)
 LOCK_HANDLER = CommandHandler("lock", lock, pass_args=True, filters=Filters.group)

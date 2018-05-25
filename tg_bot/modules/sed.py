@@ -63,17 +63,22 @@ def sed(bot: Bot, update: Update):
         repl, repl_with, flags = sed_result
 
         if not repl:
-            update.effective_message.reply_to_message.reply_text("You're trying to replace... "
-                                                                 "nothing with something?")
+            update.effective_message.reply_to_message.reply_text("¿Estás tratando de reemplazar... "
+                                                                 "nada con nada?")
+            #Original: "You're trying to replace... "
+            #          "nothing with something?"
             return
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
 
             if check and check.group(0).lower() == to_fix.lower():
-                update.effective_message.reply_to_message.reply_text("Hey everyone, {} is trying to make "
-                                                                     "me say stuff I don't wanna "
-                                                                     "say!".format(update.effective_user.first_name))
+                update.effective_message.reply_to_message.reply_text("Hola a todos, ¡{} esta tratando de hacer"
+                                                                     "que diga algo que no quiero "
+                                                                     "decir!".format(update.effective_user.first_name))
+                #Original: "Hey everyone, {} is trying to make "
+                #          "me say stuff I don't wanna "
+                #          "say!"
                 return
 
             if 'i' in flags and 'g' in flags:
@@ -87,27 +92,41 @@ def sed(bot: Bot, update: Update):
         except sre_constants.error:
             LOGGER.warning(update.effective_message.text)
             LOGGER.exception("SRE constant error")
-            update.effective_message.reply_text("Do you even sed? Apparently not.")
+            update.effective_message.reply_text("¿Siquiera sabes usar sed? Aparentemente no.")
+            #Original: "Do you even sed? Apparently not."
             return
 
         # empty string errors -_-
         if len(text) >= telegram.MAX_MESSAGE_LENGTH:
-            update.effective_message.reply_text("The result of the sed command was too long for \
-                                                 telegram!")
+            update.effective_message.reply_text("¡El resultado del comando sed es demasiado largo para \
+                                                 Telegram!")
+            #Original "The result of the sed command was too long for \
+            #         telegram!"
         elif text:
             update.effective_message.reply_to_message.reply_text(text)
 
 
 __help__ = """
- - s/<text1>/<text2>(/<flag>): Reply to a message with this to perform a sed operation on that message, replacing all \
-occurrences of 'text1' with 'text2'. Flags are optional, and currently include 'i' for ignore case, 'g' for global, \
-or nothing. Delimiters include `/`, `_`, `|`, and `:`. Text grouping is supported. The resulting message cannot be \
-larger than {}.
+ - s/<texto1>/<texto2>(/<flag>): Responde a un mensaje con esto para hacer una operación "sed" en ese mensaje, reemplazando todas las \
+ocurrencias de 'texto1' con 'texto2'. Flags son opcionales, y por ahora incluye 'i' para ignorar mayusculas, 'g' para global, \
+o nada. Delimitadores incluyen `/`, `_`, `|`, y `:`. Agrupar texto funciona. El mensaje resultante no puede ser \
+más largo que {}.
 
-*Reminder:* Sed uses some special characters to make matching easier, such as these: `+*.?\\`
-If you want to use these characters, make sure you escape them!
-eg: \\?.
+*Recordatorio:* Sed usa algunos caracteres especiales para hacer los cambios más faciles, como estos: `+*.?\\`
+Si quieres usar estos caracteres, ¡Usa el simbolo "\"!
+ej: \\?.
 """.format(telegram.MAX_MESSAGE_LENGTH)
+
+#Original """
+#- s/<text1>/<text2>(/<flag>): Reply to a message with this to perform a sed operation on that message, replacing all \
+#occurrences of 'text1' with 'text2'. Flags are optional, and currently include 'i' for ignore case, 'g' for global, \
+#or nothing. Delimiters include `/`, `_`, `|`, and `:`. Text grouping is supported. The resulting message cannot be \
+#larger than {}.
+#
+#*Reminder:* Sed uses some special characters to make matching easier, such as these: `+*.?\\`
+#If you want to use these characters, make sure you escape them!
+#eg: \\?.
+#"""
 
 __mod_name__ = "Sed/Regex"
 

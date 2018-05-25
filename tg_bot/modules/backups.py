@@ -22,8 +22,9 @@ def import_data(bot: Bot, update):
         try:
             file_info = bot.get_file(msg.reply_to_message.document.file_id)
         except BadRequest:
-            msg.reply_text("Try downloading and reuploading the file as yourself before importing - this one seems "
-                           "to be iffy!")
+            msg.reply_text("Intenta descargar y resubir el archivo como tu mismo antes de importar - Este documento parece "
+                           "dudoso") #Original: "Try downloading and reuploading the file as yourself before importing - this one seems "
+                          # "to be iffy!"
             return
 
         with BytesIO() as file:
@@ -33,8 +34,9 @@ def import_data(bot: Bot, update):
 
         # only import one group
         if len(data) > 1 and str(chat.id) not in data:
-            msg.reply_text("Theres more than one group here in this file, and none have the same chat id as this group "
-                           "- how do I choose what to import?")
+            msg.reply_text("Hay más de un grupo en este archivo, y ninguno de ellos tiene el mismo chat ID que éste grupo "
+                           "- ¿Cómo elijo lo que importo?") #Original"Theres more than one group here in this file, and none have the same chat id as this group "
+                    #      "- how do I choose what to import?"
             return
 
         # Select data source
@@ -47,16 +49,18 @@ def import_data(bot: Bot, update):
             for mod in DATA_IMPORT:
                 mod.__import_data__(str(chat.id), data)
         except Exception:
-            msg.reply_text("An exception occured while restoring your data. The process may not be complete. If "
-                           "you're having issues with this, message @MarieSupport with your backup file so the "
-                           "issue can be debugged. My owners would be happy to help, and every bug "
-                           "reported makes me better! Thanks! :)")
+            msg.reply_text("Ocurrió una excepción mientras se restauraban tus datos. El proceso pudo no haberse completado.")
             LOGGER.exception("Import for chatid %s with name %s failed.", str(chat.id), str(chat.title))
+            #Original "An exception occured while restoring your data. The process may not be complete. If "
+              #       "you're having issues with this, message @MarieSupport with your backup file so the "
+              #       "issue can be debugged. My owners would be happy to help, and every bug "
+              #       "reported makes me better! Thanks! :)"
+              #       LOGGER.exception("Import for chatid %s with name %s failed."
             return
 
         # TODO: some of that link logic
         # NOTE: consider default permissions stuff?
-        msg.reply_text("Backup fully imported. Welcome back! :D")
+        msg.reply_text("Backup importado. ¡Hola de nuevo! :D") #Original: Backup fully imported. Welcome back! :D
 
 
 @run_async
@@ -69,11 +73,17 @@ def export_data(bot: Bot, update: Update):
 __mod_name__ = "Backups"
 
 __help__ = """
-*Admin only:*
- - /import: reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
-that files/photos can't be imported due to telegram restrictions.
- - /export: !!! This isn't a command yet, but should be coming soon!
+*Solo administradores:*
+ - /import: responde a un backup de un admin del grupo para poder importar lo más que se pueda, ¡Haciendo el proceso muy sencillo! Ten en cuenta \
+que archivos/fotos no pueden ser importados debido a restricciones de Telegram.
+ - /export: Esto no es un comando aún, ¡Pero lo sera pronto!
 """
+
+#Original: 
+# *Admin only:*
+# - /import: reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
+#that files/photos can't be imported due to telegram restrictions.
+# - /export: !!! This isn't a command yet, but should be coming soon!
 IMPORT_HANDLER = CommandHandler("import", import_data)
 EXPORT_HANDLER = CommandHandler("export", export_data)
 

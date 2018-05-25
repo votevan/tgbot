@@ -28,16 +28,16 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("Parece que no te refieres a un usuario.") #Original: You don't seem to be referring to a user.
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text("How am I meant to promote someone that's already an admin?")
+        message.reply_text("¿Cómo voy a ascender a alguien que ya es administrador?") #Original: How am I meant to promote someone that's already an admin?
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I can't promote myself! Get an admin to do it for me.")
+        message.reply_text("No puedo ascenderme! Haz que un administrador lo haga por mí.") #Original: I can't promote myself! Get an admin to do it for me.
         return ""
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -53,9 +53,9 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
                           can_pin_messages=bot_member.can_pin_messages,
                           can_promote_members=bot_member.can_promote_members)
 
-    message.reply_text("Successfully promoted!")
+    message.reply_text("Ascendido correctamente!") #Original: Successfully promoted!
     return "<b>{}:</b>" \
-           "\n#PROMOTED" \
+           "\n#PROMOTED	" \
            "\n<b>Admin:</b> {}" \
            "\n<b>User:</b> {}".format(html.escape(chat.title),
                                       mention_html(user.id, user.first_name),
@@ -74,20 +74,20 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("Parece que no te refieres a un usuario.") #Original: You don't seem to be referring to a user.
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("This person CREATED the chat, how would I demote them?")
+        message.reply_text("Esta persona CREÓ el chat, ¿cómo lo degradaría?") #Original: This person CREATED the chat, how would I demote them?
         return ""
 
     if not user_member.status == 'administrator':
-        message.reply_text("Can't demote what wasn't promoted!")
+        message.reply_text("No se puede degradar lo que no se ascendió!") #Original: Can't demote what wasn't promoted!
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I can't demote myself! Get an admin to do it for me.")
+        message.reply_text("¡No puedo degradarme! Haz que un administrador lo haga por mí.") #Original: I can't demote myself! Get an admin to do it for me.
         return ""
 
     try:
@@ -100,7 +100,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                               can_restrict_members=False,
                               can_pin_messages=False,
                               can_promote_members=False)
-        message.reply_text("Successfully demoted!")
+        message.reply_text("Degradado correctamente!") #Original: Successfully demoted!
         return "<b>{}:</b>" \
                "\n#DEMOTED" \
                "\n<b>Admin:</b> {}" \
@@ -109,8 +109,12 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                                           mention_html(user_member.user.id, user_member.user.first_name))
 
     except BadRequest:
-        message.reply_text("Could not demote. I might not be admin, or the admin status was appointed by another "
-                           "user, so I can't act upon them!")
+        message.reply_text("No pude degradar. Puede que no sea administrador, o el estado del administrador fue "
+                           "designado por otro usuario, ¡así que no puedo actuar sobre ellos!")
+
+                           #Original:
+                           #Could not demote. I might not be admin, or the admin status was appointed by another
+                           #user, so I can't act upon them!  
         return ""
 
 
@@ -182,15 +186,18 @@ def invite(bot: Bot, update: Update):
             invitelink = bot.exportChatInviteLink(chat.id)
             update.effective_message.reply_text(invitelink)
         else:
-            update.effective_message.reply_text("I don't have access to the invite link, try changing my permissions!")
+            update.effective_message.reply_text("No tengo acceso al enlace de invitación, intenta cambiar mis permisos.")
+                                                 #Original: I don't have access to the invite link, try changing my permissions!
     else:
-        update.effective_message.reply_text("I can only give you invite links for supergroups and channels, sorry!")
+        update.effective_message.reply_text("Solo puedo darte enlaces de invitación para supergrupos y canales, ¡lo siento!")
+                                             #Original: I can only give you invite links for supergroups and channels, sorry!
 
 
 @run_async
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
-    text = "Admins in *{}*:".format(update.effective_chat.title or "this chat")
+    text = "Administradores de *{}*:".format(update.effective_chat.title or "this chat") 
+           #Original: Admins in *{}*
     for admin in administrators:
         user = admin.user
         name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
@@ -202,22 +209,32 @@ def adminlist(bot: Bot, update: Update):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "You are *admin*: `{}`".format(
+    return "Tu eres *admin*: `{}`".format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status in ("administrator", "creator"))
 
 
 __help__ = """
- - /adminlist: list of admins in the chat
+ - /adminlist: lista de administradores en el chat.
 
-*Admin only:*
- - /pin: silently pins the message replied to - add 'loud' or 'notify' to give notifs to users.
- - /unpin: unpins the currently pinned message
- - /invitelink: gets invitelink
- - /promote: promotes the user replied to
- - /demote: demotes the user replied to
+*Solo para administradores:*
+ - /pin: fija silenciosamente el mensaje respondido, añade 'loud' o 'notify' para notificar a los usuarios.
+ - /unpin: anula el mensaje anclado.
+ - /invitelink: obtiene enlace de invitación.
+ - /promote: asciende al usuario respondido.
+ - /demote: degrada al usuario respondido.
 """
 
-__mod_name__ = "Admin"
+#   Original
+# - /adminlist: list of admins in the chat
+
+# *Admin only:*
+# - /pin: silently pins the message replied to - add 'loud' or 'notify' to give notifs to users.
+# - /unpin: unpins the currently pinned message
+# - /invitelink: gets invitelink
+# - /promote: promotes the user replied to
+# - /demote: demotes the user replied to
+
+__mod_name__ = "Administrador"
 
 PIN_HANDLER = CommandHandler("pin", pin, pass_args=True, filters=Filters.group)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
