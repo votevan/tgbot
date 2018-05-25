@@ -63,7 +63,7 @@ def reply_afk(bot: Bot, update: Update):
                 if not user.reason:
                     res = "¡{} ahora está AFK!".format(fst_name) #Original: {} is AFK!
                 else:
-                    res = "¡{} ahora está AFK! Razón:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
+                    res = "¡{} ahora está AFK! Dice que es porque:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
                 message.reply_text(res)
 
 
