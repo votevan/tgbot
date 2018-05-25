@@ -437,14 +437,19 @@ def donate(bot: Bot, update: Update):
             update.effective_message.reply_text("Puedes donar a la persona a la que obedezco "
                                                 "[aquí]({})".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
+                                                #Original:
+                                                #You can also donate to the person currently running me
+                                                #[here]({})
 
     else:
         try:
             bot.send_message(user.id, DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-            update.effective_message.reply_text("I've PM'ed you about donating to my creator!")
+            update.effective_message.reply_text("¡Te envié un mensaje privado sobre donaciones!")
+                                                #Original: I've PM'ed you about donating to my creator!
         except Unauthorized:
-            update.effective_message.reply_text("Contact me in PM first to get donation information.")
+            update.effective_message.reply_text("Contactame en privado primero para obtener información sobre donaciones.")
+                                                #Original: Contact me in PM first to get donation information.
 
 
 def migrate_chats(bot: Bot, update: Update):
