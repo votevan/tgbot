@@ -18,14 +18,14 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hola {}, mi nombre es {}! Si tienes dudas sobre como usarme, lee /help.
+Hola {}, mi nombre es *{}*!
 
-Soy un bot administrador de grupos traducido al español con la ayuda de @Ccheca22 y @monsta97.
+Soy un bot de administración de grupos traducido al español con la ayuda de @Ccheca22 y @monsta97.
 
 Estoy mantenido por [esta maravillosa persona](tg://user?id={}) y construido en python3, usando \
 la libreria python-telegram-bot. 
 
-Soy completamente opensource. Puedes encontrar el \
+Por cierto, soy completamente opensource. Puedes encontrar el \
 [proyecto original](github.com/PaulSonOfLars/tgbot) \
 o \
 [a mi](github.com/votevan/tgbot)!
@@ -49,7 +49,7 @@ o \
 HELP_STRINGS = """
 Hola! Mi nombre es *{}*.
 
-Soy un bot de moderación de grupos con algunos extras divertidos! Echa un vistazo a lo siguiente para \
+Soy un bot de administración de grupos con algunos extras divertidos! Echa un vistazo a lo siguiente para \
 tener una idea de algunas de las cosas con las que te puedo ayudar.
 
 *Principales* comandos disponibles:
