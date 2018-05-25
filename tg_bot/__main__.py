@@ -22,7 +22,7 @@ Hola {}, mi nombre es *{}*!
 
 Soy un bot de administración de grupos traducido al español con la ayuda de @Ccheca22 y @monsta97.
 
-Estoy mantenido por [esta maravillosa persona](tg://user?id={}) y construido en python3, usando \
+Estoy mantenido por [esta maravillosa persona](tg://user?id={}). También, estoy construido en python3, usando \
 la libreria python-telegram-bot. 
 
 Por cierto, soy completamente opensource. Puedes encontrar el \
