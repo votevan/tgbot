@@ -35,7 +35,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("Parece que no puedo encontrar a este usuario.") #Original: I can't seem to find this user
+            message.reply_text("No puedo encontrar a este usuario.") #Original: I can't seem to find this user
             return ""
         else:
             raise
@@ -69,7 +69,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text('Banned!', quote=False) #No traducido ya que parece que es un mensaje de error.
+            message.reply_text('Banned!', quote=False)
             return log
         else:
             LOGGER.warning(update)
@@ -152,7 +152,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("Banned! User will be banned for {}.".format(time_val), quote=False) #No traducido ya que parece que es un mensaje de error.
+            message.reply_text("Banned! User will be banned for {}.".format(time_val), quote=False)
             return log
         else:
             LOGGER.warning(update)
@@ -269,7 +269,7 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     chat.unban_member(user_id)
-    message.reply_text("Sip, ¡Este usuario puede entrar!") #Original: Yep, this user can join!
+    message.reply_text("¡Usuario desbaneado correctamente!") #Original: Yep, this user can join!
 
     log = "<b>{}:</b>" \
           "\n#DESBANEADO" \
@@ -291,10 +291,10 @@ __help__ = """
  - /kickme: expulsa a la persona que ha utilizado el comando.
 
 *Solo para administradores:*
- - /ban <nombre_de_usuario>: banea a un usuario. (via nombre de usuario, o respuesta)
- - /tban <nombre_de_usuario> x(m/h/d): banea a un usuario por x tiempo. (via nombre de usuario, o respuesta). m = minutos, h = horas, d = días.
- - /unban <nombre_de_usuario>: desbanea a un usuario. (via nombre de usuario, o respuesta)
- - /kick <nombre_de_usuario>: expulsa a un usuario. (via nombre de usuario, o respuesta)
+ - /ban <nombre_de_usuario>: banea a un usuario. (via alias o respuesta)
+ - /tban <nombre_de_usuario> x(m/h/d): banea a un usuario por x tiempo. (via alias o respuesta). m = minutos, h = horas, d = días.
+ - /unban <nombre_de_usuario>: desbanea a un usuario. (via alias o respuesta)
+ - /kick <nombre_de_usuario>: expulsa a un usuario. (via alias o respuesta)
 """
 
 #Original:
@@ -306,7 +306,7 @@ __help__ = """
 # - /unban <userhandle>: unbans a user. (via handle, or reply)
 # - /kick <userhandle>: kicks a user, (via handle, or reply)
 
-__mod_name__ = "Baneos"
+__mod_name__ = "Ban"
 
 BAN_HANDLER = CommandHandler("ban", ban, pass_args=True, filters=Filters.group)
 TEMPBAN_HANDLER = CommandHandler(["tban", "tempban"], temp_ban, pass_args=True, filters=Filters.group)
