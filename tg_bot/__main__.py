@@ -22,7 +22,7 @@ Hola {}, mi nombre es *{}*!
 
 Soy un bot de administración de grupos traducido al español con la ayuda de @Ccheca22 y @monsta97.
 
-Estoy mantenido por [esta maravillosa persona](tg://user?id={}). También, estoy construido en python3, usando \
+Estoy mantenido por [esta maravillosa persona](tg://user?id={}). Me han construido en python3, usando \
 la libreria python-telegram-bot. 
 
 Por cierto, soy completamente opensource. Puedes encontrar el \
@@ -47,18 +47,18 @@ o \
 #If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
 
 HELP_STRINGS = """
-Hola! Mi nombre es *{}*.
+¡Hola! Mi nombre es *{}*.
 
-Soy un bot de administración de grupos con algunos extras divertidos! Echa un vistazo a lo siguiente para \
+Soy un bot de administración de grupos con algunos extras divertidos. Echa un vistazo a lo siguiente para \
 tener una idea de algunas de las cosas con las que te puedo ayudar.
 
 *Principales* comandos disponibles:
- - /start: Comienza el bot.
- - /help: Envía por privado este mensaje.
- - /help <nombre del módulo>: Envía por privado la ayuda de un módulo en específico.
+ - /start: comienza el bot.
+ - /help: envía por privado este mensaje.
+ - /help <nombre del módulo>: envía por privado la ayuda de un módulo en específico.
  - /settings:
-   - en chat privado: Envía la configuración para todos los módulos compatibles.
-    - en un grupo: lo redireccionará al chat privado, con todas las configuraciones de ese chat.
+    - *en chat privado*: envía la configuración para todos los módulos compatibles.
+    - *en un grupo*: te redirecciona al chat privado, con todas las configuraciones de ese chat.
 {}
 Más comandos: 
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
@@ -84,8 +84,11 @@ Más comandos:
 
 DONATE_STRING = """
 ¡Hola! Parece que buscas información acerca de donaciones. Mi mantenedor [votevan](t.me/votevan) no las acepta, \
-aunque puedes donar a [mi creador](t.me/SonOfLars), quien con mucho esfuerzo me ha programado. Si quieres donarle a él, \
-tienes 2 opciones; vía [PayPal](paypal.me/PaulSonOfLars), o [Monzo](monzo.me/paulnionvestergaardlarsen). ¡Gracias!"""
+aunque puedes donar a [mi creador](t.me/SonOfLars), quien con mucho esfuerzo me ha programado. 
+
+Si quieres donarle a él, existen 2 opciones; vía [PayPal](paypal.me/PaulSonOfLars), o \
+[Monzo](monzo.me/paulnionvestergaardlarsen). ¡Gracias!
+"""
 
 #Original: 
 #Heya, glad to hear you want to donate!
