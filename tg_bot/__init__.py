@@ -56,7 +56,7 @@ if ENV:
     STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))
     WORKERS = int(os.environ.get('WORKERS', 8))
     BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAQADIgMAAhDc_g8KZOVzd7E00wI')
-    ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
+    ALLOW_EXCL = os.environ.get('ALLOW_EXCL', True)
 
 else:
     from tg_bot.config import Development as Config
