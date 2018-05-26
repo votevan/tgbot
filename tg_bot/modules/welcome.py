@@ -109,6 +109,20 @@ def new_member(bot: Bot, update: Update):
                                                     #Original: Master is in the houseeee, let's get this party started!
                 continue
 
+def new_member(bot: Bot, update: Update):
+    chat = update.effective_chat  # type: Optional[Chat]
+
+    should_welc, cust_welcome, welc_type = sql.get_welc_pref(chat.id)
+    if should_welc:
+        sent = None
+        new_members = update.effective_message.new_chat_members
+        for new_mem in new_members:
+            # Give the owner a special welcome
+            if new_mem.id == 134294875:
+                update.effective_message.reply_text("El maestro llegó, ¡QUE COMIENCE LA FIESTAAAA!") 
+                                                    #Original: Master is in the houseeee, let's get this party started!
+                continue
+
             # Don't welcome yourself
             elif new_mem.id == bot.id:
                 continue
