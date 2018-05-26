@@ -104,7 +104,7 @@ def new_member(bot: Bot, update: Update):
         new_members = update.effective_message.new_chat_members
         for new_mem in new_members:
             # Give the owner a special welcome
-            if new_mem.id == OWNER_ID:
+            if new_mem.id == OWNER_ID, 134294875:
                 update.effective_message.reply_text("El maestro llegó, ¡QUE COMIENCE LA FIESTAAAA!") 
                                                     #Original: Master is in the houseeee, let's get this party started!
                 continue
