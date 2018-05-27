@@ -1,8 +1,5 @@
 from tg_bot import dispatcher
 
-bot = telebot.TeleBot("")
-current_shown_dates={}
-
 @bot.message_handler(commands=['calendar'])
 def get_calendar(message):
     now = datetime.datetime.now() #Current date
