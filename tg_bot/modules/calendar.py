@@ -1,8 +1,3 @@
-#!/usr/bin/python3
-import telebot
-from telebot import types
-import datetime
-from telegramcalendar import create_calendar
 from tg_bot import dispatcher
 
 bot = telebot.TeleBot("")
