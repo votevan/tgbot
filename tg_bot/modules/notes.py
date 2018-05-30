@@ -164,7 +164,7 @@ def save(bot: Bot, update: Update):
     sql.add_note_to_db(chat_id, note_name, text, data_type, buttons=buttons, file=content)
 
     msg.reply_text(
-        "Agregado {note_name}.\nObtenla con /get {nombre_de_nota}, o #{nombre_de_nota}".format(note_name=note_name))
+        "Agregado {note_name}.\nObtenla con /get {nombredenota}, o #{nombredenota}".format(note_name=note_name))
 
 
 @run_async
@@ -241,11 +241,11 @@ __help__ = """
  - /notes o /saved: enumera todas las notas guardadas en este chat.
 
 *Solo para administradores:*
- -/save <nombredenota> <nota>: guarda una nota como una nota con ese nombre.
+ - /save <nombredenota> <nota>: guarda una nota como una nota con ese nombre.
 Se puede agregar un botón a una nota mediante el uso de la sintaxis estándar del enlace de markdown: el enlace debe ser precedido por un \
 `buttonurl:, como tal: `[somelink](buttonurl: example.com)`. Mira /markdownhelp para obtener más información.
- -/save <nombredenota>: guarda el mensaje respondido como una nota con el nombre notename.
- -/clear <nombredenota>: borrar nota con aquel nombre.
+ - /save <nombredenota>: guarda el mensaje respondido como una nota con el nombre notename.
+ - /clear <nombredenota>: borrar nota con aquel nombre.
 """
 
 __mod_name__ = "Notas"
