@@ -86,7 +86,7 @@ def get(bot, update, notename, show_none=True):
             except BadRequest as excp:
                 if excp.message == "Entity_mention_user_invalid":
                     message.reply_text("Parece que trataste de mencionar a alguien que nunca había visto antes. "
-                                       "Si realmente quieres mencionarlos, envíame uno de sus mensajes y podré etiquetarlos!")
+                                       "Si realmente quieres mencionarlo, envíame uno de sus mensajes y podré hacerlo!")
                 elif FILE_MATCHER.match(note.value):
                     message.reply_text("Esta nota es un archivo incorrectamente importado de otro bot; no puedo usarlo. "
                                        "Si realmente lo necesita, tendrá que guardarlo nuevamente. Mientras tanto, lo eliminaré "
@@ -138,8 +138,7 @@ def save_replied(bot: Bot, update: Update):
         if text:
             msg.reply_text("Parece que estás tratando de guardar un mensaje de un bot. Lamentablemente, "
                            "los bots no pueden reenviar mensajes de otro bot, por lo que no puedo guardar "
-                           "el mensaje exacto. "
-                           "\nGuardaré todo el texto que pueda, pero si quieres guardar más, tendrás que "
+                           "el mensaje exacto.\nGuardaré todo el texto que pueda, pero si quieres guardar más, tendrás que "
                             "reenvíar el mensaje, y luego guardarlo.")
         else:
             msg.reply_text("Los bots son perjudicados por Telegram, lo que dificulta que los bots interactúen "
@@ -242,11 +241,11 @@ __help__ = """
  - /notes o /saved: enumera todas las notas guardadas en este chat.
 
 *Solo para administradores:*
- -/save <nombredenota> <nota>: guarda una nota como una nota con ese nombre.
+ -/save <nombre_de_nota> <nota>: guarda una nota como una nota con ese nombre.
 Se puede agregar un botón a una nota mediante el uso de la sintaxis estándar del enlace de markdown: el enlace debe ser precedido por un \
 `buttonurl:, como tal: `[somelink](buttonurl: example.com)`. Mira /markdownhelp para obtener más información.
- -/save <nombredenota>: guarda el mensaje respondido como una nota con el nombre notename.
- -/clear <nombredenota>: borrar nota con aquel nombre.
+ -/save <nombre_de_nota>: guarda el mensaje respondido como una nota con el nombre notename.
+ -/clear <nombre_de_nota>: borrar nota con aquel nombre.
 """
 
 __mod_name__ = "Notas"
