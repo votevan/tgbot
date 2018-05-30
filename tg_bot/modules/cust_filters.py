@@ -27,7 +27,7 @@ def list_handlers(bot: Bot, update: Update):
     all_handlers = sql.get_chat_triggers(chat.id)
 
     if not all_handlers:
-        update.effective_message.reply_text("No filters are active here!")
+        update.effective_message.reply_text("No hay filtros activos.")
         return
 
     filter_list = BASIC_FILTER_STRING
@@ -101,7 +101,7 @@ def filters(bot: Bot, update: Update):
         is_video = True
 
     else:
-        msg.reply_text("You didn't specify what to reply with!")
+        msg.reply_text("No especificaste con qué responder.")
         return
 
     # Add the filter
@@ -178,14 +178,14 @@ def reply_filter(bot: Bot, update: Update):
                 except BadRequest as excp:
                     if excp.message == "Unsupported url protocol":
                         message.reply_text("Parece que intentas usar un protocolo de url no compatible. Telegram no admite "
-                                           "botones para algunos protocolos, como tg: //. Por favor, inténtelo de nuevo o solicite "
+                                           "botones para algunos protocolos, como tg://. Por favor, inténtelo de nuevo o solicite "
                                            "ayuda a @votevan.")
                     elif excp.message == "Reply message not found":
                         bot.send_message(chat.id, filt.reply, parse_mode=ParseMode.MARKDOWN,
                                          disable_web_page_preview=True,
                                          reply_markup=keyboard)
                     else:
-                        message.reply_text("Esta nota no puede ser enviada, ya que esta mal formulado. Preguntale a "
+                        message.reply_text("Esta nota no puede ser enviada, ya que esta mal formulada. Preguntale a "
                                            "@votevan si necesitas ayuda!")
                         LOGGER.warning("Message %s could not be parsed", str(filt.reply))
                         LOGGER.exception("Could not parse filter %s in chat %s", str(filt.keyword), str(chat.id))
@@ -197,7 +197,7 @@ def reply_filter(bot: Bot, update: Update):
 
 
 def __stats__():
-    return "{} filters, across {} chats.".format(sql.num_filters(), sql.num_chats())
+    return "{} filtros, entre {} chats.".format(sql.num_filters(), sql.num_chats())
 
 
 def __migrate__(old_chat_id, new_chat_id):
