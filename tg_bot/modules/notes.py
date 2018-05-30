@@ -243,7 +243,7 @@ __help__ = """
 *Solo para administradores:*
  - /save <nombredenota> <nota>: guarda una nota como una nota con ese nombre.
 Se puede agregar un botón a una nota mediante el uso de la sintaxis estándar del enlace de markdown: el enlace debe ser precedido por un \
-`buttonurl:, como tal: `[somelink](buttonurl: example.com)`. Mira /markdownhelp para obtener más información.
+`buttonurl:, como tal: `[somelink](buttonurl:example.com)`. Mira /markdownhelp para obtener más información.
  - /save <nombredenota>: guarda el mensaje respondido como una nota con el nombre notename.
  - /clear <nombredenota>: borrar nota con aquel nombre.
 """
