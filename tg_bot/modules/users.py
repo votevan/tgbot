@@ -42,7 +42,7 @@ def get_user_id(username):
                 if excp.message == 'Chat not found':
                     pass
                 else:
-                    LOGGER.exception("Error extracting user ID")
+                    LOGGER.exception("Error al extraer la ID.")
 
     return None
 
@@ -59,7 +59,7 @@ def broadcast(bot: Bot, update: Update):
                 sleep(0.1)
             except TelegramError:
                 failed += 1
-                LOGGER.warning("Couldn't send broadcast to %s, group name %s", str(chat.chat_id), str(chat.chat_name))
+                LOGGER.warning("No se pudo enviar la difusion a %s grupos, con nombre %s", str(chat.chat_id), str(chat.chat_name))
 
         update.effective_message.reply_text("Difusion completada. {} los grupos no pudieron recibir el mensaje, "
                                             "probablemente debido a una expulsión.".format(failed))
@@ -89,7 +89,7 @@ def log_user(bot: Bot, update: Update):
 @run_async
 def chats(bot: Bot, update: Update):
     all_chats = sql.get_all_chats() or []
-    chatfile = 'List of chats.\n'
+    chatfile = 'Lista de chats:.\n'
     for chat in all_chats:
         chatfile += "{} - ({})\n".format(chat.chat_name, chat.chat_id)
 
@@ -101,13 +101,13 @@ def chats(bot: Bot, update: Update):
 
 def __user_info__(user_id):
     if user_id == dispatcher.bot.id:
-        return """Los he visto en ... Wow. ¿Me están acosando? Están en todos los mismos lugares que yo estoy... oh. Soy yo."""
+        return """Los he visto en... Wow. ¿Me están acosando? Están en los mismos grupos yo... Oh. Soy yo."""
     num_chats = sql.get_user_num_chats(user_id)
-    return """Los he visto en <code>{}</code> chats en total.""".format(num_chats)
+    return """Lo he visto en <code>{}</code> chats en total.""".format(num_chats)
 
 
 def __stats__():
-    return "{} users, across {} chats".format(sql.num_users(), sql.num_chats())
+    return "{} usuarios, entre {} chats".format(sql.num_users(), sql.num_chats())
 
 
 def __migrate__(old_chat_id, new_chat_id):
