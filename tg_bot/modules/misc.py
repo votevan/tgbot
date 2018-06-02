@@ -313,22 +313,22 @@ def echo(bot: Bot, update: Update):
 
 
 MARKDOWN_HELP = """
-Markdown es una herramienta de formato muy potente compatible con Telegram. {} tiene algunas mejoras, para asegurarse de que \
+Markdown es una herramienta de formato muy potente compatible con Telegram. {} tiene algunas mejoras para asegurarle de que \
 los mensajes guardados se analicen correctamente y permitirte crear botones.
 
-- <code>_italic _</code>: al envolver el texto con '_' se generará texto en cursiva.
-- <code>*bold*</code>: al envolver el texto con '*' se generará texto en negrita.
-- <code>`código`</ code>: al envolver el texto con ''' se generará texto monoespaciado, también conocido como'código' \
+- <code>_italic _</code>: al envolver el texto con '_' generará texto en cursiva.
+- <code>*bold*</code>: al envolver el texto con '*' generará texto en negrita.
+- <code>`code`</ code>: al envolver el texto con ''' generará texto monoespaciado, también conocido como 'code'.
 - <code>[texto](URL)</code>: esto creará un enlace; el mensaje solo mostrará <code>texto</code>, \
 y al tocarlo se abrirá la página en <code>URL</code>.
 Ejemplo: <code>[test](example.com)</code>
 
 - <code>[buttontext](buttonurl:someURL)</code>: esta es una mejora especial para permitir que los usuarios tengan \
-botones en su markdown. <code>buttontext</code> será lo que se muestra en el botón, y <code>someurl</code> \
-será la URL que se abre.
+botones en su markdown. <code>texto</code> será lo que se muestra en el botón, y <code>someurl</code> \
+será la URL que se abrirá.
 Ejemplo: <code>[Este es un botón](buttonurl:example.com)</code>
 
-Si desea tener varios botones en la misma línea, use: mismo, como tal:
+Si desea tener varios botones en la misma línea, use :same, como tal:
 <code>[one](buttonurl://example.com)
 [two](buttonurl://google.com:same)</code>
 Esto creará dos botones en una sola línea, en lugar de un botón por línea.
