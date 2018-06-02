@@ -93,7 +93,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
         return
 
-    message.reply_text("*Sopla el polvo del martillo baneador* 😉") #Original: *Blows dust off of banhammer* 😉
+    message.reply_text("*Sopla el polvo del martillo baneador*") #Original: *Blows dust off of banhammer* 😉
 
     banner = update.effective_user  # type: Optional[User]
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
@@ -201,7 +201,7 @@ def gbanlist(bot: Bot, update: Update):
         #Original: There aren't any gbanned users! You're kinder than I expected...
         return
 
-    banfile = 'Screw these guys.\n'
+    banfile = 'Espanta a estos muchachos:\n'
     for user in banned_users:
         banfile += "[x] {} - {}\n".format(user["name"], user["user_id"])
         if user["reason"]:
@@ -279,7 +279,7 @@ def __stats__():
 def __user_info__(user_id):
     is_gbanned = sql.is_user_gbanned(user_id)
 
-    text = "Globalmente baneados: <b>{}</b>"
+    text = "Globalmente baneado: <b>{}</b>"
     if is_gbanned:
         text = text.format("Yes")
         user = sql.get_gbanned_user(user_id)
@@ -300,7 +300,7 @@ def __chat_settings__(chat_id, user_id):
 
 __help__ = """
 *Solo administradores:*
- - /gbanstat <on/off/si/no>: Deshabilita el efecto del ban global en tu grupo, o envia tus ajustes actuales.
+- /gbanstat <on/off/si/no>: Deshabilita el efecto del ban global en tu grupo, o envia tus ajustes actuales.
 
 Gbans, también conocido como baneo global, es usado por los creadores de bots para banear spammers por todos los grupos. Esto ayuda a protegerte \
 a ti y a tu grupo removiendo el flood de los spammers lo más pronto posible. Puede ser desactivado para tu grupo si utilizas /gbanstat.
