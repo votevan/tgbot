@@ -138,7 +138,7 @@ def stop_filter(bot: Bot, update: Update):
             update.effective_message.reply_text("Dejaré de responder a eso.")
             raise DispatcherHandlerStop
 
-    update.effective_message.reply_text("Eso no es un filtro actual - utiliza /filters para ver todos los filtros activos.")
+    update.effective_message.reply_text("Eso no es un filtro actual. Utiliza /filters para ver todos los filtros activos.")
 
 
 @run_async
@@ -185,10 +185,10 @@ def reply_filter(bot: Bot, update: Update):
                                          disable_web_page_preview=True,
                                          reply_markup=keyboard)
                     else:
-                        message.reply_text("Esta nota no puede ser enviada, ya que esta mal formulada. Preguntale a "
+                        message.reply_text("Esta nota no puede ser enviada ya que esta mal formulada. Preguntale a "
                                            "@votevan si necesitas ayuda!")
-                        LOGGER.warning("Message %s could not be parsed", str(filt.reply))
-                        LOGGER.exception("Could not parse filter %s in chat %s", str(filt.keyword), str(chat.id))
+                        LOGGER.warning("El mensaje %s no se pudo analizar.", str(filt.reply))
+                        LOGGER.exception("No se pudo analizar %s en el chat %s", str(filt.keyword), str(chat.id))
 
             else:
                 # LEGACY - all new filters will have has_markdown set to True.
@@ -210,10 +210,10 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- - /filters: lista de todos los filtros activos en este chat.
+ - /filters: muestra la lista de todos los filtros activos en este chat.
 
 *Solo para administradores:*
- - /filter <palabraclave> <mensajederespuesta>: agregar un filtro a este chat El bot ahora responderá ese mensaje siempre que 'palabraclave' \
+ - /filter <palabraclave> <mensajederespuesta>: agregar un filtro a este chat. El bot ahora responderá ese mensaje siempre que 'palabraclave' \
 es mencionada. Si respondes a un sticker con una palabra clave, el bot responderá con ese sticker. NOTA: todo filtro donde \
 las palabras clave están en minúsculas, si desea que su palabra clave sea una oración, use comillas. por ejemplo: /filtro "oye allí" cómo \
 estas?
