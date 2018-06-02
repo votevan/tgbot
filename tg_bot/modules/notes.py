@@ -164,7 +164,7 @@ def save(bot: Bot, update: Update):
     sql.add_note_to_db(chat_id, note_name, text, data_type, buttons=buttons, file=content)
 
     msg.reply_text(
-        "Agregado {note_name}.\nObtenla con /get {nombredenota}, o #{nombredenota}".format(note_name=note_name))
+        "Agregado {note_name}.\nObtenla con /get {note_name}, o #{note_name}".format(note_name=note_name))
 
 
 @run_async
