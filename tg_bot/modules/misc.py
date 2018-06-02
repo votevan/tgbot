@@ -224,7 +224,7 @@ def info(bot: Bot, update: Update, args: List[str]):
     else:
         return
 
-    text = "<b>Información del usuario:</b>:" \
+    text = "<b>Información del usuario:</b>" \
            "\nID: <code>{}</code>" \
            "\nNombre: {}".format(user.id, html.escape(user.first_name))
 
@@ -353,11 +353,11 @@ def stats(bot: Bot, update: Update):
 
 # /ip is for private use
 __help__ = """
-  - /id: obtener la ID del grupo actual. Si se usa respondiendo a un mensaje, obtiene la ID de ese usuario.
-  - /runs: responde una cadena aleatoria de respuestas.
-  - /slap: abofetear a un usuario, o recibir una bofetada si no es una respuesta.
-  - /time <lugar>: da la hora local en el lugar dado.
-  - /info: obtener información sobre un usuario.
+- /id: obtener la ID del grupo actual. Si se usa respondiendo a un mensaje, obtiene la ID de ese usuario.
+- /runs: responde una cadena aleatoria de respuestas.
+- /slap: abofetear a un usuario, o recibir una bofetada si no es una respuesta.
+- /time <lugar>: da la hora local en el lugar dado.
+- /info: obtener información sobre un usuario.
 
   - /markdownhelp: resumen rápido de cómo funciona el markdown en telegram: solo se puede usar en chats privados.
 """
@@ -376,7 +376,7 @@ INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 ECHO_HANDLER = CommandHandler("echo", echo, filters=Filters.user(OWNER_ID))
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
 
-STATS_HANDLER = CommandHandler("estadisticas", stats, filters=CustomFilters.sudo_filter)
+STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
 
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(IP_HANDLER)
