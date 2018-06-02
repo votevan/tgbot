@@ -318,7 +318,7 @@ los mensajes guardados se analicen correctamente y permitirte crear botones.
 
 - <code>_italic _</code>: al envolver el texto con '_' generará texto en cursiva.
 - <code>*bold*</code>: al envolver el texto con '*' generará texto en negrita.
-- <code>`code`</ code>: al envolver el texto con ''' generará texto monoespaciado, también conocido como 'code'.
+- <code>`code`</code>: al envolver el texto con ''' generará texto monoespaciado, también conocido como 'code'.
 - <code>[texto](URL)</code>: esto creará un enlace; el mensaje solo mostrará <code>texto</code>, \
 y al tocarlo se abrirá la página en <code>URL</code>.
 Ejemplo: <code>[test](example.com)</code>
