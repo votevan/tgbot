@@ -69,47 +69,49 @@ RUN_STRINGS = (
 )
 
 SLAP_TEMPLATES = (
-    "{user1} {hits} a {user2} con  un {item}.",
-    "{user1} {hits} a {user2} en la cara con un {item}.",
-    "{user1} {hits} a {user2} un ratito con un {item}.",
-    "{user1} {throws} un {item} en {user2}.",
-    "{user1} toma un {item} y lo {throws} en la cara de {user2}.",
+    "{user1} {hits} a {user2} con {item}.",
+    "{user1} {hits} a {user2} en la cara con {item}.",
+    "{user1} {hits} a {user2} un ratito con {item}.",
+    "{user1} le {throws} {item} a {user2}.",
+    "{user1} agarra {item} y lo {throws} en la cara de {user2}.",
     "{user1} lanza un {item} en la dirección de {user2}.",
-    "{user1} comienza a abofetear a {user2} con un {item}.",
-    "{user1} le saca los ojos a {user2} con un {item}.",
+    "{user1} comienza a abofetear a {user2} con {item}.",
+    "{user1} le saca los ojos a {user2} con una cuchara.",
     "{user1} toma un {item} y {hits} a {user2} con él.",
-    "{user1} ata a {user2} a una silla y {throws} un {item} a ellos",
+    "{user1} ata a {user2} a una silla y {throw} un {item} a el",
     "{user1} da un empujón amistoso para ayudar a {user2} a aprender a nadar en lava",
+    "{user1} {throw} {item} en la dirección de {user2}" 
 )
 
 ITEMS = (
-     "bate de béisbol",
-     "bate de cricket",
-     "Monitor CRT",
-     "libro de texto de física",
-     "Nokia 1100",
-     "retrato",
-     "televisor",
-     "camión de cinco toneladas",
-     "rollo de cinta adhesiva",
-     "libro",
-     "ordenador portátil",
-     "televisor antiguo",
-     "saco de rocas",
-     "pollo de goma",
-     "bate de púas",
-     "extintor de incendios",
-     "pedazo de tierra",
-     "pedazo de carne podrida",
-     "oso de peluche",
-     "ladrillo",
-     "destornillador",
+     "un bate de béisbol",
+     "un amplificador",
+     "un Monitor CRT",
+     "un libro de texto de física",
+     "un Nokia 1100",
+     "un retrato",
+     "un televisor",
+     "un camión de cinco toneladas",
+     "un rollo de cinta adhesiva",
+     "un libro",
+     "un ordenador portátil",
+     "untelevisor antiguo",
+     "un saco de rocas",
+     "un pollo de goma",
+     "un bate de púas",
+     "un extintor de incendios",
+     "un pedazo de tierra",
+     "un pedazo de carne podrida",
+     "un oso de peluche",
+     "un ladrillo",
+     "un destornillador",
+     "una cuchara",
+     "una sartén",
 )
 
 THROW = (
      "tira",
      "arroja",
-     "tira",
      "lanza",
 )
 
@@ -296,7 +298,7 @@ def get_time(bot: Bot, update: Update, args: List[str]):
                 offset = json.loads(res.text)['dstOffset']
                 timestamp = json.loads(res.text)['rawOffset']
                 time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M:%S on %A %d %B")
-                update.message.reply_text("It's {} in {}".format(time_there, location))
+                update.message.reply_text("Son las {} en {}".format(time_there, location))
 
 
 @run_async
@@ -316,7 +318,7 @@ los mensajes guardados se analicen correctamente y permitirte crear botones.
 
 - <code>_italic _</code>: al envolver el texto con '_' se generará texto en cursiva.
 - <code>*bold*</code>: al envolver el texto con '*' se generará texto en negrita.
-- <code>`código`</ code>: al envolver el texto con '' 'se generará texto monoespaciado, también conocido como'código' \
+- <code>`código`</ code>: al envolver el texto con ''' se generará texto monoespaciado, también conocido como'código' \
 - <code>[texto](URL)</code>: esto creará un enlace; el mensaje solo mostrará <code>texto</code>, \
 y al tocarlo se abrirá la página en <code>URL</code>.
 Ejemplo: <code>[test](example.com)</code>
@@ -346,7 +348,7 @@ def markdown_help(bot: Bot, update: Update):
 
 @run_async
 def stats(bot: Bot, update: Update):
-    update.effective_message.reply_text("EStado actual:\n" + "\n".join([mod.__stats__() for mod in STATS]))
+    update.effective_message.reply_text("Estado actual:\n" + "\n".join([mod.__stats__() for mod in STATS]))
 
 
 # /ip is for private use
