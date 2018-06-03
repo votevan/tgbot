@@ -165,7 +165,7 @@ Si activas el control de flood, significa que el usuario que envie mas de X mens
 # *Admin only:*
 # - /setflood <int/'no'/'off'>: enables or disables flood control
 
-__mod_name__ = "Antiflood"
+__mod_name__ = "AntiFlood"
 
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)
