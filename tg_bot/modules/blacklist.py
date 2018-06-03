@@ -15,7 +15,7 @@ from tg_bot.modules.helper_funcs.misc import split_message
 
 BLACKLIST_GROUP = 11
 
-BASE_BLACKLIST_STRING = "palabras en la <b>lista negra</b>:\n"
+BASE_BLACKLIST_STRING = "palabras en la <b>lista negra</b>:\n" #Original: Current <b>blacklisted</b> words:
 
 
 @run_async
@@ -32,7 +32,7 @@ def blacklist(bot: Bot, update: Update):
     split_text = split_message(filter_list)
     for text in split_text:
         if text == BASE_BLACKLIST_STRING:
-            msg.reply_text("¡No hay palabras en la lista negra!")
+            msg.reply_text("¡No hay palabras en la lista negra!") #Original: There are no blacklisted messages here!
             return
         msg.reply_text(text, parse_mode=ParseMode.HTML)
 
@@ -50,12 +50,17 @@ def add_blacklist(bot: Bot, update: Update):
             sql.add_to_blacklist(chat.id, trigger.lower())
 
         if len(to_blacklist) == 1:
-            msg.reply_text("¡Añadido <code>{}</code> a la lista negra!".format(html.escape(to_blacklist[0])),
+            msg.reply_text("¡Añadido <code>{}</code> a la lista negra!".format(html.escape(to_blacklist[0])), 
+                            
+                           #Original: Added <code>{}</code> to the blacklist!
+
                            parse_mode=ParseMode.HTML)
 
         else:
             msg.reply_text(
                 "Añadido <code>{}</code> a la lista negra.".format(len(to_blacklist)), parse_mode=ParseMode.HTML)
+
+                #Original: Added <code>{}</code> to the blacklist!
 
     else:
         msg.reply_text("Dígame qué palabras desea eliminar de la lista negra.")
@@ -79,27 +84,44 @@ def unblacklist(bot: Bot, update: Update):
         if len(to_unblacklist) == 1:
             if successful:
                 msg.reply_text("¡Removido <code>{}</code> de la lista negra!".format(html.escape(to_unblacklist[0])),
+
+                               #Original: Removed <code>{}</code> from the blacklist!
+
                                parse_mode=ParseMode.HTML)
             else:
-                msg.reply_text("¡Esta no es una palabra de la lista negra!")
+                msg.reply_text("¡Esta no es una palabra de la lista negra!") 
+
+                               #Original: This isn't a blacklisted trigger...!
 
         elif successful == len(to_unblacklist):
             msg.reply_text(
-                "Removido <code>{}</code> de la lista negra.".format(
+                "Removido <code>{}</code> de la lista negra.".format(  
+   
+                #Original: Removed <code>{}</code> triggers from the blacklist.
+
                     successful), parse_mode=ParseMode.HTML)
 
         elif not successful:
             msg.reply_text(
-                "Ninguna de estas palabras existen, por lo que no se eliminaron.".format(
+                "Ninguna de estas palabras existen, por lo que no se eliminaron.".format( 
+ 
+                #Original: None of these triggers exist, so they weren't removed.
+
                     successful, len(to_unblacklist) - successful), parse_mode=ParseMode.HTML)
 
         else:
             msg.reply_text(
-                "Removido <code>{}</code> triggers de la lista negra. {} no existe, "
-                "por lo tanto no fue removida.".format(successful, len(to_unblacklist) - successful),
+                "Removido <code>{}</code> de la lista negra. {} no existe, "
+                "por lo tanto no fue removida.".format(successful, len(to_unblacklist) - successful), 
+
+                #Original:
+                #Removed <code>{}</code> triggers from the blacklist. {} did not exist,
+                #so were not removed.
                 parse_mode=ParseMode.HTML)
     else:
         msg.reply_text("Dígame qué palabras desea eliminar de la lista negra.")
+
+                       #Original: Tell me which words you would like to remove from the blacklist.
 
 
 @run_async
@@ -122,6 +144,9 @@ def del_blacklist(bot: Bot, update: Update):
                     pass
                 else:
                     LOGGER.exception("Error al eliminar palabra de la lista negra.")
+
+                                     #Original: Error while deleting blacklist message.
+
             break
 
 
@@ -136,18 +161,17 @@ def __chat_settings__(chat_id, user_id):
 
 def __stats__():
     return "{} palabras en la lista negra, entre {} chats.".format(sql.num_blacklist_filters(),
+           #Original: {} blacklist triggers, across {} chats.
                                                             sql.num_blacklist_filter_chats())
 
 
-__mod_name__ = "Lista negra" 
+__mod_name__ = "Blacklist" 
 
 __help__ = """
 Las listas negras se usan para evitar que ciertas palabras se digan en un grupo. Cada vez que se menciona \
 la palabra, el mensaje se borrará inmediatamente. ¡Un buen combo es combinar esto con los filtros de advertencias!
 *NOTA:* La lista negra no afecta a los administadores de un grupo.
-
 - /blacklist: Ver las palabras en lista negra.
-
 *Solo para administradores:*
 - /addblacklist <palabras>: Agregue una palabra a la lista negra. Cada línea se considera una palabra, por lo que usar \
 diferentes líneas le permitirán agregar múltiples palabras fácilmente.
@@ -155,6 +179,18 @@ diferentes líneas le permitirán agregar múltiples palabras fácilmente.
 lo que puede eliminar múltiples palabras a la vez.
 - /rmblacklist <oalabras>: Igual que arriba.
 """
+
+#Original:
+#Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, \
+#the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
+#*NOTE:* blacklists do not affect group admins.
+# - /blacklist: View the current blacklisted words.
+#*Admin only:*
+# - /addblacklist <triggers>: Add a trigger to the blacklist. Each line is considered one trigger, so using different \
+#lines will allow you to add multiple triggers.
+# - /unblacklist <triggers>: Remove triggers from the blacklist. Same newline logic applies here, so you can remove \
+#multiple triggers at once.
+# - /rmblacklist <triggers>: Same as above.
 
 BLACKLIST_HANDLER = DisableAbleCommandHandler("blacklist", blacklist, filters=Filters.group, admin_ok=True)
 ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, filters=Filters.group)
