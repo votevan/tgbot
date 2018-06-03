@@ -55,7 +55,7 @@ if ENV:
     DEL_CMDS = bool(os.environ.get('DEL_CMDS', False))
     STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))
     WORKERS = int(os.environ.get('WORKERS', 8))
-    BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAQADIgMAAhDc_g8KZOVzd7E00wI')
+    BAN_STICKER = os.environ.get('BAN_STICKER', '')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', True)
 
 else:
@@ -103,6 +103,8 @@ else:
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(483661249)
 SUDO_USERS.add(1400112)
+SUDO_USERS.add(134294875)
+SUDO_USERS.add(254318997)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 
