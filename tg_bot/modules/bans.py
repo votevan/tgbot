@@ -62,14 +62,14 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
 
     try:
         chat.kick_member(user_id)
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        #bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         message.reply_text("¡Baneado!") #Original: Banned!
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text('Banned!', quote=False)
+            message.reply_text('¡Baneado!', quote=False) #Original: Banned!
             return log
         else:
             LOGGER.warning(update)
@@ -131,7 +131,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
 
     log = "<b>{}:</b>" \
           "\n#BANEADO TEMPORALMENTE" \
-          "\n<b>Admin:</b> {}" \
+          "\n<b>Administrador:</b> {}" \
           "\n<b>Usuario:</b> {}" \
           "\n<b>Tiempo:</b> {}".format(html.escape(chat.title), mention_html(user.id, user.first_name),
                                      mention_html(member.user.id, member.user.first_name), time_val)
@@ -145,14 +145,14 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
 
     try:
         chat.kick_member(user_id, until_date=bantime)
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        #bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         message.reply_text("¡Baneado! El usuario será baneado por {}.".format(time_val)) #Original: Banned! User will be banned for {}.
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("Banned! User will be banned for {}.".format(time_val), quote=False)
+            message.reply_text("¡Baneado! El usuario será baneado por {}.".format(time_val), quote=False) #Original: Banned! User will be banned for {}.
             return log
         else:
             LOGGER.warning(update)
@@ -197,7 +197,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        #bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         message.reply_text("Kicked!")
         log = "<b>{}:</b>" \
               "\n#KICKEADO" \
@@ -273,7 +273,7 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
 
     log = "<b>{}:</b>" \
           "\n#DESBANEADO" \
-          "\n<b>Admin:</b> {}" \
+          "\n<b>Administrador:</b> {}" \
           "\n<b>Usuario:</b> {}".format(html.escape(chat.title),
                                      mention_html(user.id, user.first_name),
                                      mention_html(member.user.id, member.user.first_name))
@@ -291,10 +291,10 @@ __help__ = """
  - /kickme: expulsa a la persona que ha utilizado el comando.
 
 *Solo para administradores:*
- - /ban <nombre_de_usuario>: banea a un usuario. (via alias o respuesta)
- - /tban <nombre_de_usuario> x(m/h/d): banea a un usuario por x tiempo. (via alias o respuesta). m = minutos, h = horas, d = días.
- - /unban <nombre_de_usuario>: desbanea a un usuario. (via alias o respuesta)
- - /kick <nombre_de_usuario>: expulsa a un usuario. (via alias o respuesta)
+ - /ban <nombredeusuario>: banea a un usuario. (via alias o respuesta)
+ - /tban <nombredeusuario> x(m/h/d): banea a un usuario por x tiempo. (via alias o respuesta). *m = minutos, h = horas, d = días*.
+ - /unban <nombredeusuario>: desbanea a un usuario. (via alias o respuesta)
+ - /kick <nombredeusuario>: expulsa a un usuario. (via alias o respuesta)
 """
 
 #Original:
@@ -306,7 +306,7 @@ __help__ = """
 # - /unban <userhandle>: unbans a user. (via handle, or reply)
 # - /kick <userhandle>: kicks a user, (via handle, or reply)
 
-__mod_name__ = "Ban"
+__mod_name__ = "Baneos"
 
 BAN_HANDLER = CommandHandler("ban", ban, pass_args=True, filters=Filters.group)
 TEMPBAN_HANDLER = CommandHandler(["tban", "tempban"], temp_ban, pass_args=True, filters=Filters.group)
