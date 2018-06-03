@@ -156,8 +156,9 @@ __help__ = """
  - /setflood <número/'no'/'off'>: Activa o desactiva el antiflood.
 
 Si activas el control de flood, significa que el usuario que envie mas de X mensajes consecutivos será baneado.
+
 *Esta configuración no afecta a los administradores.*
-"""
+"""	
 
 #Original:
 # - /flood: Get the current flood control setting
