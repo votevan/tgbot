@@ -55,11 +55,16 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     message.reply_text("Ascendido correctamente!") #Original: Successfully promoted!
     return "<b>{}:</b>" \
-           "\n#PROMOTED	" \
-           "\n<b>Admin:</b> {}" \
-           "\n<b>User:</b> {}".format(html.escape(chat.title),
+           "\n#ASCENDIDO" \
+           "\n<b>Administrador:</b> {}" \
+           "\n<b>Usuario:</b> {}".format(html.escape(chat.title),
                                       mention_html(user.id, user.first_name),
                                       mention_html(user_member.user.id, user_member.user.first_name))
+
+           #Original:
+           #\n#PROMOTED
+           #\n<b>Admin:</b> {}
+           #\n<b>User:</b> {}
 
 
 @run_async
@@ -79,15 +84,15 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("Esta persona ha creado el chat, ¿cómo lo degradaría?") #Original: This person CREATED the chat, how would I demote them?
+        message.reply_text("Esta persona ha creado el chat. ¿Cómo lo degradaría?") #Original: This person CREATED the chat, how would I demote them?
         return ""
 
     if not user_member.status == 'administrator':
-        message.reply_text("No se puede degradar lo que no se ascendió!") #Original: Can't demote what wasn't promoted!
+        message.reply_text("¡No se puede degradar lo que no se ascendió!") #Original: Can't demote what wasn't promoted!
         return ""
 
     if user_id == bot.id:
-        message.reply_text("¡No puedo degradarme! Haz que un administrador lo haga por mí.") #Original: I can't demote myself! Get an admin to do it for me.
+        message.reply_text("¡No puedo degradarme solo! Haz que un administrador lo haga.") #Original: I can't demote myself! Get an admin to do it for me.
         return ""
 
     try:
@@ -102,11 +107,16 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                               can_promote_members=False)
         message.reply_text("Degradado correctamente!") #Original: Successfully demoted!
         return "<b>{}:</b>" \
-               "\n#DEMOTED" \
-               "\n<b>Admin:</b> {}" \
-               "\n<b>User:</b> {}".format(html.escape(chat.title),
+               "\n#DEGRADADO" \
+               "\n<b>Administrador:</b> {}" \
+               "\n<b>Usuario:</b> {}".format(html.escape(chat.title),
                                           mention_html(user.id, user.first_name),
                                           mention_html(user_member.user.id, user_member.user.first_name))
+
+               #Original:
+               #\n#DEMOTED
+               #\n<b>Admin:</b> {}
+               #\n<b>User:</b> {}
 
     except BadRequest:
         message.reply_text("¡No pude actuar sobre este administrador! Puede que no sea administrador o el rol de "
@@ -144,8 +154,12 @@ def pin(bot: Bot, update: Update, args: List[str]) -> str:
             else:
                 raise
         return "<b>{}:</b>" \
-               "\n#PINNED" \
-               "\n<b>Admin:</b> {}".format(html.escape(chat.title), mention_html(user.id, user.first_name))
+               "\n#ANCLADO" \
+               "\n<b>Administrador:</b> {}".format(html.escape(chat.title), mention_html(user.id, user.first_name))
+
+               #Original:
+               #\n#PINNED
+               #\n<b>Admin:</b> {}
 
     return ""
 
@@ -168,9 +182,13 @@ def unpin(bot: Bot, update: Update) -> str:
             raise
 
     return "<b>{}:</b>" \
-           "\n#UNPINNED" \
-           "\n<b>Admin:</b> {}".format(html.escape(chat.title),
+           "\n#DESANCLADO" \
+           "\n<b>Administrador:</b> {}".format(html.escape(chat.title),
                                        mention_html(user.id, user.first_name))
+
+           #Original:
+           #\n#UNPINNED
+           #\n<b>Admin:</b> {}
 
 
 @run_async
@@ -217,8 +235,8 @@ __help__ = """
  - /adminlist: envía la lista de administradores en el chat.
 
 *Solo para administradores:*
- - /pin: fija silenciosamente el mensaje respondido. *Añade 'loud' o 'notify' para notificar a los usuarios*.
- - /unpin: anula el mensaje anclado.
+ - /pin: ancla silenciosamente el mensaje respondido. *Añade 'loud' o 'notify' para notificar a los usuarios*.
+ - /unpin: desancla el mensaje anclado.
  - /invitelink: obtiene el enlace de invitación.
  - /promote: asciende al usuario respondido.
  - /demote: degrada al usuario respondido.
