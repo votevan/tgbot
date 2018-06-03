@@ -63,13 +63,13 @@ def reply_afk(bot: Bot, update: Update):
                 if not user.reason:
                     res = "¡{} ahora está AFK!".format(fst_name) #Original: {} is AFK!
                 else:
-                    res = "¡{} ahora está AFK! Dice que es porque:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
+                    res = "{} ahora está AFK; dice que es porque:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
                 message.reply_text(res)
 
 
 __help__ = """
- - /afk <motivo>: entra en modo AFK.
- - brb <motivo>: igual al comando /afk - pero no es un comando.
+ - /afk <razón>: entra en modo AFK. *No es obligatorio poner el por qué.*
+ - brb <razón>: igual al comando /afk - pero no es un comando.
 
 Cuando entras en modo AFK, cualquier mención será respondida con un mensaje que diga que no estás disponible.
 """
