@@ -252,7 +252,7 @@ __help__ = """
 # - /promote: promotes the user replied to
 # - /demote: demotes the user replied to
 
-__mod_name__ = "Admin."
+__mod_name__ = "Administrador"
 
 PIN_HANDLER = CommandHandler("pin", pin, pass_args=True, filters=Filters.group)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
