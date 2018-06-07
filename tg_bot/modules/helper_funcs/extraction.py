@@ -49,8 +49,8 @@ def extract_user_and_text(message: Message, args: List[str]) -> (Optional[int], 
         user = args[0]
         user_id = get_user_id(user)
         if not user_id:
-            message.reply_text("I don't have that user in my db. You'll be able to interact with them if "
-                               "you reply to that person's message instead, or forward one of that user's messages.")
+            message.reply_text("No tengo ese usuario en mi base de datos. Podrás interactuar con el si "
+                               "respondes a un mensaje de ese usuario o reenviando uno de sus mensajes.")
             return None, None
 
         else:
@@ -75,11 +75,11 @@ def extract_user_and_text(message: Message, args: List[str]) -> (Optional[int], 
         message.bot.get_chat(user_id)
     except BadRequest as excp:
         if excp.message in ("User_id_invalid", "Chat not found"):
-            message.reply_text("I don't seem to have interacted with this user before - please forward a message from "
-                               "them to give me control! (like a voodoo doll, I need a piece of them to be able "
-                               "to execute certain commands...)")
+            message.reply_text("Parece que no he interactuado con este usuario antes. ¡Envía un mensaje de el "
+                               "para darme control! (Es como un muñeco vudú, necesito un pedazo de ellos para poder"
+                               "ejecutar ciertos comandos ...)")
         else:
-            LOGGER.exception("Exception %s on user %s", excp.message, user_id)
+            LOGGER.exception("Excepción %s en usuario %s", excp.message, user_id)
 
         return None, None
 
