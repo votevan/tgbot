@@ -124,7 +124,7 @@ HIT = (
      "golpea",
 )
 
-ADMINS = (
+ADMIN = (
      "@GastiRevol",
      "@manaosypitusas",
      "@manuell_15",
@@ -177,7 +177,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
     throw = random.choice(THROW)
     admin = random.choice(ADMIN)
 
-    repl = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw, admins=admin)
+    repl = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw, admin=admin)
 
     reply_text(repl, parse_mode=ParseMode.MARKDOWN)
 
