@@ -72,6 +72,7 @@ SLAP_TEMPLATES = (
     "{user1} se hizo el piola y {user2} le rompió la jeta.",
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
     "{user1} envió un meme y {admin} lo muteó.",
+    "No puedo responder a esto porque {admin} lo va  a tomar como flood y nos va a banear.", 
 )
 
 #esto lo meto por aca pq soy re piola
