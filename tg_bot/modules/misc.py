@@ -129,7 +129,7 @@ ADMIN = (
      "@manaosypitusas",
      "@manuell_15",
      "@SebAt0mix",
-     "@Francisco Zorat",
+     "Francisco Zorat",
      "@Santy_TrabajadorDeSamsung",
      "@Gatica1996",
 )
