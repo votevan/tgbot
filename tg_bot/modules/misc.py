@@ -73,7 +73,7 @@ SLAP_TEMPLATES = (
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
     "{user1} envió un meme y {admin} lo muteó.",
     "No puedo responder a esto porque Santi lo va a tomar como flood y nos va a banear.",
-    "Les mandaria este mensaje pero estoy con @Santy_TrabajadorDeSamsung y no llega el internet.",
+    "Les mandaria este mensaje pero estoy con Santi y no llega el internet.",
 )
 
 #esto lo meto por aca pq soy re piola
