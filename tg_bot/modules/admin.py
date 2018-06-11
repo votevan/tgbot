@@ -33,11 +33,15 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text("¿Cómo voy a ascender a alguien que ya es administrador?") #Original: How am I meant to promote someone that's already an admin?
+        message.reply_text("¿Cómo voy a ascender a alguien que ya es administrador?") 
+                           #Original: How am I meant to promote someone that's already an admin?
+
         return ""
 
     if user_id == bot.id:
-        message.reply_text("¡No puedo ascenderme solo! Haz que un administrador lo haga por mí.") #Original: I can't promote myself! Get an admin to do it for me.
+        message.reply_text("¡No puedo auto-ascenderme! Haz que un administrador lo haga por mí.") 
+                           #Original: I can't promote myself! Get an admin to do it for me.
+
         return ""
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -53,7 +57,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
                           can_pin_messages=bot_member.can_pin_messages,
                           can_promote_members=bot_member.can_promote_members)
 
-    message.reply_text("Ascendido correctamente!") #Original: Successfully promoted!
+    message.reply_text("¡Ascendido correctamente!") #Original: Successfully promoted!
     return "<b>{}:</b>" \
            "\n#ASCENDIDO" \
            "\n<b>Administrador:</b> {}" \
@@ -84,7 +88,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("Esta persona ha creado el chat. ¿Cómo lo degradaría?") #Original: This person CREATED the chat, how would I demote them?
+        message.reply_text("Esta persona creó el chat. ¿Cómo lo degradaría?") #Original: This person CREATED the chat, how would I demote them?
         return ""
 
     if not user_member.status == 'administrator':
@@ -92,7 +96,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("¡No puedo degradarme solo! Haz que un administrador lo haga.") #Original: I can't demote myself! Get an admin to do it for me.
+        message.reply_text("¡No puedo auto-degradarme! Haz que un administrador lo haga por mí.") #Original: I can't demote myself! Get an admin to do it for me.
         return ""
 
     try:
@@ -119,9 +123,8 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                #\n<b>User:</b> {}
 
     except BadRequest:
-        message.reply_text("¡No pude actuar sobre este administrador! Puede que no sea administrador o el rol de "
+        message.reply_text("¡No pude degradarlo! Puede que no sea administrador o el rol de "
                            "administrador de este usuario haya sido designado por otro usuario.")
-
                            #Original:
                            #Could not demote. I might not be admin, or the admin status was appointed by another
                            #user, so I can't act upon them!  
@@ -214,7 +217,7 @@ def invite(bot: Bot, update: Update):
 @run_async
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
-    text = "Administradores de *{}*:".format(update.effective_chat.title or "this chat") 
+    text = "Administradores en *{}*:".format(update.effective_chat.title or "this chat") 
            #Original: Admins in *{}*
     for admin in administrators:
         user = admin.user
@@ -238,8 +241,8 @@ __help__ = """
  - /pin: ancla silenciosamente el mensaje respondido. *Añade 'loud' o 'notify' para notificar a los usuarios*.
  - /unpin: desancla el mensaje anclado.
  - /invitelink: obtiene el enlace de invitación.
- - /promote: asciende al usuario respondido.
- - /demote: degrada al usuario respondido.
+ - /asc: asciende al usuario respondido.
+ - /desc: degrada al usuario respondido.
 """
 
 #   Original
@@ -252,15 +255,18 @@ __help__ = """
 # - /promote: promotes the user replied to
 # - /demote: demotes the user replied to
 
-__mod_name__ = "Administrador"
+__mod_name__ = "Admin"
 
 PIN_HANDLER = CommandHandler("pin", pin, pass_args=True, filters=Filters.group)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
 
 INVITE_HANDLER = CommandHandler("invitelink", invite, filters=Filters.group)
 
-PROMOTE_HANDLER = CommandHandler("promote", promote, pass_args=True, filters=Filters.group)
-DEMOTE_HANDLER = CommandHandler("demote", demote, pass_args=True, filters=Filters.group)
+PROMOTE_HANDLER = CommandHandler("asc", promote, pass_args=True, filters=Filters.group)
+                                 #Original: promote
+
+DEMOTE_HANDLER = CommandHandler("desc", demote, pass_args=True, filters=Filters.group)
+                                #Original:demote
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("adminlist", adminlist, filters=Filters.group)
 
