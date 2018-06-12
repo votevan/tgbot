@@ -236,28 +236,28 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- - /get <notename>: obtener la nota con este nombre.
- - #<notename>: igual que /get.
- - /notes o /saved: enumera todas las notas guardadas en este chat.
+ - /obt <nombredenota>: obtener la nota con este nombre.
+ - #<nombredenota>: igual que /get.
+ - /notas o /grs: enumera todas las notas guardadas en este chat.
 
 *Solo para administradores:*
- - /save <nombredenota> <nota>: guarda una nota como una nota con ese nombre.
+ - /gr <nombredenota> <nota>: guarda una nota con ese nombre.
 Se puede agregar un botón a una nota mediante el uso de la sintaxis estándar del enlace de markdown: el enlace debe ser precedido por un \
-`buttonurl:, como tal: `[somelink](buttonurl:example.com)`. Mira /markdownhelp para obtener más información.
- - /save <nombredenota>: guarda el mensaje respondido como una nota con el nombre notename.
- - /clear <nombredenota>: borrar nota con aquel nombre.
+buttonurl:, como tal: `[somelink](buttonurl:example.com)`. Mira /markdownhelp para obtener más información.
+ - /gr <nombredenota>: guarda el mensaje respondido como una nota con el nombre nombredenota.
+ - /cl <nombredenota>: borrar nota con aquel nombre.
 """
 
 __mod_name__ = "Notas"
 
-GET_HANDLER = CommandHandler("get", cmd_get, pass_args=True)
+GET_HANDLER = CommandHandler("obt", cmd_get, pass_args=True)
 HASH_GET_HANDLER = RegexHandler(r"^#[^\s]+", hash_get)
 
-SAVE_HANDLER = CommandHandler("save", save, filters=~Filters.reply)
-REPL_SAVE_HANDLER = CommandHandler("save", save_replied, filters=Filters.reply)
-DELETE_HANDLER = CommandHandler("clear", clear, pass_args=True)
+SAVE_HANDLER = CommandHandler("gr", save, filters=~Filters.reply)
+REPL_SAVE_HANDLER = CommandHandler("gr", save_replied, filters=Filters.reply)
+DELETE_HANDLER = CommandHandler("cl", clear, pass_args=True)
 
-LIST_HANDLER = DisableAbleCommandHandler(["notes", "saved"], list_notes, admin_ok=True)
+LIST_HANDLER = DisableAbleCommandHandler(["notas", "grs"], list_notes, admin_ok=True)
 
 dispatcher.add_handler(GET_HANDLER)
 dispatcher.add_handler(SAVE_HANDLER)
