@@ -49,7 +49,7 @@ def get(bot, update, notename, show_none=True):
                     bot.forward_message(chat_id=chat_id, from_chat_id=MESSAGE_DUMP, message_id=note.value)
                 except BadRequest as excp:
                     if excp.message == "Message to forward not found":
-                        message.reply_text("Este mensaje parece haberse perdido, lo eliminaré "
+                        message.reply_text("Este mensaje parece haberse perdido. Lo eliminaré "
                                            "de tu lista de notas.")
                         sql.rm_note(chat_id, notename)
                     else:
@@ -60,9 +60,7 @@ def get(bot, update, notename, show_none=True):
                 except BadRequest as excp:
                     if excp.message == "Message to forward not found":
                         message.reply_text("Parece que el remitente original de esta nota ha eliminado su "
-                                           "mensaje, ¡lo siento! Haz que el administrador de bot comience "
-                                           "a usar un volcado de mensajes para evitar esto. Eliminaré esta "
-                                           "nota de tus notas guardadas.")
+                                           "mensaje. ¡Lo siento! Eliminaré esta nota de tus notas guardadas.")
                         sql.rm_note(chat_id, notename)
                     else:
                         raise
@@ -85,17 +83,17 @@ def get(bot, update, notename, show_none=True):
 
             except BadRequest as excp:
                 if excp.message == "Entity_mention_user_invalid":
-                    message.reply_text("Parece que trataste de mencionar a alguien que nunca había visto antes. "
-                                       "Si realmente quieres mencionarlo, envíame uno de sus mensajes y podré hacerlo!")
+                    message.reply_text("Parece que estás tratando de mencionar a alguien que no había visto nunca antes. "
+                                       "¡Si realmente querés mencionarlo, enviá uno de sus mensajes y voy a poder hacerlo!")
                 elif FILE_MATCHER.match(note.value):
                     message.reply_text("Esta nota es un archivo incorrectamente importado de otro bot; no puedo usarlo. "
-                                       "Si realmente lo necesita, tendrá que guardarlo nuevamente. Mientras tanto, lo eliminaré "
+                                       "Si realmente la necesitás, tenés que guardarlo nuevamente. Mientras tanto, lo eliminaré "
                                        "de tu lista de notas.")
                     sql.rm_note(chat_id, notename)
                 else:
-                    message.reply_text("Esta nota no pudo enviarse, ya que está mal creada.")
-                    LOGGER.exception("Could not parse message #%s in chat %s", notename, str(chat_id))
-                    LOGGER.warning("Message was: %s", str(note.value))
+                    message.reply_text("Esta nota no pudo enviarse; está mal creada.")
+                    LOGGER.exception("No se pudo analizar el mensaje #%s en el chat %s", notename, str(chat_id))
+                    LOGGER.warning("El mensaje fué: %s", str(note.value))
         return
     elif show_none:
         message.reply_text("Esta nota no existe.")
@@ -128,22 +126,22 @@ def save_replied(bot: Bot, update: Update):
     notename, text, data_type, content, buttons = get_note_type(msg, replied=True)
 
     if data_type is None:
-        msg.reply_text("Dude, there's no note")
+        msg.reply_text("Amigo, no hay nota.")
         return
 
     sql.add_note_to_db(chat_id, notename, text, data_type, buttons, content)
-    msg.reply_text("Yas! Added replied message {}".format(notename))
+    msg.reply_text("¡Si! Añadí el mensaje respondido: {}".format(notename))
 
     if msg.reply_to_message.from_user.is_bot:
         if text:
             msg.reply_text("Parece que estás tratando de guardar un mensaje de un bot. Lamentablemente, "
                            "los bots no pueden reenviar mensajes de otro bot, por lo que no puedo guardar "
-                           "el mensaje exacto.\nGuardaré todo el texto que pueda, pero si quieres guardar más, tendrás que "
+                           "el mensaje exacto.\nGuardaré todo el texto que pueda, pero si querés guardar más, tenés que "
                             "reenvíar el mensaje, y luego guardarlo.")
-        else:
+        else:			
             msg.reply_text("Los bots son perjudicados por Telegram, lo que dificulta que los bots interactúen "
-                           "con otros bots, por lo que no puedo guardar este mensaje como solía hacerlo. "
-                           "¿Puedes reenviarlo y luego guardar ese nuevo mensaje? ¡Gracias!")
+                           "con otros bots. No puedo guardar este mensaje como solía hacerlo. "
+                           "¿Podés reenviarlo y después guardar ese nuevo mensaje? ¡Gracias!")
         return
 
 
@@ -164,7 +162,7 @@ def save(bot: Bot, update: Update):
     sql.add_note_to_db(chat_id, note_name, text, data_type, buttons=buttons, file=content)
 
     msg.reply_text(
-        "Agregado {note_name}.\nObtenla con /get {note_name}, o #{note_name}".format(note_name=note_name))
+        "Agregué la nota {note_name}.\nObtenela con /get {note_name}, o #{note_name}".format(note_name=note_name))
 
 
 @run_async
@@ -175,9 +173,9 @@ def clear(bot: Bot, update: Update, args: List[str]):
         notename = args[0]
 
         if sql.rm_note(chat_id, notename):
-            update.effective_message.reply_text("Nota removida correctamente.")
+            update.effective_message.reply_text("Nota eliminada correctamente.")
         else:
-            update.effective_message.reply_text("¡Esa no es una nota en mi base de datos!")
+            update.effective_message.reply_text("¡Esa nota no en mi base de datos!")
 
 
 @run_async
@@ -217,9 +215,9 @@ def __import_data__(chat_id, data):
         with BytesIO(str.encode("\n".join(failures))) as output:
             output.name = "failed_imports.txt"
             dispatcher.bot.send_document(chat_id, document=output, filename="failed_imports.txt",
-                                         caption="These files/photos failed to import due to originating "
-                                                 "from another bot. This is a telegram API restriction, and can't "
-                                                 "be avoided. Sorry for the inconvenience!")
+                                         caption="Estos archivos/fotos fallaron en la importación porque provienen "
+                                                 "de otro bot. Esta es una restricción de la API de Telegram, y no se puede "
+                                                 "saltear. ¡Disculpas por el inconveniente!")
 
 
 def __stats__():
@@ -238,7 +236,7 @@ def __chat_settings__(chat_id, user_id):
 __help__ = """
  - /get <nombredenota>: obtener la nota con este nombre.
  - #<nombredenota>: igual que /get.
- - /notes o /saved: enumera todas las not	as guardadas en este chat.
+ - /notes o /saved: enumera todas las notas guardadas en este chat.
 
 *Solo para administradores:*
  - /save <nombredenota> <nota>: guarda una nota con ese nombre.
