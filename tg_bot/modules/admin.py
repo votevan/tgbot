@@ -245,10 +245,10 @@ __help__ = """
  - /desc: degrada al usuario respondido.
 """
 
-#   Original
+#Original
 # - /adminlist: list of admins in the chat
 
-# *Admin only:*
+#*Admin only:*
 # - /pin: silently pins the message replied to - add 'loud' or 'notify' to give notifs to users.
 # - /unpin: unpins the currently pinned message
 # - /invitelink: gets invitelink
@@ -262,11 +262,9 @@ UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
 
 INVITE_HANDLER = CommandHandler("invitelink", invite, filters=Filters.group)
 
-PROMOTE_HANDLER = CommandHandler("asc", promote, pass_args=True, filters=Filters.group)
-                                 #Original: promote
+PROMOTE_HANDLER = CommandHandler("promote", promote, pass_args=True, filters=Filters.group)
 
-DEMOTE_HANDLER = CommandHandler("desc", demote, pass_args=True, filters=Filters.group)
-                                #Original:demote
+DEMOTE_HANDLER = CommandHandler("demote", demote, pass_args=True, filters=Filters.group)
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("adminlist", adminlist, filters=Filters.group)
 
