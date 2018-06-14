@@ -61,7 +61,7 @@ tener una idea de algunas de las cosas con las que te puedo ayudar.
     - *en un grupo*: te redirecciona al chat privado, con todas las configuraciones de ese chat.
 {}
 Más comandos: 
-""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
+""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\n- Todos los comandos pueden ser usados con / o !.\n")
 
 #Original:
 #Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @MarieSupport.
@@ -83,11 +83,7 @@ Más comandos:
 #""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """
-¡Hola! Parece que buscas información acerca de donaciones. Mi mantenedor [votevan](t.me/votevan) no las acepta, \
-aunque puedes donar a [mi creador original](t.me/SonOfLars), quien con mucho esfuerzo me ha programado. 
-
-Si quieres donarle a él, existen 2 opciones; vía [PayPal](paypal.me/PaulSonOfLars), o \
-[Monzo](monzo.me/paulnionvestergaardlarsen). ¡Gracias!
+Nada por acá.
 """
 
 #Original: 
