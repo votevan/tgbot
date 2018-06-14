@@ -26,7 +26,7 @@ con la ayuda de @Checca22 y @monsta97. Estoy construido en python3, usando la li
 Soy completamente opensource. ¡Podés encontrar el [proyecto original](github.com/PaulSonOfLars/tgbot) \
 o [a mí](github.com/votevan/tgbot)!
 
-Encontrá la lista de comandos disponibles usando /help.
+Encontrá la lista de comandos disponibles con /help.
 
 ¿Necesitás ayuda? Contactá con @votevan.
 """
