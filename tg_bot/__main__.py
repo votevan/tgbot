@@ -20,15 +20,15 @@ from tg_bot.modules.helper_funcs.misc import paginate_modules
 PM_START_TEXT = """
 Hola {}, mi nombre es *{}*!
 
-Soy un bot de administración de grupos traducido al español con la ayuda de @Ccheca22 y @monsta97.
+Soy un bot de administración de grupos mantenido por [esta maravillosa persona](tg://user?id={}) y traducido al español \
+con la ayuda de @Checca22 y @monsta97. Estoy construido en python3, usando la libreria python-telegram-bot. 
 
-Estoy mantenido por [esta maravillosa persona](tg://user?id={}). Me han construido en python3, usando \
-la libreria python-telegram-bot. 
+Soy completamente opensource. ¡Podés encontrar el [proyecto original](github.com/PaulSonOfLars/tgbot) \
+o [a mí](github.com/votevan/tgbot)!
 
-Por cierto, soy completamente opensource. Puedes encontrar el \
-[proyecto original](github.com/PaulSonOfLars/tgbot) \
-o \
-[a mi](github.com/votevan/tgbot)!
+Encontrá la lista de comandos disponibles usando /help.
+
+¿Necesitás ayuda? Contactá con @votevan.
 """
 
 #Original
@@ -463,11 +463,11 @@ def migrate_chats(bot: Bot, update: Update):
     else:
         return
 
-    LOGGER.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
+    LOGGER.info("Migrando de %s a %s", str(old_chat), str(new_chat))
     for mod in MIGRATEABLE:
         mod.__migrate__(old_chat, new_chat)
 
-    LOGGER.info("Successfully migrated!")
+    LOGGER.info("Migrado correctamente!")
     raise DispatcherHandlerStop
 
 
@@ -496,7 +496,7 @@ def main():
     # dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
-        LOGGER.info("Using webhooks.")
+        LOGGER.info("Usando webhooks.")
         updater.start_webhook(listen="0.0.0.0",
                               port=PORT,
                               url_path=TOKEN)
@@ -508,12 +508,12 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
+        LOGGER.info("Usando long polling.")
         updater.start_polling(timeout=15, read_latency=4)
 
     updater.idle()
 
 
 if __name__ == '__main__':
-    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info("Modulos cargados correctamente: " + str(ALL_MODULES))
     main()
