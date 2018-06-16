@@ -114,7 +114,6 @@ __help__ = """
 #*Admin only:*
 # - /setrules <your rules here>: set the rules for this chat.
 # - /clearrules: clear the rules for this chat.
-"""
 
 __mod_name__ = "Reglas"
 
