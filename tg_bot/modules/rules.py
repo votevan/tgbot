@@ -47,7 +47,7 @@ def send_rules(update, chat_id, from_pm=False):
                                   #The group admins haven't set any rules for this chat yet. 
                                   #This probably doesn't mean it's lawless though...!
     elif rules:
-        update.effective_message.reply_text("Contactame en chat privado para obtener las reglas.", #Original: Contact me in PM to get this group's rules.
+        update.effective_message.reply_text("Contactame en chat privado para obtener las reglas.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="Reglas",
                                                                        url="t.me/{}?start={}".format(bot.username,
@@ -97,7 +97,7 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "Este chat tiene sus reglas establecidas: `{}`".format(bool(sql.get_rules(chat_id)))#Original: This chat has had it's rules set: `{}`
+    return "Este chat tiene sus reglas establecidas: `{}`".format(bool(sql.get_rules(chat_id))) #Original: This chat has had it's rules set: `{}`
 
 
 __help__ = """
