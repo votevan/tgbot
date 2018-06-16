@@ -26,38 +26,29 @@ def send_rules(update, chat_id, from_pm=False):
         chat = bot.get_chat(chat_id)
     except BadRequest as excp:
         if excp.message == "Chat not found" and from_pm:
-            bot.send_message(user.id, "¡El atajo de reglas para este chat no se ha configurado correctamente!"
-                                      "Preguntale a los administradores del grupo para corregir esto.")
-                                      #Original:
-                                      #The rules shortcut for this chat hasn't been set properly! Ask admins to
-                                      #fix this.
+            bot.send_message(user.id, "The rules shortcut for this chat hasn't been set properly! Ask admins to "
+                                      "fix this.")
             return
         else:
             raise
 
     rules = sql.get_rules(chat_id)
-    text = "Las reglas de *{}* son:\n\n{}".format(escape_markdown(chat.title), rules) 
-           #Original: The rules for *{}* are:
+    text = "The rules for *{}* are:\n\n{}".format(escape_markdown(chat.title), rules)
 
     if from_pm and rules:
         bot.send_message(user.id, text, parse_mode=ParseMode.MARKDOWN)
     elif from_pm:
-        bot.send_message(user.id, "Los administradores del grupo aún no han establecido reglas para este chat.")
-                                  #Original:
-                                  #The group admins haven't set any rules for this chat yet. 
-                                  #This probably doesn't mean it's lawless though...!
+        bot.send_message(user.id, "The group admins haven't set any rules for this chat yet. "
+                                  "This probably doesn't mean it's lawless though...!")
     elif rules:
-        update.effective_message.reply_text("Contactame en chat privado para obtener las reglas.", 
-                                            #Original: Contact me in PM to get this group's rules.
+        update.effective_message.reply_text("Contact me in PM to get this group's rules.",
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="Reglas", #Original: Rules
+                                                [[InlineKeyboardButton(text="Rules",
                                                                        url="t.me/{}?start={}".format(bot.username,
                                                                                                      chat_id))]]))
     else:
-        update.effective_message.reply_text("Los administradores del grupo aún no han establecido reglas para este chat.")
-                                            #Original: 
-                                            #The group admins haven't set any rules for this chat yet.
-                                            #This probably doesn't mean it's lawless though...!
+        update.effective_message.reply_text("The group admins haven't set any rules for this chat yet. "
+                                            "This probably doesn't mean it's lawless though...!")
 
 
 @run_async
@@ -73,7 +64,7 @@ def set_rules(bot: Bot, update: Update):
         markdown_rules = markdown_parser(txt, entities=msg.parse_entities(), offset=offset)
 
         sql.set_rules(chat_id, markdown_rules)
-        update.effective_message.reply_text("¡Reglas establecidas con éxito!") #Original: Successfully set rules for this group.
+        update.effective_message.reply_text("Successfully set rules for this group.")
 
 
 @run_async
@@ -81,13 +72,12 @@ def set_rules(bot: Bot, update: Update):
 def clear_rules(bot: Bot, update: Update):
     chat_id = update.effective_chat.id
     sql.set_rules(chat_id, "")
-    update.effective_message.reply_text("¡Reglas eliminadas con éxito!") #Original: Successfully cleared rules!
+    update.effective_message.reply_text("Successfully cleared rules!")
 
 
 def __stats__():
-    return "{} chats poseen las reglas configuradas.".format(sql.num_chats())
-           #Original:
-           #{} chats have rules set.
+    return "{} chats have rules set.".format(sql.num_chats())
+
 
 def __import_data__(chat_id, data):
     # set chat rules
@@ -100,26 +90,18 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "Este chat tiene sus reglas establecidas: `{}`".format(bool(sql.get_rules(chat_id)))
-           #Original:
-           #This chat has had it's rules set: `{}`
+    return "This chat has had it's rules set: `{}`".format(bool(sql.get_rules(chat_id)))
+
 
 __help__ = """
- - /rules: obtén las reglas del chat.
+ - /rules: get the rules for this chat.
 
-*Solo para administradores:*
- - /setrules <reglas>: configura las reglas del chat.
- - /clearrules: elimina las reglas del chat.
+*Admin only:*
+ - /setrules <your rules here>: set the rules for this chat.
+ - /clearrules: clear the rules for this chat.
 """
 
-   #Original:
-#- /rules: get the rules for this chat.
-
-#*Admin only:*
-#- /setrules <your rules here>: set the rules for this chat.
-#- /clearrules: clear the rules for this chat.
-
-__mod_name__ = "Reglas"
+__mod_name__ = "Rules"
 
 GET_RULES_HANDLER = CommandHandler("rules", get_rules, filters=Filters.group)
 SET_RULES_HANDLER = CommandHandler("setrules", set_rules, filters=Filters.group)
