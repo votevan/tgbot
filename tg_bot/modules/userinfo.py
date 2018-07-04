@@ -32,7 +32,7 @@ def about_me(bot: Bot, update: Update, args: List[str]):
         update.effective_message.reply_text(username + "no la puso, me refiero a la bio")
                                            #Original: username + "hasn't set an info message about themselves  yet!"
     else:
-        update.effective_message.reply_text("todavia no ponés la bio master)
+        update.effective_message.reply_text("todavia no ponés la bio master")
                                            #Original: You haven't set an info message about yourself yet!
 
 
