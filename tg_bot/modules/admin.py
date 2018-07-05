@@ -217,14 +217,11 @@ def invite(bot: Bot, update: Update):
 @run_async
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
-    text = "aca te dejo la lista de administradores de {} bro:".format(update.effective_chat.title or "aki")
+    text = "aca te dejo la lista de administradores de {} bro".format(update.effective_chat.title or "aki")
            #Original: Admins in *{}*
     for admin in administrators:
         user = admin.user
         name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
-        if user.username:
-            name = escape_markdown("@" + user.username)
-        text += "\n - {}".format(name)
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
 
