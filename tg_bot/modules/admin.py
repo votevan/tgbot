@@ -28,18 +28,18 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("No te estás refiriendo a un usuario.") #Original: You don't seem to be referring to a user.
+        message.reply_text("pero no te estas refiriendo a nadie") #Original: You don't seem to be referring to a user.
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text("¿Cómo voy a ascender a alguien que ya es administrador?") 
+        message.reply_text("ya es admin capo")
                            #Original: How am I meant to promote someone that's already an admin?
 
         return ""
 
     if user_id == bot.id:
-        message.reply_text("¡No puedo auto-ascenderme! Haz que un administrador lo haga por mí.") 
+        message.reply_text("y esperas que me haga admin solo?")
                            #Original: I can't promote myself! Get an admin to do it for me.
 
         return ""
@@ -57,7 +57,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
                           can_pin_messages=bot_member.can_pin_messages,
                           can_promote_members=bot_member.can_promote_members)
 
-    message.reply_text("¡Ascendido correctamente!") #Original: Successfully promoted!
+    message.reply_text("ascendido maquinola") #Original: Successfully promoted!
     return "<b>{}:</b>" \
            "\n#ASCENDIDO" \
            "\n<b>Administrador:</b> {}" \
@@ -83,20 +83,20 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("No te estás refiriendo a un usuario.") #Original: You don't seem to be referring to a user.
+        message.reply_text("pero no te estas refiriendo a nadie") #Original: You don't seem to be referring to a user.
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("Esta persona creó el chat. ¿Cómo lo degradaría?") #Original: This person CREATED the chat, how would I demote them?
+        message.reply_text("pero si creo el chat ps") #Original: This person CREATED the chat, how would I demote them?
         return ""
 
     if not user_member.status == 'administrator':
-        message.reply_text("¡No se puede degradar lo que no se ascendió!") #Original: Can't demote what wasn't promoted!
+        message.reply_text("kases si ni admin era el man") #Original: Can't demote what wasn't promoted!
         return ""
 
     if user_id == bot.id:
-        message.reply_text("¡No puedo auto-degradarme! Haz que un administrador lo haga por mí.") #Original: I can't demote myself! Get an admin to do it for me.
+        message.reply_text("y esperas que me haga admin solo?") #Original: I can't demote myself! Get an admin to do it for me.
         return ""
 
     try:
@@ -109,7 +109,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                               can_restrict_members=False,
                               can_pin_messages=False,
                               can_promote_members=False)
-        message.reply_text("Degradado correctamente!") #Original: Successfully demoted!
+        message.reply_text("degradado maquinola") #Original: Successfully demoted!
         return "<b>{}:</b>" \
                "\n#DEGRADADO" \
                "\n<b>Administrador:</b> {}" \
@@ -123,11 +123,11 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                #\n<b>User:</b> {}
 
     except BadRequest:
-        message.reply_text("¡No pude degradarlo! Puede que no sea administrador o el rol de "
-                           "administrador de este usuario haya sido designado por otro usuario.")
+        message.reply_text("no pude bro seguro no soy admin o el rol de "
+                           "admin de este man fue designado por otro")
                            #Original:
                            #Could not demote. I might not be admin, or the admin status was appointed by another
-                           #user, so I can't act upon them!  
+                           #user, so I can't act upon them!
         return ""
 
 
@@ -207,17 +207,17 @@ def invite(bot: Bot, update: Update):
             invitelink = bot.exportChatInviteLink(chat.id)
             update.effective_message.reply_text(invitelink)
         else:
-            update.effective_message.reply_text("No tengo acceso al enlace de invitación, intenta cambiar mis permisos.")
+            update.effective_message.reply_text("no tengo acceso al enlace de invitación bro, intenta cambiar mis permisos")
                                                  #Original: I don't have access to the invite link, try changing my permissions!
     else:
-        update.effective_message.reply_text("Solo puedo enviarte el enlace de invitación de supergrupos y canales. ¡Lo siento!")
+        update.effective_message.reply_text("solo te puedo dar el enlace de supergrupos y canales lo 100to")
                                              #Original: I can only give you invite links for supergroups and channels, sorry!
 
 
 @run_async
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
-    text = "Administradores en *{}*:".format(update.effective_chat.title or "this chat") 
+    text = "esta es la yuta de *{}*:".format(update.effective_chat.title or "aki")
            #Original: Admins in *{}*
     for admin in administrators:
         user = admin.user
@@ -230,7 +230,7 @@ def adminlist(bot: Bot, update: Update):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "Tu eres *admin*: `{}`".format(
+    return "vos sos *admin*: `{}`".format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status in ("administrator", "creator"))
 
 
@@ -241,8 +241,8 @@ __help__ = """
  - /pin: ancla silenciosamente el mensaje respondido. *Añade 'loud' o 'notify' para notificar a los usuarios*.
  - /unpin: desancla el mensaje anclado.
  - /invitelink: obtiene el enlace de invitación.
- - /asc: asciende al usuario respondido.
- - /desc: degrada al usuario respondido.
+ - /promote: asciende al usuario respondido.
+ - /demote: degrada al usuario respondido.
 """
 
 #Original
