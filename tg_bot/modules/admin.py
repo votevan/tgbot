@@ -217,7 +217,7 @@ def invite(bot: Bot, update: Update):
 @run_async
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
-    text = "esta es la yuta de *{}*:".format(update.effective_chat.title or "aki")
+    text = "aca te dejo la lista de administradores de {} bro:".format(update.effective_chat.title or "aki")
            #Original: Admins in *{}*
     for admin in administrators:
         user = admin.user
