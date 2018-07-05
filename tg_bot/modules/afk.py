@@ -22,7 +22,7 @@ def afk(bot: Bot, update: Update):
         reason = ""
 
     sql.set_afk(update.effective_user.id, reason)
-    update.effective_message.reply_text("¡{} ahora está AFK!".format(update.effective_user.first_name)) #Original: {} is now AFK!
+    update.effective_message.reply_text("{} se metio en AFK".format(update.effective_user.first_name)) #Original: {} is now AFK!
 
 
 @run_async
@@ -34,7 +34,7 @@ def no_longer_afk(bot: Bot, update: Update):
 
     res = sql.rm_afk(user.id)
     if res:
-        update.effective_message.reply_text("¡{} ha vuelto de AFK!".format(update.effective_user.first_name)) #Original: {} is no longer AFK!
+        update.effective_message.reply_text("{} se salio de AFK".format(update.effective_user.first_name)) #Original: {} is no longer AFK!
 
 
 @run_async
@@ -61,9 +61,9 @@ def reply_afk(bot: Bot, update: Update):
             if sql.is_afk(user_id):
                 user = sql.check_afk_status(user_id)
                 if not user.reason:
-                    res = "¡{} ahora está AFK!".format(fst_name) #Original: {} is AFK!
+                    res = "{} se metio en AFK".format(fst_name) #Original: {} is AFK!
                 else:
-                    res = "{} ahora está AFK; dice que es porque:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
+                    res = "{} se metio en AFK pq:\n{}".format(fst_name, user.reason) #Original: {} is AFK! says its because of:
                 message.reply_text(res)
 
 
