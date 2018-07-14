@@ -146,19 +146,19 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id, until_date=bantime)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("lesto, esta baneado por {}.".format(time_val)) #Original: Banned! User will be banned for {}.
+        message.reply_text("lesto, baneado por {}.".format(time_val)) #Original: Banned! User will be banned for {}.
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("lesto, esta baneado por {}.".format(time_val), quote=False) #Original: Banned! User will be banned for {}.
+            message.reply_text('Banned!', quote=False)
             return log
         else:
             LOGGER.warning(update)
-            LOGGER.exception("ERROR baneando al usuario %s en el chat %s (%s) debido a %s", user_id, chat.title, chat.id, excp.message)
-                             #Original: ERROR banning user %s in chat %s (%s) due to %s
-            message.reply_text("alv no pude") #Original: Well damn, I can't ban that user.
+            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
+                             excp.message)
+            message.reply_text("Well damn, I can't ban that user.")
 
     return ""
 
