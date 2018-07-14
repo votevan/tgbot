@@ -69,12 +69,13 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text('baneadisimo', quote=False) #Original: Banned!
+            message.reply_text('Banned!', quote=False)
             return log
         else:
             LOGGER.warning(update)
-            LOGGER.exception("ERROR baneando al usuario %s en el chat %s (%s) debido a %s", user_id, chat.title, chat.id, excp.message) #Original: ERROR banning user %s in chat %s (%s) due to %s
-            message.reply_text("alv no pude") #Original: Well damn, I can't ban that user.
+            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
+                             excp.message)
+            message.reply_text("Well damn, I can't ban that user.")
 
     return ""
 
