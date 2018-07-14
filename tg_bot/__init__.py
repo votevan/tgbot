@@ -55,7 +55,7 @@ if ENV:
     DEL_CMDS = bool(os.environ.get('DEL_CMDS', False))
     STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))
     WORKERS = int(os.environ.get('WORKERS', 8))
-    BAN_STICKER = os.environ.get('BAN_STICKER', '')
+    BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAQADJwAD2k2GHa959DkbwHcRAg')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', True)
 
 else:
