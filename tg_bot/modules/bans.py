@@ -156,8 +156,8 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             return log
         else:
             LOGGER.warning(update)
-            LOGGER.exception("ERROR baneando al usuario %s en el chat %s (%s) debido a %s", user_id, chat.title, chat.id, #Original: ERROR banning user %s in chat %s (%s) due to %s
-                             excp.message)
+            LOGGER.exception("ERROR baneando al usuario %s en el chat %s (%s) debido a %s", user_id, chat.title, chat.id, excp.message)
+                             #Original: ERROR banning user %s in chat %s (%s) due to %s
             message.reply_text("alv no pude") #Original: Well damn, I can't ban that user.
 
     return ""
@@ -231,9 +231,9 @@ def kickme(bot: Bot, update: Update):
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        update.effective_message.reply_text("ningun problema bro") #Original: No problem.
+        update.effective_message.reply_text("ningun problema hermano") #Original: No problem.
     else:
-        update.effective_message.reply_text("no puedo bro") #Original: Huh? I can't :/
+        update.effective_message.reply_text("nel") #Original: Huh? I can't :/
 
 
 @run_async
