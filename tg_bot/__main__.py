@@ -18,17 +18,14 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hola {}, mi nombre es *{}*!
+¡Hola {}, soy *{}*!
 
-Soy un bot de administración de grupos mantenido por [esta maravillosa persona](tg://user?id={}) y traducido al español \
-con la ayuda de @Checca22 y @monsta97. Estoy construido en python3, usando la libreria python-telegram-bot. 
+Soy un bot de administración de grupos mantenido por [votevan](tg://user?id={}) y traducido al español *(argentino)* \
+con la ayuda de @Checca22 y @monsta97.
 
-Soy completamente opensource. ¡Podés encontrar el [proyecto original](github.com/PaulSonOfLars/tgbot) \
-o [a mí](github.com/votevan/tgbot)!
+Estoy construido en python3, usando la libreria python-telegram-bot.
 
 Encontrá la lista de comandos disponibles con /help.
-
-¿Necesitás ayuda? Contactá con @votevan.
 """
 
 #Original
@@ -47,20 +44,18 @@ Encontrá la lista de comandos disponibles con /help.
 #If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
 
 HELP_STRINGS = """
-¡Hola! Mi nombre es *{}*.
-
 Soy un bot de administración de grupos con algunos extras divertidos. Echa un vistazo a lo siguiente para \
 tener una idea de algunas de las cosas con las que te puedo ayudar.
 
 *Principales* comandos disponibles:
  - /start: comienza el bot.
  - /help: envía por privado este mensaje.
- - /help <nombre del módulo>: envía por privado la ayuda de un módulo en específico.
+ - /help <nombre del módulo>: envía por privado la ayuda de un módulo específico.
  - /settings:
     - *en chat privado*: envía la configuración para todos los módulos compatibles.
     - *en un grupo*: te redirecciona al chat privado, con todas las configuraciones de ese chat.
 {}
-Más comandos: 
+Más comandos:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\n- Todos los comandos pueden ser usados con / o !.\n")
 
 #Original:
@@ -83,10 +78,12 @@ Más comandos:
 #""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """
-Nada por acá.
+baia baia, @votevan dice que no acepta donaciones pero si querés donale a [mi creador original](t.me/SonOfLars), \
+que creó a @BanhammerMarie_bot y mi base. En fin, tenes para donarle por [PayPal](paypal.me/PaulSonOfLars) \
+[Monzo](monzo.me/paulnionvestergaardlarsen).
 """
 
-#Original: 
+#Original:
 #Heya, glad to hear you want to donate!
 #It took lots of work for [my creator](t.me/SonOfLars) to get me to where I am now, and every donation helps \
 #motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
@@ -154,7 +151,7 @@ def send_help(chat_id, text, keyboard=None):
 def test(bot: Bot, update: Update):
     # pprint(eval(str(update)))
     # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
-    update.effective_message.reply_text("Esta persona ha editado un mensaje.") #Original: This person edited a message.
+    update.effective_message.reply_text("This person edited a message.")
     print(update.effective_message)
 
 
@@ -183,7 +180,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text("¿Qué necesitas de mí?") #Original: Yo, whadup?
+        update.effective_message.reply_text("hola") #Original: Yo, whadup?
 
 
 # for test purposes
@@ -274,17 +271,17 @@ def get_help(bot: Bot, update: Update):
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
-        update.effective_message.reply_text("Ponte en contacto conmigo en mensaje privado para obtener la lista de comandos.",
+        update.effective_message.reply_text("por privado bro",
                                             #Original: Contact me in PM to get the list of possible commands.
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="Ayuda", #Original: Help
+                                                [[InlineKeyboardButton(text="jelp", #Original: Help
                                                                        url="t.me/{}?start=help".format(
                                                                            bot.username))]]))
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
-        text = "Ayuda para el módulo *{}*:\n".format(HELPABLE[module].__mod_name__) \
+        text = "aki esta la ayuda del modulo *{}*:\n".format(HELPABLE[module].__mod_name__) \
                + HELPABLE[module].__help__
         send_help(chat.id, text, InlineKeyboardMarkup([[InlineKeyboardButton(text="Atrás", callback_data="help_back")]]))
                                                                                   #Original: Back
@@ -303,7 +300,7 @@ def send_settings(chat_id, user_id, user=False):
                                         parse_mode=ParseMode.MARKDOWN)
 
         else:
-            dispatcher.bot.send_message(user_id, "Parece que no hay configuraciones específicas del usuario disponibles:'(",
+            dispatcher.bot.send_message(user_id, "Parece que no hay configuraciones específicas del usuario disponibles :'(",
                                                  #Original: Seems like there aren't any user specific settings available :'(
                                         parse_mode=ParseMode.MARKDOWN)
 
@@ -319,7 +316,7 @@ def send_settings(chat_id, user_id, user=False):
         else:
             dispatcher.bot.send_message(user_id, "Parece que no hay ninguna configuración de chat disponible:'(\nEnvia esto "
                                                  "en un chat grupal donde seas administrador para encontrar su configuración actual.",
-                                                 #Original: 
+                                                 #Original:
                                                  #Seems like there aren't any chat settings available :'(\nSend this
                                                  #in a group chat you're admin in to find its current settings!
 
@@ -353,8 +350,8 @@ def settings_button(bot: Bot, update: Update):
             chat_id = prev_match.group(1)
             curr_page = int(prev_match.group(2))
             chat = bot.get_chat(chat_id)
-            query.message.reply_text("¡Hola! Hay algunos ajustes para {} - Ve y elige los que " 
-                                     "te interesan.".format(chat.title), 
+            query.message.reply_text("¡Hola! Hay algunos ajustes para {} - Ve y elige los que "
+                                     "te interesan.".format(chat.title),
                                      #Original: Hi there! There are quite a few settings for {} - go ahead and pick what
                                      #you're interested in.
                                      reply_markup=InlineKeyboardMarkup(
