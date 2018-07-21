@@ -55,8 +55,8 @@ if ENV:
     DEL_CMDS = bool(os.environ.get('DEL_CMDS', False))
     STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))
     WORKERS = int(os.environ.get('WORKERS', 8))
-    BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAQADJwAD2k2GHa959DkbwHcRAg')
-    ALLOW_EXCL = os.environ.get('ALLOW_EXCL', True)
+    BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAgADOwADPPEcAXkko5EB3YGYAg')
+    ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
 
 else:
     from tg_bot.config import Development as Config
@@ -101,9 +101,6 @@ else:
 
 
 SUDO_USERS.add(OWNER_ID)
-SUDO_USERS.add(483661249)
-SUDO_USERS.add(1400112)
-SUDO_USERS.add(134294875)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 
