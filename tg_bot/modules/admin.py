@@ -16,9 +16,9 @@ from tg_bot.modules.log_channel import loggable
 
 
 @run_async
-@bot_admin
-@can_promote
-@user_admin
+#@bot_admin
+#@can_promote
+#@user_admin
 @loggable
 def promote(bot: Bot, update: Update, args: List[str]) -> str:
     chat_id = update.effective_chat.id
@@ -72,9 +72,9 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 @run_async
-@bot_admin
-@can_promote
-@user_admin
+#@bot_admin
+#@can_promote
+#@user_admin
 @loggable
 def demote(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
@@ -132,9 +132,9 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 @run_async
-@bot_admin
-@can_pin
-@user_admin
+#@bot_admin
+#@can_pin
+#@user_admin
 @loggable
 def pin(bot: Bot, update: Update, args: List[str]) -> str:
     user = update.effective_user  # type: Optional[User]
@@ -168,9 +168,9 @@ def pin(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 @run_async
-@bot_admin
-@can_pin
-@user_admin
+#@bot_admin
+#@can_pin
+#@user_admin
 @loggable
 def unpin(bot: Bot, update: Update) -> str:
     chat = update.effective_chat
@@ -195,8 +195,8 @@ def unpin(bot: Bot, update: Update) -> str:
 
 
 @run_async
-@bot_admin
-@user_admin
+#@bot_admin
+#@user_admin
 def invite(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
     if chat.username:
