@@ -8,7 +8,7 @@ from telegram.utils.helpers import mention_html
 
 from tg_bot import dispatcher, BAN_STICKER, LOGGER
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.chat_status import bot_admin, user_admin, is_user_ban_protected, can_restrict, \
+#from tg_bot.modules.helper_funcs.chat_status import bot_admin, user_admin, is_user_ban_protected, can_restrict, \
     is_user_admin, is_user_in_chat
 from tg_bot.modules.helper_funcs.extraction import extract_user_and_text
 from tg_bot.modules.helper_funcs.string_handling import extract_time
@@ -16,9 +16,9 @@ from tg_bot.modules.log_channel import loggable
 
 
 @run_async
-@bot_admin
-@can_restrict
-@user_admin
+#@bot_admin
+#@can_restrict
+#@user_admin
 @loggable
 def ban(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
@@ -81,9 +81,9 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 @run_async
-@bot_admin
-@can_restrict
-@user_admin
+#@bot_admin
+#@can_restrict
+#@user_admin
 @loggable
 def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
@@ -165,9 +165,9 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 @run_async
-@bot_admin
-@can_restrict
-@user_admin
+#@bot_admin
+#@can_restrict
+#@user_admin
 @loggable
 def kick(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
@@ -222,8 +222,8 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 @run_async
-@bot_admin
-@can_restrict
+#@bot_admin
+#@can_restrict
 def kickme(bot: Bot, update: Update):
     user_id = update.effective_message.from_user.id
     if is_user_admin(update.effective_chat, user_id):
@@ -238,9 +238,9 @@ def kickme(bot: Bot, update: Update):
 
 
 @run_async
-@bot_admin
-@can_restrict
-@user_admin
+#@bot_admin
+#@can_restrict
+#@user_admin
 @loggable
 def unban(bot: Bot, update: Update, args: List[str]) -> str:
     message = update.effective_message  # type: Optional[Message]
