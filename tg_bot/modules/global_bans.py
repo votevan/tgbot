@@ -2,7 +2,7 @@ import html
 from io import BytesIO
 from typing import Optional, List
 
-from telegram import Message, Update, Bot, User, Chat
+from telegram import Message, Update, Bot, User, Chat, ParseMode
 from telegram.error import BadRequest, TelegramError
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
@@ -81,6 +81,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
             #Original: This user is already gbanned; I'd change the reason, but you haven't given me one...
             return
 
+<<<<<<< HEAD
         success = sql.update_gban_reason(user_id, user_chat.username or user_chat.first_name, reason)
         if success:
             message.reply_text("Este usuario ya esta baneado globalmente; Sin embargo, le cambié el motivo.")
@@ -90,6 +91,16 @@ def gban(bot: Bot, update: Update, args: List[str]):
                                "Mi estar confundido.")
             #Original "Do you mind trying again? I thought this person was gbanned, but then they weren't? "
             #         "Am very confused"
+=======
+        old_reason = sql.update_gban_reason(user_id, user_chat.username or user_chat.first_name, reason)
+        if old_reason:
+            message.reply_text("This user is already gbanned, for the following reason:\n"
+                               "<code>{}</code>\n"
+                               "I've gone and updated it with your new reason!".format(html.escape(old_reason)),
+                               parse_mode=ParseMode.HTML)
+        else:
+            message.reply_text("This user is already gbanned, but had no reason set; I've gone and updated it!")
+>>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 
         return
 

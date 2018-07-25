@@ -1,6 +1,6 @@
 import html
 import re
-from typing import Optional
+from typing import Optional, List
 
 from telegram import Message, Chat, Update, Bot, ParseMode
 from telegram.error import BadRequest
@@ -19,15 +19,20 @@ BASE_BLACKLIST_STRING = "palabras en la <b>lista negra</b>:\n" #Original: Curren
 
 
 @run_async
-def blacklist(bot: Bot, update: Update):
+def blacklist(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
 
     all_blacklisted = sql.get_chat_blacklist(chat.id)
 
     filter_list = BASE_BLACKLIST_STRING
-    for trigger in all_blacklisted:
-        filter_list += " - <code>{}</code>\n".format(html.escape(trigger))
+
+    if len(args) > 0 and args[0].lower() == 'copy':
+        for trigger in all_blacklisted:
+            filter_list += "<code>{}</code>\n".format(html.escape(trigger))
+    else:
+        for trigger in all_blacklisted:
+            filter_list += " - <code>{}</code>\n".format(html.escape(trigger))
 
     split_text = split_message(filter_list)
     for text in split_text:
@@ -180,6 +185,7 @@ lo que puede eliminar múltiples palabras a la vez.
 - /rmblacklist <oalabras>: Igual que arriba.
 """
 
+<<<<<<< HEAD
 #Original:
 #Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, \
 #the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
@@ -193,6 +199,10 @@ lo que puede eliminar múltiples palabras a la vez.
 # - /rmblacklist <triggers>: Same as above.
 
 BLACKLIST_HANDLER = DisableAbleCommandHandler("blacklist", blacklist, filters=Filters.group, admin_ok=True)
+=======
+BLACKLIST_HANDLER = DisableAbleCommandHandler("blacklist", blacklist, filters=Filters.group, pass_args=True,
+                                              admin_ok=True)
+>>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, filters=Filters.group)
 UNBLACKLIST_HANDLER = CommandHandler(["unblacklist", "rmblacklist"], unblacklist, filters=Filters.group)
 BLACKLIST_DEL_HANDLER = MessageHandler(
