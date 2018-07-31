@@ -55,8 +55,8 @@ def add_blacklist(bot: Bot, update: Update):
             sql.add_to_blacklist(chat.id, trigger.lower())
 
         if len(to_blacklist) == 1:
-            msg.reply_text("¡Añadido <code>{}</code> a la lista negra!".format(html.escape(to_blacklist[0])), 
-                            
+            msg.reply_text("¡Añadido <code>{}</code> a la lista negra!".format(html.escape(to_blacklist[0])),
+
                            #Original: Added <code>{}</code> to the blacklist!
 
                            parse_mode=ParseMode.HTML)
@@ -94,22 +94,22 @@ def unblacklist(bot: Bot, update: Update):
 
                                parse_mode=ParseMode.HTML)
             else:
-                msg.reply_text("¡Esta no es una palabra de la lista negra!") 
+                msg.reply_text("¡Esta no es una palabra de la lista negra!")
 
                                #Original: This isn't a blacklisted trigger...!
 
         elif successful == len(to_unblacklist):
             msg.reply_text(
-                "Removido <code>{}</code> de la lista negra.".format(  
-   
+                "Removido <code>{}</code> de la lista negra.".format(
+
                 #Original: Removed <code>{}</code> triggers from the blacklist.
 
                     successful), parse_mode=ParseMode.HTML)
 
         elif not successful:
             msg.reply_text(
-                "Ninguna de estas palabras existen, por lo que no se eliminaron.".format( 
- 
+                "Ninguna de estas palabras existen, por lo que no se eliminaron.".format(
+
                 #Original: None of these triggers exist, so they weren't removed.
 
                     successful, len(to_unblacklist) - successful), parse_mode=ParseMode.HTML)
@@ -117,7 +117,7 @@ def unblacklist(bot: Bot, update: Update):
         else:
             msg.reply_text(
                 "Removido <code>{}</code> de la lista negra. {} no existe, "
-                "por lo tanto no fue removida.".format(successful, len(to_unblacklist) - successful), 
+                "por lo tanto no fue removida.".format(successful, len(to_unblacklist) - successful),
 
                 #Original:
                 #Removed <code>{}</code> triggers from the blacklist. {} did not exist,
@@ -170,7 +170,7 @@ def __stats__():
                                                             sql.num_blacklist_filter_chats())
 
 
-__mod_name__ = "Blacklist" 
+__mod_name__ = "Blacklist"
 
 __help__ = """
 Las listas negras se usan para evitar que ciertas palabras se digan en un grupo. Cada vez que se menciona \
@@ -185,7 +185,6 @@ lo que puede eliminar múltiples palabras a la vez.
 - /rmblacklist <oalabras>: Igual que arriba.
 """
 
-<<<<<<< HEAD
 #Original:
 #Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, \
 #the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
@@ -202,7 +201,6 @@ BLACKLIST_HANDLER = DisableAbleCommandHandler("blacklist", blacklist, filters=Fi
 =======
 BLACKLIST_HANDLER = DisableAbleCommandHandler("blacklist", blacklist, filters=Filters.group, pass_args=True,
                                               admin_ok=True)
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, filters=Filters.group)
 UNBLACKLIST_HANDLER = CommandHandler(["unblacklist", "rmblacklist"], unblacklist, filters=Filters.group)
 BLACKLIST_DEL_HANDLER = MessageHandler(
