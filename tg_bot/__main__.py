@@ -18,14 +18,16 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-¡Hola {}, soy *{}*!
+Buenas {}, cómo andás?
 
-Soy un bot de administración de grupos mantenido por [votevan](tg://user?id={}) y traducido al español *(argentino)* \
-con la ayuda de @Checca22 y @monsta97.
+Soy un bot de administración de grupos, así como una yuta pero bot. Me mantiene \
+[votevan](tg://user?id={}) y eso, tambien estoy construido en python3 \
+usando la libreria python-telegram-bot.
 
-Estoy construido en python3, usando la libreria python-telegram-bot.
+Con /help encontras la ayuda, salu2.
 
-Encontrá la lista de comandos disponibles con /help.
+[ora d la atsion](https://telegram.me/votevanbot?startgroup=add)
+
 """
 
 #Original
