@@ -33,6 +33,7 @@ LOCK_TYPES = {'stickers': Filters.sticker,
               'forward': Filters.forwarded,
               'game': Filters.game,
               'location': Filters.location,
+              }
 
 GIF = Filters.document & CustomFilters.mime_type("video/mp4")
 OTHER = Filters.game | Filters.sticker | GIF
