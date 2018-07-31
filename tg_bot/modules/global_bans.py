@@ -81,7 +81,6 @@ def gban(bot: Bot, update: Update, args: List[str]):
             #Original: This user is already gbanned; I'd change the reason, but you haven't given me one...
             return
 
-<<<<<<< HEAD
         success = sql.update_gban_reason(user_id, user_chat.username or user_chat.first_name, reason)
         if success:
             message.reply_text("Este usuario ya esta baneado globalmente; Sin embargo, le cambié el motivo.")
@@ -91,7 +90,6 @@ def gban(bot: Bot, update: Update, args: List[str]):
                                "Mi estar confundido.")
             #Original "Do you mind trying again? I thought this person was gbanned, but then they weren't? "
             #         "Am very confused"
-=======
         old_reason = sql.update_gban_reason(user_id, user_chat.username or user_chat.first_name, reason)
         if old_reason:
             message.reply_text("This user is already gbanned, for the following reason:\n"
@@ -100,7 +98,6 @@ def gban(bot: Bot, update: Update, args: List[str]):
                                parse_mode=ParseMode.HTML)
         else:
             message.reply_text("This user is already gbanned, but had no reason set; I've gone and updated it!")
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 
         return
 
@@ -260,7 +257,7 @@ def gbanstat(bot: Bot, update: Update, args: List[str]):
         if args[0].lower() in ["on", "si"]:
             sql.enable_gbans(update.effective_chat.id)
             update.effective_message.reply_text("Activé los baneos globales en este grupo. Esto te ayudará a protegerte "
-                                                "de spammers, personas desagradables, y los mayores trolls.") 
+                                                "de spammers, personas desagradables, y los mayores trolls.")
             #Original: "I've enabled gbans in this group. This will help protect you "
             #          "from spammers, unsavoury characters, and the biggest trolls."
         elif args[0].lower() in ["off", "no"]:

@@ -28,15 +28,11 @@ LOCK_TYPES = {'stickers': Filters.sticker,
               'gifs': Filters.document & CustomFilters.mime_type("video/mp4"),
               'urls': Filters.entity(MessageEntity.URL) | Filters.caption_entity(MessageEntity.URL),
               'bots': Filters.status_update.new_chat_members,
-<<<<<<< HEAD
               'reenvios': Filters.forwarded,
               'juegos': Filters.game
-=======
               'forward': Filters.forwarded,
               'game': Filters.game,
               'location': Filters.location,
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
-              }
 
 GIF = Filters.document & CustomFilters.mime_type("video/mp4")
 OTHER = Filters.game | Filters.sticker | GIF
@@ -178,16 +174,13 @@ def unlock(bot: Bot, update: Update, args: List[str]) -> str:
                 elif args[0] == "all":
                     unrestr_members(bot, chat.id, members, True, True, True, True)
                 """
-<<<<<<< HEAD
                 message.reply_text("Desbloqueado {} para todos!".format(args[0]))
                 message.reply_text(
                     "NOTA: debido a un abuso reciente de bloqueo, {} ahora solo eliminará mensajes y no "
                     "restringirá a los usuarios a través de tg api. Sin embargo, esto no debería afectar "
                     "a todos sus usuarios, ¡así que no se preocupe! Solo significa que cualquier usuario "
                     "restringido debe ser restringido manualmente desde el panel de administración de chat.".format(bot.first_name))
-=======
                 message.reply_text("Unlocked {} for everyone!".format(args[0]))
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 
                 return "<b>{}:</b>" \
                        "\n#UNLOCK" \
