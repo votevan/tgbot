@@ -72,8 +72,8 @@ SLAP_TEMPLATES = (
     "{user1} se hizo el piola y {user2} le rompió la jeta.",
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
     "{user1} envió un meme y {admin} lo muteó.",
-    "No puedo responder a esto porque Santi lo va a tomar como flood y nos va a banear.",
-    "Les mandaria este mensaje pero estoy con Santi y no llega el internet.",
+    "que paja"
+
 )
 
 #esto lo meto por aca pq soy re piola
@@ -88,7 +88,7 @@ SLAP_TEMPLATES = (
 #    "{user1} toma un {item} y {hits} a {user2} con él.",
 #    "{user1} ata a {user2} a una silla y {throw} un {item} a el",
 #    "{user1} da un empujón amistoso para ayudar a {user2} a aprender a nadar en lava",
-#    "{user1} {throw} {item} en la dirección de {user2}" 
+#    "{user1} {throw} {item} en la dirección de {user2}"
 
 ITEMS = (
      "un bate de béisbol",
@@ -404,4 +404,4 @@ dispatcher.add_handler(SLAP_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
-dispatcher.add_handler(STATS_HANDLER)     
+dispatcher.add_handler(STATS_HANDLER)
