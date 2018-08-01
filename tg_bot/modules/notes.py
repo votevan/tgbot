@@ -135,12 +135,9 @@ def save(bot: Bot, update: Update):
         msg.reply_text("Amigo, no hay nota.")
         return
 
-<<<<<<< HEAD
     sql.add_note_to_db(chat_id, notename, text, data_type, buttons, content)
     msg.reply_text("¡Si! Añadí el mensaje respondido: {}".format(notename))
-=======
     sql.add_note_to_db(chat_id, note_name, text, data_type, buttons=buttons, file=content)
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 
     msg.reply_text(
         "Yas! Added {note_name}.\nGet it with /get {note_name}, or #{note_name}".format(note_name=note_name))
@@ -151,7 +148,7 @@ def save(bot: Bot, update: Update):
                            "los bots no pueden reenviar mensajes de otro bot, por lo que no puedo guardar "
                            "el mensaje exacto.\nGuardaré todo el texto que pueda, pero si querés guardar más, tenés que "
                             "reenvíar el mensaje, y luego guardarlo.")
-        else:			
+        else:
             msg.reply_text("Los bots son perjudicados por Telegram, lo que dificulta que los bots interactúen "
                            "con otros bots. No puedo guardar este mensaje como solía hacerlo. "
                            "¿Podés reenviarlo y después guardar ese nuevo mensaje? ¡Gracias!")
@@ -160,7 +157,6 @@ def save(bot: Bot, update: Update):
 
 @run_async
 @user_admin
-<<<<<<< HEAD
 def save(bot: Bot, update: Update):
     chat_id = update.effective_chat.id
     msg = update.effective_message  # type: Optional[Message]
@@ -181,8 +177,6 @@ def save(bot: Bot, update: Update):
 
 @run_async
 @user_admin
-=======
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 def clear(bot: Bot, update: Update, args: List[str]):
     chat_id = update.effective_chat.id
     if len(args) >= 1:
