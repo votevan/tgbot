@@ -229,7 +229,7 @@ def help_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="Atrás ⬅️", callback_data="help_back")]]))
+                                         [[InlineKeyboardButton(text="⬅️ Atrás", callback_data="help_back")]]))
                                                                      #Original: Back
 
         elif prev_match:
