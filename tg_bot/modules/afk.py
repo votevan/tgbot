@@ -67,6 +67,10 @@ def reply_afk(bot: Bot, update: Update):
                 message.reply_text(res)
 
 
+def __gdpr__(user_id):
+    sql.rm_afk(user_id)
+
+
 __help__ = """
  - /afk <razón>: entra en modo AFK. *No es obligatorio poner el por qué.*
  - brb <razón>: igual al comando /afk - pero no es un comando.
