@@ -18,66 +18,30 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Buenas {}, cómo andás?
+Hola {}, cómo andás?
 
-Soy un bot de administración de grupos, así como una yuta pero bot. Me mantiene \
-[votevan](tg://user?id={}) y eso, tambien estoy construido en python3 \
-usando la libreria python-telegram-bot.
+Soy un bot de administración de grupos. Me mantiene [votevan](tg://user?id={}) y \
+bla bla bla. Estoy construido en python3 usando la libreria python-telegram-bot.
 
 Con /help encontras la ayuda, salu2.
 
-[ora d la atsion](https://telegram.me/votevanbot?startgroup=add)
+[hora de la accion, humano](https://telegram.me/votevanbot?startgroup=add)
 
 """
 
-#Original
-#Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @MarieSupport.
-
-#I'm a group manager bot maintained by [this wonderful person](tg://user?id={}). I'm built in python3, using the \
-#python-telegram-bot library, and am fully opensource - you can find what makes me tick \
-#[here](github.com/PaulSonOfLars/tgbot)!
-
-#Feel free to submit pull requests on github, or to contact my support group, @MarieSupport, with any bugs, questions \
-#or feature requests you might have :)
-#I also have a news channel, @MarieNews for announcements on new features, downtime, etc.
-
-#You can find the list of available commands with /help.
-
-#If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
-
 HELP_STRINGS = """
-Soy un bot de administración de grupos con algunos extras divertidos. Echa un vistazo a lo siguiente para \
-tener una idea de algunas de las cosas con las que te puedo ayudar.
+Ayuda de @votevanbot:
 
 *Principales* comandos disponibles:
- - /start: comienza el bot.
- - /help: envía por privado este mensaje.
- - /help <nombre del módulo>: envía por privado la ayuda de un módulo específico.
- - /settings:
-    - *en chat privado*: envía la configuración para todos los módulos compatibles.
-    - *en un grupo*: te redirecciona al chat privado, con todas las configuraciones de ese chat.
-
+ • /start: comienza el bot.
+ • /help: envía por privado este mensaje.
+ • /help <nombredelmodulo>: envía por privado la ayuda de un módulo específico.
+ • /settings:
+    • En un chat privado: envía la configuración para todos los módulos compatibles.
+    • En un grupo: te redirecciona al chat privado con todas las configuraciones de ese chat.
+{}
 Más comandos:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\n- Todos los comandos pueden ser usados con / o !.\n")
-
-#Original:
-#Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @MarieSupport.
-
-#I'm a group manager bot maintained by [this wonderful person](tg://user?id={}). I'm built in python3, using the \
-#python-telegram-bot library, and am fully opensource - you can find what makes me tick \
-#[here](github.com/PaulSonOfLars/tgbot)!
-
-#Feel free to submit pull requests on github, or to contact my support group, @MarieSupport, with any bugs, questions \
-#or feature requests you might have :)
-#I also have a news channel, @MarieNews for announcements on new features, downtime, etc.
-
-#You can find the list of available commands with /help.
-
-#If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
-
-#{}
-#And the following:
-#""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """
 baia baia, @votevan dice que no acepta donaciones pero si querés donale a [mi creador original](t.me/SonOfLars), \
@@ -151,8 +115,8 @@ def send_help(chat_id, text, keyboard=None):
 
 @run_async
 def test(bot: Bot, update: Update):
-    pprint(eval(str(update)))
-    update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
+    # pprint(eval(str(update)))
+    # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
     update.effective_message.reply_text("This person edited a message.")
     print(update.effective_message)
 
@@ -273,10 +237,10 @@ def get_help(bot: Bot, update: Update):
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
-        update.effective_message.reply_text("por privado bro",
+        update.effective_message.reply_text("Presiona abajo 🔽",
                                             #Original: Contact me in PM to get the list of possible commands.
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="jelp", #Original: Help
+                                                [[InlineKeyboardButton(text="Ayuda 📚", #Original: Help
                                                                        url="t.me/{}?start=help".format(
                                                                            bot.username))]]))
         return
@@ -285,7 +249,7 @@ def get_help(bot: Bot, update: Update):
         module = args[1].lower()
         text = "aki esta la ayuda del modulo *{}*:\n".format(HELPABLE[module].__mod_name__) \
                + HELPABLE[module].__help__
-        send_help(chat.id, text, InlineKeyboardMarkup([[InlineKeyboardButton(text="Atrás", callback_data="help_back")]]))
+        send_help(chat.id, text, InlineKeyboardMarkup([[InlineKeyboardButton(text="⬅️ Atrás", callback_data="help_back")]]))
                                                                                   #Original: Back
 
     else:
@@ -297,7 +261,7 @@ def send_settings(chat_id, user_id, user=False):
         if USER_SETTINGS:
             settings = "\n\n".join(
                 "*{}*:\n{}".format(mod.__mod_name__, mod.__user_settings__(user_id)) for mod in USER_SETTINGS.values())
-            dispatcher.bot.send_message(user_id, "Estas son sus configuraciones actuales:" + "\n\n" + settings,
+            dispatcher.bot.send_message(user_id, "Estas son tus configuraciones actuales:" + "\n\n" + settings,
                                                  #Original: These are your current settings:
                                         parse_mode=ParseMode.MARKDOWN)
 
@@ -345,7 +309,7 @@ def settings_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="Atrás", #Original: Back
+                                         [[InlineKeyboardButton(text="⬅️ Atrás", #Original: Back
                                                                 callback_data="stngs_back({})".format(chat_id))]]))
 
         elif prev_match:
