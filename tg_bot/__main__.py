@@ -39,9 +39,10 @@ Ayuda de @votevanbot:
  • /settings:
     • En un chat privado: envía la configuración para todos los módulos compatibles.
     • En un grupo: te redirecciona al chat privado con todas las configuraciones de ese chat.
-{}
+
+⚠️ Todos los comandos pueden ser usados con / o !. 
+
 Más comandos:
-""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\n- Todos los comandos pueden ser usados con / o !.\n")
 
 DONATE_STRING = """
 baia baia, @votevan dice que no acepta donaciones pero si querés donale a [mi creador original](t.me/SonOfLars), \
