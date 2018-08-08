@@ -56,7 +56,7 @@ tener una idea de algunas de las cosas con las que te puedo ayudar.
  - /settings:
     - *en chat privado*: envía la configuración para todos los módulos compatibles.
     - *en un grupo*: te redirecciona al chat privado, con todas las configuraciones de ese chat.
-{}
+
 Más comandos:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\n- Todos los comandos pueden ser usados con / o !.\n")
 
@@ -229,7 +229,7 @@ def help_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="Atrás", callback_data="help_back")]]))
+                                         [[InlineKeyboardButton(text="Atrás ⬅️", callback_data="help_back")]]))
                                                                      #Original: Back
 
         elif prev_match:
