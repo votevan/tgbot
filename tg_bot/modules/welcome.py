@@ -39,45 +39,30 @@ def send(update, message, keyboard, backup_message):
                                                                   "\nNota: el mensaje actual es "
                                                                   "inválido debido a problemas de markdown. Puede ser"
                                                                   "debido al nombre del usuario."),
-                                                                  #Original:
-                                                                  #Note: the current message was
-                                                                  #invalid due to markdown issues. Could be
-                                                                  #due to the user's name.
                                                   parse_mode=ParseMode.MARKDOWN)
     except KeyError:
         msg = update.effective_message.reply_text(markdown_parser(backup_message +
                                                                   "\nNota: el mensaje actual es "
                                                                   "inválido debido a un problema con algunos corchetes. "
                                                                   "Por favor, corrígelo."),
-                                                                  #Original:
-                                                                  #Note: the current message is 
-                                                                  #invalid due to an issue with some misplaced 
-                                                                  #curly brackets. Please update.
                                                   parse_mode=ParseMode.MARKDOWN)
     except BadRequest as excp:
         if excp.message == "Button_url_invalid":
             msg = update.effective_message.reply_text(markdown_parser(backup_message +
                                                                       "\nNota: el mensaje actual tiene una url no válida "
-                                                                       "en uno de sus botones. Corrígelo."), 
-                                                                      #Note: the current message has an invalid url
-                                                                      #in one of its buttons. Please update.
+                                                                       "en uno de sus botones. Corrígelo."),
                                                       parse_mode=ParseMode.MARKDOWN)
         elif excp.message == "Unsupported url protocol":
             msg = update.effective_message.reply_text(markdown_parser(backup_message +
                                                                       "\nNota: el mensaje actual tiene botones que "
                                                                       "usa protocolos de URL que no son soportados por"
                                                                       "Telegram. Por favor, corrígelo."),
-                                                                      #Note: the current message has buttons which "
-                                                                      #use url protocols that are unsupported by "
-                                                                      #telegram. Please update.
-                                                                      
+
                                                       parse_mode=ParseMode.MARKDOWN)
         elif excp.message == "Wrong url host":
             msg = update.effective_message.reply_text(markdown_parser(backup_message +
                                                                       "\nNota: el mensaje actual tiene algunas URL incorrectas. "
                                                                       "Por favor, corrígelo."),
-                                                                      #Note: the current message has some bad urls. 
-                                                                      #Please update.
                                                       parse_mode=ParseMode.MARKDOWN)
             LOGGER.warning(message)
             LOGGER.warning(keyboard)
@@ -86,8 +71,6 @@ def send(update, message, keyboard, backup_message):
             msg = update.effective_message.reply_text(markdown_parser(backup_message +
                                                                       "\nNota: Se produjo un error al enviar el mensaje "
                                                                       "personalizado. Por favor, corrígelo."),
-                                                                      #Note: An error occured when sending the
-                                                                      #custom message. Please update.
                                                       parse_mode=ParseMode.MARKDOWN)
             LOGGER.exception()
 
@@ -105,7 +88,7 @@ def new_member(bot: Bot, update: Update):
         for new_mem in new_members:
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
-                update.effective_message.reply_text("El maestro llegó, ¡QUE COMIENCE LA FIESTAAAA!") 
+                update.effective_message.reply_text("El maestro llegó, ¡QUE COMIENCE LA FIESTAAAA!")
                                                     #Original: Master is in the houseeee, let's get this party started!
                 continue
 
@@ -173,7 +156,7 @@ def left_member(bot: Bot, update: Update):
 
             # Give the owner a special goodbye
             if left_mem.id == OWNER_ID:
-                update.effective_message.reply_text("RIP Master")
+                update.effective_message.reply_text("bae ahre")
                 return
 
             # if media goodbye, use appropriate function for it
@@ -222,7 +205,7 @@ def welcome(bot: Bot, update: Update, args: List[str]):
         update.effective_message.reply_text(
             "Este chat tiene su configuración de bienvenida configurada en: `{}`. \n*El mensaje de bienvenida "
             "(no completando el {{}}) es:*".format(pref),
-            #This chat has it's welcome setting set to: `{}`.\n*The welcome message 
+            #This chat has it's welcome setting set to: `{}`.\n*The welcome message
             #(not filling the {{}}) is:*"
 
             parse_mode=ParseMode.MARKDOWN)
@@ -500,7 +483,7 @@ def __chat_settings__(chat_id, user_id):
     goodbye_pref, _, _ = sql.get_gdbye_pref(chat_id)
     return "This chat has it's welcome preference set to `{}`.\n" \
            "It's goodbye preference is `{}`.".format(welcome_pref, goodbye_pref)
-	
+
 
 __help__ = """
 {}

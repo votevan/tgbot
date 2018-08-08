@@ -269,7 +269,6 @@ A button can be added to a note by using standard markdown link syntax - the lin
 `buttonurl:` section, as such: `[somelink](buttonurl:example.com)`. Check /markdownhelp for more info.
  - /save <notename>: save the replied message as a note with name notename
  - /clear <notename>: clear note with this name
->>>>>>> 08b0a4151c3ba54fea367b5dacb83a966efb2659
 """
 
 __mod_name__ = "Notas"

@@ -73,22 +73,7 @@ SLAP_TEMPLATES = (
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
     "{user1} envió un meme y {admin} lo muteó.",
     "que paja"
-
 )
-
-#esto lo meto por aca pq soy re piola
-#    "{user1} {hits} a {user2} con {item}.",
-#    "{user1} {hits} a {user2} en la cara con {item}.",
-#    "{user1} {hits} a {user2} un ratito con {item}.",
-#    "{user1} le {throws} {item} a {user2}.",
-#    "{user1} agarra {item} y lo {throws} en la cara de {user2}.",
-#    "{user1} lanza un {item} en la dirección de {user2}.",
-#    "{user1} comienza a abofetear a {user2} con {item}.",
-#    "{user1} le saca los ojos a {user2} con una cuchara.",
-#    "{user1} toma un {item} y {hits} a {user2} con él.",
-#    "{user1} ata a {user2} a una silla y {throw} un {item} a el",
-#    "{user1} da un empujón amistoso para ayudar a {user2} a aprender a nadar en lava",
-#    "{user1} {throw} {item} en la dirección de {user2}"
 
 ITEMS = (
      "un bate de béisbol",
