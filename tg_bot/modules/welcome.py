@@ -409,26 +409,26 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
 
 WELC_HELP_TXT = "Los saludos de tu grupo pueden ser personalizados, por eso podés usar estas variables:\n" \
                 "▪️ `{{first}}`: muestra el *primer nombre* del usuario.\n" \
-                "▪️ `{{last}}`: muestra el *apellido* del usuario. Muestra el *primer nombre* si el usuario \
-                no tiene apellido configurado.\n" \
-                "▪️ `{{fullname}}`: muestra el *nombre completo* del usuario. Muestra el *primer nombre* \
-                si el usuario no tiene apellido configurado.\n" \
-                "▪️ `{{username}}`: muestra el *alias* del usuario. Muestra el *primer nombre* si el \
-                usuario no tiene alias configurado.\n" \
+                "▪️ `{{last}}`: muestra el *apellido* del usuario. Muestra el *primer nombre* si el usuario" \
+                "no tiene apellido configurado.\n" \
+                "▪️ `{{fullname}}`: muestra el *nombre completo* del usuario. Muestra el *primer nombre* " \
+                "si el usuario no tiene apellido configurado.\n" \
+                "▪️ `{{username}}`: muestra el *alias* del usuario. Muestra el *primer nombre* si el " \
+                "usuario no tiene alias configurado.\n" \
                 "▪️ `{{mention}}`: simplemente *menciona* al usuario, etiquetándolo con su nombre.\n" \
                 "▪️ `{{id}}`: esto muestra el *ID* del usuario.\n" \
-                "▪️ `{{count}}`: esto muestra el *número de miembro* del usuario.\n" \
-                "▪️ `{{chatname}}`: esto representa el *nombre del grupo*.\n" \
+                "▪️ `{{count}}`: muestra el *número de miembro* del usuario.\n" \
+                "▪️ `{{chatname}}`: muestra el *nombre del grupo*.\n" \
                 "\nCada variable tiene estar rodeada por {{}} para ser reemplazada.\n" \
-                "Los saludos también admiten _markdown_, por lo que podés hacer que el texto \
-                se muestre en *negrita*, _cursiva_, `código` o [enlaces](t.me/votevanbot)." \
+                "Los saludos también admiten _markdown_, por lo que podés hacer que el texto " \
+                "se muestre en *negrita*, _cursiva_, `código` o como hyperlinks. " \
                 "Los botones también son compatibles. Podés hacer que tus bienvenidas se vean " \
                 "mejor con una buena bienvenida con botones.\n" \
                 "Para crear un botón que vincule las reglas, usá esto: " \
-                "`[Reglas](buttonurl://t.me/{}?Start=group_id)`. Simplemente reemplazá `group_id` \
-                con la ID de tu grupo, que podés obtener usando `/id`. Tené en cuenta que las ID \
-                de los grupos suelen estar precedidos por `-`. Este es obligatorio, no lo eliminés.\n" \
-                "También podés establecer imágenes, gifs, videos o audios como saludo solamente" \
+                "`[Reglas](buttonurl://t.me/{}?Start=group_id)`. Simplemente reemplazá `group_id` " \
+                "con la ID de tu grupo, que podés obtener usando `/id`. Tené en cuenta que las ID " \
+                "de los grupos suelen estar precedidos por `-`. Este es obligatorio, no lo eliminés.\n" \
+                "También podés establecer imágenes, gifs, videos o audios como saludo solamente " \
                 "respondiendo al medio deseado con el comando `/setwelcome`.".format(dispatcher.bot.username)
 
 @run_async
