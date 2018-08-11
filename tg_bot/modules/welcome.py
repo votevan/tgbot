@@ -421,11 +421,11 @@ WELC_HELP_TXT = "Los saludos de tu grupo pueden ser personalizados, por eso pod�
                 "▪️ `{{chatname}}`: esto representa el *nombre del grupo*.\n" \
                 "\nCada variable tiene estar rodeada por {{}} para ser reemplazada.\n" \
                 "Los saludos también admiten _markdown_, por lo que podés hacer que el texto \
-                se muestre en *negrita*, _cursiva_, `código` o (enlaces)[t.me/votevanbot]." \
-                "Los botones también son compatibles. Podés hacer que tus bienvenidas se vean \
-                mejor con una buena bienvenida con botones.\n" \
-                "Para crear un botón que vincule las reglas, usá esto: \
-                `[Reglas](buttonurl://t.me/{}?Start=group_id)`. Simplemente reemplazá `group_id` \
+                se muestre en *negrita*, _cursiva_, `código` o [enlaces](t.me/votevanbot)." \
+                "Los botones también son compatibles. Podés hacer que tus bienvenidas se vean " \
+                "mejor con una buena bienvenida con botones.\n" \
+                "Para crear un botón que vincule las reglas, usá esto: " \
+                "`[Reglas](buttonurl://t.me/{}?Start=group_id)`. Simplemente reemplazá `group_id` \
                 con la ID de tu grupo, que podés obtener usando `/id`. Tené en cuenta que las ID \
                 de los grupos suelen estar precedidos por `-`. Este es obligatorio, no lo eliminés.\n" \
                 "También podés establecer imágenes, gifs, videos o audios como saludo solamente" \
