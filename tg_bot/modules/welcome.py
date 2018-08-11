@@ -420,7 +420,7 @@ WELC_HELP_TXT = "Los saludos de tu grupo pueden ser personalizados, por eso pod�
                 "▪️ `{{count}}`: esto muestra el *número de miembro* del usuario.\n" \
                 "▪️ `{{chatname}}`: esto representa el *nombre del grupo*.\n" \
 
-                "\nCada variable tiene estar rodeada por `{{}}` para ser reemplazada.\n" \
+                "\nCada variable tiene estar rodeada por `a` para ser reemplazada.\n" \
                 "Los saludos también admiten _markdown_, por lo que podés hacer que el texto \
                 se muestre en *negrita*, _cursiva_, `código` o (enlaces)[t.me/votevanbot]." \
                 "Los botones también son compatibles. Podés hacer que tus bienvenidas se vean \
