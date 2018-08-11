@@ -408,17 +408,17 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 WELC_HELP_TXT = "Los saludos de tu grupo pueden ser personalizados, por eso podés usar estas variables:\n" \
-                "▪️ `{{first}}`: muestra el *primer nombre* del usuario.\n" \
-                "▪️ `{{last}}`: muestra el *apellido* del usuario. Muestra el *primer nombre* si el usuario" \
+                "➡️ `{{first}}`: muestra el *primer nombre* del usuario.\n" \
+                "➡️ `{{last}}`: muestra el *apellido* del usuario. Muestra el *primer nombre* si el usuario" \
                 "no tiene apellido configurado.\n" \
-                "▪️ `{{fullname}}`: muestra el *nombre completo* del usuario. Muestra el *primer nombre* " \
+                "➡️ `{{fullname}}`: muestra el *nombre completo* del usuario. Muestra el *primer nombre* " \
                 "si el usuario no tiene apellido configurado.\n" \
-                "▪️ `{{username}}`: muestra el *alias* del usuario. Muestra el *primer nombre* si el " \
+                "➡️ `{{username}}`: muestra el *alias* del usuario. Muestra el *primer nombre* si el " \
                 "usuario no tiene alias configurado.\n" \
-                "▪️ `{{mention}}`: simplemente *menciona* al usuario, etiquetándolo con su nombre.\n" \
-                "▪️ `{{id}}`: esto muestra el *ID* del usuario.\n" \
-                "▪️ `{{count}}`: muestra el *número de miembro* del usuario.\n" \
-                "▪️ `{{chatname}}`: muestra el *nombre del grupo*.\n" \
+                "➡️ `{{mention}}`: simplemente *menciona* al usuario, etiquetándolo con su nombre.\n" \
+                "➡️ `{{id}}`: esto muestra el *ID* del usuario.\n" \
+                "➡️ `{{count}}`: muestra el *número de miembro* del usuario.\n" \
+                "➡️ `{{chatname}}`: muestra el *nombre del grupo*.\n" \
                 "\nCada variable tiene estar rodeada por {{}} para ser reemplazada.\n" \
                 "Los saludos también admiten _markdown_, por lo que podés hacer que el texto " \
                 "se muestre en *negrita*, _cursiva_, `código` o como hyperlinks. " \
@@ -464,32 +464,18 @@ __help__ = """
 {}
 
 *Solo para administradores:*
- - /welcome <on/off>: activar/desactivar los mensajes de bienvenida.
- - /welcome: muestra la configuración de bienvenida actual.
- - /welcome noformat: muestra la configuración de bienvenida actual, sin el formato, ¡útil para reciclar sus mensajes de bienvenida!
- - /goodbye -> mismo uso y argumentos que /welcome.
- - /setwelcome <algún texto>: establezca un mensaje de bienvenida personalizado. Si se usa respondiendo a los medios, usa ese medio.
- - /setgoodbye <algún texto>: establezca un mensaje de despedida personalizado. Si se usa respondiendo a los medios, usa ese medio.
- - /resetwelcome: restablecer al mensaje de bienvenida predeterminado.
- - /resetgoodbye: restablecer al mensaje de despedida predeterminado.
- - /cleanwelcome <on/off>: en el miembro nuevo, intente eliminar el mensaje de bienvenida anterior para evitar el correo no deseado.
+ ➡️ /welcome <on/off>: activá/desactivá la bienvenida.
+ ➡️ /welcome: muestra la configuración de bienvenida actual.
+ ➡️ /welcome noformat: muestra la configuración de la bienvenida actual pero sin el formato.
+ ➡️ /goodbye: mismo uso y argumentos que /welcome.
+ ➡️ /setwelcome <texto>: establecé un mensaje de bienvenida personalizado. Si respondés a multimedia, usa ese contenido.
+ ➡️ /setgoodbye <texto>: establecé un mensaje de despedida personalizado. Si respondés a multimedia, usa ese contenido.
+ ➡️ /resetwelcome: restablecé al mensaje de bienvenida predeterminado.
+ ➡️ /resetgoodbye: restablecé al mensaje de despedida predeterminado.
+ ➡️ /cleanwelcome <on/off>: cuando alguien se une, intentaré eliminar el saludo anterior para evitar el flood.
 
- - /welcomehelp: vea más información de formato para mensajes personalizados de bienvenida/despedida.
+ ➡️ /welcomehelp: leé más información de formato de mensajes de bienvenida y despedida.
 """.format(WELC_HELP_TXT)
-
-#Original:
-# *Admin only:*
-# - /welcome <on/off>: enable/disable welcome messages.
-# - /welcome: shows current welcome settings.
-# - /welcome noformat: shows current welcome settings, without the formatting - useful to recycle your welcome messages!
-# - /goodbye -> same usage and args as /welcome.
-# - /setwelcome <sometext>: set a custom welcome message. If used replying to media, uses that media.
-# - /setgoodbye <sometext>: set a custom goodbye message. If used replying to media, uses that media.
-# - /resetwelcome: reset to the default welcome message.
-# - /resetgoodbye: reset to the default goodbye message.
-# - /cleanwelcome <on/off>: On new member, try to delete the previous welcome message to avoid spamming the chat.
-
-# - /welcomehelp: view more formatting information for custom welcome/goodbye messages.
 
 __mod_name__ = "Saludos"
 
