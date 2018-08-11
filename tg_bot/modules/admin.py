@@ -207,7 +207,7 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- - /adminlist: envía la lista de los administradores del chat.
+ ➡️ /adminlist: envía la lista de los administradores del chat.
 
 *Solo para administradores:*
  ➡️ /pin: ancla silenciosamente el mensaje respondido. Usá 'loud' o 'notify' para notificar.
