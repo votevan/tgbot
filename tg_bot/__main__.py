@@ -25,7 +25,7 @@ bla bla bla. Estoy construido en python3 usando la libreria python-telegram-bot.
 
 Con /help encontras la ayuda, salu2.
 
-[hora de la accion, humano](https://telegram.me/votevanbot?startgroup=add)
+(https://telegram.me/votevanbot?startgroup=add)
 
 """
 
@@ -46,9 +46,7 @@ Más comandos:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """
-baia baia, @votevan dice que no acepta donaciones pero si querés donale a [mi creador original](t.me/SonOfLars), \
-que creó a @BanhammerMarie_bot y mi base. En fin, tenes para donarle por [PayPal](paypal.me/PaulSonOfLars) \
-[Monzo](monzo.me/paulnionvestergaardlarsen).
+&
 """
 
 #Original:
