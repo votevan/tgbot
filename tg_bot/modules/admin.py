@@ -207,14 +207,14 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- - /adminlist: envia la lista de los administradores del chat.
+ - /adminlist: envía la lista de los administradores del chat.
 
-*Admin only:*
- - /pin: ancla silenciosamente el mensaje respondido. Usa 'loud' o 'notify' para notificar.
- - /unpin: desancla el mensaje fijado.
- - /invitelink: envia el enlace de invitacion.
- - /promote: asciende al usuario respondido.
- - /demote: degrada al usuario respondido.
+*Solo para administradores:*
+ ➡️ /pin: ancla silenciosamente el mensaje respondido. Usá 'loud' o 'notify' para notificar.
+ ➡️ /unpin: desancla el mensaje fijado.
+ ➡️ /invitelink: envía el enlace de invitacion.
+ ➡️ /promote: asciende al usuario respondido.
+ ➡️ /demote: degrada al usuario respondido.
 """
 
 __mod_name__ = "Admin"
