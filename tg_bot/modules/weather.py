@@ -4,15 +4,17 @@ from telegram import Message, Chat, Update, Bot
 from telegram.ext import run_async
 import tg_bot
 from tg_bot import dispatcher, updater, API_WEATHER
+from telegram.ext import run_async
 from tg_bot.modules.disable import DisableAbleCommandHandler
- @run_async
+
+@run_async
 def weather(bot, update, args):
     if len(args) == 0:
-        update.effective_message.reply_text("Write a location to check the weather.")
+        update.effective_message.reply_text("Escribi una ubicacion para saber su clima.")
         return
      location = " ".join(args)
     if location.lower() == bot.first_name.lower():
-        update.effective_message.reply_text("I will keep an eye on both happy and sad times!")
+        update.effective_message.reply_text("test")
         bot.send_sticker(update.effective_chat.id, BAN_STICKER)
         return
      try:
@@ -49,13 +51,13 @@ def weather(bot, update, args):
              status += "☁️ "
         status += theweather._detailed_status
 
-         update.message.reply_text("Today in {} is being {}, around {}°C.\n".format(thelocation,
+         update.message.reply_text("Hoy en {} esta {}, cerca de {}°C.\n".format(thelocation,
                 status, temperature))
      except pyowm.exceptions.not_found_error.NotFoundError:
-        update.effective_message.reply_text("Sorry, location not found.")
+        update.effective_message.reply_text("No encontrado")
  __help__ = """
  - /weather <city>: get weather info in a particular place
 """
- __mod_name__ = "Weather"
+ __mod_name__ = "Tiempo"
  WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather, pass_args=True)
  dispatcher.add_handler(WEATHER_HANDLER)
