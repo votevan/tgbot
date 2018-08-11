@@ -407,54 +407,30 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
 
-WELC_HELP_TXT = "Los mensajes de bienvenida/despedida de su grupo se pueden personalizar de múltiples maneras. Si desea los mensajes " \
-                "sean generados individualmente al igual que el mensaje de bienvenida predeterminado, puede usar estas variables:\n" \
-                "-`{{first}}`: representa el *primer nombre* del usuario\n" \
-                "-`{{last}}`: representa el *apellido* del usuario. Por defecto es el *primer nombre* si el usuario no tiene" \
-                "apellido.\n" \
-                "-`{{fullname}}`:representa el nombre *completo* del usuario. Por defecto es *el primer nombre* si el usuario no tiene " \
-                "apellido.\n" \
-                "-`{{username}}`: esto representa el *nombre de usuario* del usuario. Por defecto es *mención* del usuario, " \
-                "primer nombre si no tiene nombre de usuario.\n" \
-                "-`{{mention}}`: esto simplemente *menciona* un usuario, etiquetándolo con su nombre.\n" \
-                "-`{{id}}`: esto representa el *ID*\n" \
-                "-`{{count}}`: esto representa el *número de miembro del usuario*.\n" \
-                "-`{{chatname}}`: esto representa el *nombre de chat actual*.\n" \
-                "\nTodas las variables DEBEN estar rodeadas por `{{}}` para ser reemplazadas.\n" \
-                "Los mensajes de bienvenida también admiten markdown, por lo que puede hacer que los elementos sean negrita/cursiva/código/enlaces." \
-                "Los botones también son compatibles, por lo que puedes hacer que tus bienvenidas se vean increíbles con una buena bienvenida con" \
-                "botones.\n" \
-                "Para crear un botón que vincule a sus reglas, use esto: `[Rules](buttonurl://t.me/{}?Start=group_id)`." \
-                "Simplemente reemplace `group_id` con la ID de su grupo, que se puede obtener a través de /id, y está listo para "\
-                "funcionar. Tenga en cuenta que los ID de grupos suelen estar precedidos por un signo `-`; esto es obligatorio, así que no lo "\
-                "elimine.\n" \
-                "Si te sientes divertido, incluso puedes establecer imágenes/gifs/videos/mensajes de voz como mensaje de bienvenida, con solo" \
-                "respondiendo a los medios deseados, y con el comando /setwelcome.".format(dispatcher.bot.username)
+WELC_HELP_TXT = "Los saludos de tu grupo pueden ser personalizados, por eso podés usar estas variables:\n" \
+                "▪️ `{{first}}`: muestra el *primer nombre* del usuario.\n" \
+                "▪️ `{{last}}`: muestra el *apellido* del usuario. Muestra el *primer nombre* si el usuario \
+                no tiene apellido configurado.\n" \
+                "▪️ `{{fullname}}`: muestra el *nombre completo* del usuario. Muestra el *primer nombre* \
+                si el usuario no tiene apellido configurado.\n" \
+                "▪️ `{{username}}`: muestra el *alias* del usuario. Muestra el *primer nombre* si el \
+                usuario no tiene alias configurado.\n" \
+                "▪️ `{{mention}}`: simplemente *menciona* al usuario, etiquetándolo con su nombre.\n" \
+                "▪️ `{{id}}`: esto muestra el *ID* del usuario.\n" \
+                "▪️ `{{count}}`: esto muestra el *número de miembro* del usuario.\n" \
+                "▪️ `{{chatname}}`: esto representa el *nombre del grupo*.\n" \
 
-                #Original:
-                #Your group's welcome/goodbye messages can be personalised in multiple ways. If you want the messages" \
-                # to be individually generated, like the default welcome message is, you can use *these* variables:\n" \
-                # - `{{first}}`: this represents the user's *first* name\n" \
-                # - `{{last}}`: this represents the user's *last* name. Defaults to *first name* if user has no " \
-                #last name.\n" \
-                # - `{{fullname}}`: this represents the user's *full* name. Defaults to *first name* if user has no " \
-                #last name.\n" \
-                # - `{{username}}`: this represents the user's *username*. Defaults to a *mention* of the user's " \
-                #first name if has no username.\n" \
-                # - `{{mention}}`: this simply *mentions* a user - tagging them with their first name.\n" \
-                # - `{{id}}`: this represents the user's *id*\n" \
-                # - `{{count}}`: this represents the user's *member number*.\n" \
-                # - `{{chatname}}`: this represents the *current chat name*.\n" \
-                #\nEach variable MUST be surrounded by `{{}}` to be replaced.\n" \
-                #Welcome messages also support markdown, so you can make any elements bold/italic/code/links. " \
-                #Buttons are also supported, so you can make your welcomes look awesome with some nice intro " \
-                #buttons.\n" \
-                #To create a button linking to your rules, use this: `[Rules](buttonurl://t.me/{}?start=group_id)`. " \
-                #Simply replace `group_id` with your group's id, which can be obtained via /id, and you're good to " \
-                #go. Note that group ids are usually preceded by a `-` sign; this is required, so please don't " \
-                #remove it.\n" \
-                #If you're feeling fun, you can even set images/gifs/videos/voice messages as the welcome message by " \
-                #replying to the desired media, and calling /setwelcome."
+                "\nCada variable tiene estar rodeada por `{{}}` para ser reemplazada.\n" \
+                "Los saludos también admiten _markdown_, por lo que podés hacer que el texto \
+                se muestre en *negrita*, _cursiva_, `código` o (enlaces)[t.me/votevanbot]." \
+                "Los botones también son compatibles. Podés hacer que tus bienvenidas se vean \
+                mejor con una buena bienvenida con botones.\n" \
+                "Para crear un botón que vincule las reglas, usá esto: \
+                `[Reglas](buttonurl://t.me/{}?Start=group_id)`. Simplemente reemplazá `group_id` \
+                con la ID de tu grupo, que podés obtener usando `/id`. Tené en cuenta que las ID \
+                de los grupos suelen estar precedidos por `-`. Este es obligatorio, no lo eliminés.\n" \
+                "También podés establecer imágenes, gifs, videos o audios como saludo solamente" \
+                "respondiendo al medio deseado con el comando `/setwelcome`.".format(dispatcher.bot.username)
 
 @run_async
 @user_admin
@@ -516,7 +492,7 @@ __help__ = """
 
 # - /welcomehelp: view more formatting information for custom welcome/goodbye messages.
 
-__mod_name__ = "Bienvenidas/Despedidas"
+__mod_name__ = "Saludos"
 
 NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members, new_member)
 LEFT_MEM_HANDLER = MessageHandler(Filters.status_update.left_chat_member, left_member)
