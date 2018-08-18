@@ -279,7 +279,7 @@ def send_settings(chat_id, user_id, user=False):
         if CHAT_SETTINGS:
             chat_name = dispatcher.bot.getChat(chat_id).title
             dispatcher.bot.send_message(user_id,
-                                        text="¿Para qué módulo quieres verificar la configuración de {}?".format(
+                                        text="ℹ️ Ajustes de `{}`:".format(
                                              #Original: Which module would you like to check {}'s settings for?
                                             chat_name),
                                         reply_markup=InlineKeyboardMarkup(
