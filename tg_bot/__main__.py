@@ -46,7 +46,7 @@ Más comandos:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """
-&
+-
 """
 
 #Original:
@@ -151,7 +151,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text("hola") #Original: Yo, whadup?
+        update.effective_message.reply_text("hola")
 
 
 # for test purposes
@@ -193,7 +193,7 @@ def help_button(bot: Bot, update: Update):
     try:
         if mod_match:
             module = mod_match.group(1)
-            text = "Ayuda para el módulo *{}*:\n".format(HELPABLE[module].__mod_name__) + HELPABLE[module].__help__
+            text = "Módulo *{}*:\n".format(HELPABLE[module].__mod_name__) + HELPABLE[module].__help__
                    #Original: Here is the help for the *{}* module:
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
@@ -242,7 +242,7 @@ def get_help(bot: Bot, update: Update):
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
-        update.effective_message.reply_text("Presiona abajo 🔽",
+        update.effective_message.reply_text("Presiona abajo ⬇️",
                                             #Original: Contact me in PM to get the list of possible commands.
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="Ayuda 📚", #Original: Help
@@ -307,7 +307,8 @@ def settings_button(bot: Bot, update: Update):
             chat_id = mod_match.group(1)
             module = mod_match.group(2)
             chat = bot.get_chat(chat_id)
-            text = "*{}* tiene las siguientes configuraciones para el modulo *{}*:\n\n".format(escape_markdown(chat.title),
+            text = "ℹ️ Grupo: `{}`\n"
+            "ℹ️ Módulo: `{}`:\n".format(escape_markdown(chat.title),
                    #Original: *{}* has the following settings for the *{}* module:
                                                                                      CHAT_SETTINGS[module].__mod_name__) + \
                    CHAT_SETTINGS[module].__chat_settings__(chat_id, user.id)
@@ -321,8 +322,7 @@ def settings_button(bot: Bot, update: Update):
             chat_id = prev_match.group(1)
             curr_page = int(prev_match.group(2))
             chat = bot.get_chat(chat_id)
-            query.message.reply_text("¡Hola! Hay algunos ajustes para {} - Ve y elige los que "
-                                     "te interesan.".format(chat.title),
+            query.message.reply_text("ℹ️ Ajustes de `{}`:".format(chat.title),
                                      #Original: Hi there! There are quite a few settings for {} - go ahead and pick what
                                      #you're interested in.
                                      reply_markup=InlineKeyboardMarkup(
@@ -333,8 +333,7 @@ def settings_button(bot: Bot, update: Update):
             chat_id = next_match.group(1)
             next_page = int(next_match.group(2))
             chat = bot.get_chat(chat_id)
-            query.message.reply_text("¡Hola! Hay algunos ajustes para {} - Ve y elige los que "
-                                     "te interesan.".format(chat.title),
+            query.message.reply_text("ℹ️ Ajustes de `{}`:".format(chat.title),
                                      #Original: Hi there! There are quite a few settings for {} - go ahead and pick what
                                      #you're interested in.
                                      reply_markup=InlineKeyboardMarkup(
@@ -344,8 +343,7 @@ def settings_button(bot: Bot, update: Update):
         elif back_match:
             chat_id = back_match.group(1)
             chat = bot.get_chat(chat_id)
-            query.message.reply_text(text="¡Hola! Hay algunos ajustes para {} - Ve y elige los que "
-                                          "te interesan.".format(escape_markdown(chat.title)),
+            query.message.reply_text(text="ℹ️ Ajustes de `{}`:".format(escape_markdown(chat.title)),
                                           #Original: Hi there! There are quite a few settings for {} - go ahead and pick what
                                           #you're interested in.
                                      parse_mode=ParseMode.MARKDOWN,
@@ -376,14 +374,14 @@ def get_settings(bot: Bot, update: Update):
     # ONLY send settings in PM
     if chat.type != chat.PRIVATE:
         if is_user_admin(chat, user.id):
-            text = "Toca aqui para ver la configuración del chat." #Original: Click here to get this chat's settings, as well as yours.
+            text = "Tocá abajo ver la configuración del chat." #Original: Click here to get this chat's settings, as well as yours.
             msg.reply_text(text,
                            reply_markup=InlineKeyboardMarkup(
-                               [[InlineKeyboardButton(text="Configuración", #Original: Settings
+                               [[InlineKeyboardButton(text="Configuración ⚙️", #Original: Settings
                                                       url="t.me/{}?start=stngs_{}".format(
                                                           bot.username, chat.id))]]))
         else:
-            text = "Toca aqui para ver tu configuración" #Original: Click here to check your settings.
+            text = "Tocá acá para ver tu configuración." #Original: Click here to check your settings.
 
     else:
         send_settings(chat.id, user.id, True)
@@ -398,12 +396,9 @@ def donate(bot: Bot, update: Update):
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
         if OWNER_ID != 495341018 and DONATION_LINK:
-            update.effective_message.reply_text("Puedes donar a la persona a la que obedezco "
-                                                "[aquí]({})".format(DONATION_LINK),
+            update.effective_message.reply_text("Podés donar a la persona a la que obedezco "
+                                                "[acá]({}).".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
-                                                #Original:
-                                                #You can also donate to the person currently running me
-                                                #[here]({})
 
     else:
         try:
