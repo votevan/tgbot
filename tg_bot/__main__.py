@@ -19,27 +19,28 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hola {}, cómo andás?
+👋 Hola {}, cómo andás?
 
-Soy un bot de administración de grupos. Me mantiene [votevan](tg://user?id={}) y \
-bla bla bla. Estoy construido en python3 usando la libreria python-telegram-bot.
+Soy un bot de administración de grupos. Me mantiene [votevan](tg://user?id={}). \
+Estoy construido en python3 usando la libreria python-telegram-bot.
+También soy open-source, mirá lo que me hace funcionar [acá](github.com/votevan/tgbot).
 
-Con /help encontras la ayuda, salu2.
+➡️ Con el comando /help encontras la ayuda.
 
-(https://telegram.me/votevanbot?startgroup=add)
-
+[Hora de la acción](https://telegram.me/votevanbot?startgroup=add)
 """
 
 HELP_STRINGS = """
-Ayuda de @votevanbot:
+Ayuda del bot:
 
 *Principales* comandos disponibles:
- • /start: comienza el bot.
- • /help: envía por privado este mensaje.
- • /help <nombredelmodulo>: envía por privado la ayuda de un módulo específico.
- • /settings:
-    • En un chat privado: envía la configuración para todos los módulos compatibles.
-    • En un grupo: te redirecciona al chat privado con todas las configuraciones de ese chat.
+ ➡️ /start: comienza el bot.
+ ➡️ /help: envía por privado este mensaje.
+ ➡️ /help <nombredelmodulo>: envía por privado la ayuda de un módulo específico.
+ ➡️ /credits: da información acerca de las fuentes usadas.
+ ➡️ /settings:
+    ➡️ En un chat privado: envía la configuración para todos los módulos compatibles.
+    ➡️ En un grupo: te redirecciona al chat privado con todas las configuraciones de ese chat.
 
 ⚠️ Todos los comandos pueden ser usados con / o !.
 
@@ -243,7 +244,7 @@ def get_help(bot: Bot, update: Update):
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
-        update.effective_message.reply_text("Presiona abajo ⬇️",
+        update.effective_message.reply_text("Toca abajo ⬇️",
                                             #Original: Contact me in PM to get the list of possible commands.
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="Ayuda 📚", #Original: Help
@@ -253,7 +254,7 @@ def get_help(bot: Bot, update: Update):
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
-        text = "aki esta la ayuda del modulo *{}*:\n".format(HELPABLE[module].__mod_name__) \
+        text = "ℹ️ Ayuda del módulo *{}*:\n".format(HELPABLE[module].__mod_name__) \
                + HELPABLE[module].__help__
         send_help(chat.id, text, InlineKeyboardMarkup([[InlineKeyboardButton(text="⬅️ Atrás", callback_data="help_back")]]))
                                                                                   #Original: Back
@@ -404,7 +405,7 @@ def donate(bot: Bot, update: Update):
         try:
             bot.send_message(user.id, DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-            update.effective_message.reply_text("¡Te envié un mensaje privado sobre donaciones!")
+            update.effective_message.reply_text("Te envié un mensaje privado sobre donaciones.")
                                                 #Original: I've PM'ed you about donating to my creator!
         except Unauthorized:
             update.effective_message.reply_text("Contactame en privado primero para obtener información sobre donaciones.")
