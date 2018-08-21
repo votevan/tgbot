@@ -1,6 +1,6 @@
 from telegram import Message, Update, Bot, User
 from telegram.ext import Filters, MessageHandler, run_async
-from googletrans impor Translator
+from googletrans import Translator
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot import dispatcher
 
