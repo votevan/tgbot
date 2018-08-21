@@ -21,3 +21,5 @@ pyowm
 spongemock
 geopy
 gsearch
+wikipedia
+googletrans

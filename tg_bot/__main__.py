@@ -309,7 +309,7 @@ def settings_button(bot: Bot, update: Update):
             module = mod_match.group(2)
             chat = bot.get_chat(chat_id)
             text = "ℹ️ Grupo: `{}`\n"
-            "ℹ️ Módulo: `{}`:\n".format(escape_markdown(chat.title),
+            "Modulo: `{}`:\n".format(escape_markdown(chat.title),
                    #Original: *{}* has the following settings for the *{}* module:
                                                                                      CHAT_SETTINGS[module].__mod_name__) + \
             text = "*{}* has the following settings for the *{}* module:\n\n".format(escape_markdown(chat.title),
