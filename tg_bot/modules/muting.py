@@ -104,17 +104,17 @@ def unmute(bot: Bot, update: Update, args: List[str]) -> str:
             message.reply_text("This is an admin, what do you expect me to do?")
             return ""
 
-        elif member.status != 'kicked' and member.status != 'left':
-            if member.can_send_messages and member.can_send_media_messages \
-                    and member.can_send_other_messages and member.can_add_web_page_previews:
-                message.reply_text("This user already has the right to speak.")
-                return ""
-            else:
-                bot.restrict_chat_member(chat.id, int(user_id),
-                                         can_send_messages=True,
-                                         can_send_media_messages=True,
-                                         can_send_other_messages=True,
-                                         can_add_web_page_previews=True)
+    if member.status != 'kicked' and member.status != 'left':
+        if member.can_send_messages and member.can_send_media_messages \
+                and member.can_send_other_messages and member.can_add_web_page_previews:
+            message.reply_text("This user already has the right to speak.")
+        else:
+            bot.restrict_chat_member(chat.id, int(user_id),
+                                     can_send_messages=True,
+                                     can_send_media_messages=True,
+                                     can_send_other_messages=True,
+                                     can_add_web_page_previews=True)
+            message.reply_text("Unmuted!")
                 message.reply_text("Unmuted!")
                 return "<b>{}:</b>" \
                        "\n#UNMUTE" \
