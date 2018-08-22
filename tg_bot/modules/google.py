@@ -12,7 +12,7 @@ def google(bot: Bot, update: Update):
         update.effective_message.reply_markdown('ℹ️ *Buscando:*\n`' + str(query) + '`\n\nℹ️ *Resultados:*\n' + result)
 
 __help__ = """
- - /google: Busca en Google
+ - /google: Busca en Google.
  """
 
 __mod_name__ = "Google"

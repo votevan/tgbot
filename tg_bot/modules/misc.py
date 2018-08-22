@@ -388,7 +388,7 @@ __help__ = """
   - /markdownhelp: resumen rápido de cómo funciona el markdown en telegram: solo se puede usar en chats privados.
 """
 
-__mod_name__ = "Miscelanea"
+__mod_name__ = "Misc."
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))

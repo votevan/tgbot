@@ -49,8 +49,8 @@ def check_flood(bot: Bot, update: Update) -> str:
                #Original:
                #\nBANNED
                #\n<b>User:</b> {}
-               #\nFlooded the group. 
-   
+               #\nFlooded the group.
+
     except BadRequest:
         msg.reply_text("No puedo expulsar usuarios acá. ¡Dame permisos! Hasta entonces, deshabilitaré el antiflood.")
                        #Original: I can't kick people here, give me permissions first! Until then, I'll disable antiflood.
@@ -59,10 +59,10 @@ def check_flood(bot: Bot, update: Update) -> str:
         return "<b>{}:</b>" \
                "\n#INFORMACIÓN" \
                "\nNo tengo permisos de expulsión; desactivaré el antiflood.".format(chat.title)
- 
+
                #Original:
                #\nINFO
-               #\nDon't have kick permissions, so automatically disabled antiflood.  
+               #\nDon't have kick permissions, so automatically disabled antiflood.
 
 @run_async
 @user_admin
@@ -88,7 +88,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                        "\n#FLOOD" \
                        "\n<b>Administrador:</b> {}" \
                        "\nAntiflood desactivado.".format(html.escape(chat.title), mention_html(user.id, user.first_name))
-                       
+
                        #Original:
                        #\nFLOOD
                        #\n<b>Admin:</b> {Antiflood has been disabled.}
@@ -127,7 +127,7 @@ def flood(bot: Bot, update: Update):
     limit = sql.get_flood_limit(chat.id)
     if limit == 0:
         update.effective_message.reply_text("¡El antiflood está desactivado!")
-                                            #Original: I'm not currently enforcing flood control!                                  
+                                            #Original: I'm not currently enforcing flood control!
 
     else:
         update.effective_message.reply_text(
@@ -156,14 +156,14 @@ __help__ = """
 
 Si activás el control de flood, significa que el usuario que envíe más de X mensajes consecutivos será baneado.
 *Esta configuración no afecta a los administradores.*
-"""	
+"""
 
 #Original:
 # - /flood: Get the current flood control setting
 # *Admin only:*
 # - /setflood <int/'no'/'off'>: enables or disables flood control
 
-__mod_name__ = "AntiFlood"
+__mod_name__ = "Antiflood"
 
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)

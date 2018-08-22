@@ -143,7 +143,7 @@ __help__ = """
 # - /setme <text>: will set your info
 # - /me: will get your or another user's info
 
-__mod_name__ = "Bios"
+__mod_name__ = "Biografías"
 
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
 GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio, pass_args=True)

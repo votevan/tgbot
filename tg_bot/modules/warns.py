@@ -59,7 +59,7 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
                      "\n<b>Reason:</b> {}"\
                      "\n<b>Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
                                                                   warner_tag,
-                                                                  mention_html(user.id, user.first_name), 
+                                                                  mention_html(user.id, user.first_name),
                                                                   reason, num_warns, limit)
 
     else:
@@ -78,7 +78,7 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
                      "\n<b>Reason:</b> {}"\
                      "\n<b>Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
                                                                   warner_tag,
-                                                                  mention_html(user.id, user.first_name), 
+                                                                  mention_html(user.id, user.first_name),
                                                                   reason, num_warns, limit)
 
     try:
@@ -400,13 +400,13 @@ __help__ = """
  - /warn <userhandle>: warn a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
  - /resetwarn <userhandle>: reset the warnings for a user. Can also be used as a reply.
  - /addwarn <keyword> <reply message>: set a warning filter on a certain keyword. If you want your keyword to \
-be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is an angry user`. 
+be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is an angry user`.
  - /nowarn <keyword>: stop a warning filter
  - /warnlimit <num>: set the warning limit
  - /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
 """
 
-__mod_name__ = "Warnings"
+__mod_name__ = "Warns"
 
 WARN_HANDLER = CommandHandler("warn", warn_user, pass_args=True, filters=Filters.group)
 RESET_WARN_HANDLER = CommandHandler(["resetwarn", "resetwarns"], reset_warns, pass_args=True, filters=Filters.group)

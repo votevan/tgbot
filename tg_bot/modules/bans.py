@@ -307,7 +307,7 @@ __help__ = """
 # - /unban <userhandle>: unbans a user. (via handle, or reply)
 # - /kick <userhandle>: kicks a user, (via handle, or reply)
 
-__mod_name__ = "Ban"
+__mod_name__ = "Bans"
 
 BAN_HANDLER = CommandHandler("ban", ban, pass_args=True, filters=Filters.group)
 TEMPBAN_HANDLER = CommandHandler(["tban", "tempban"], temp_ban, pass_args=True, filters=Filters.group)

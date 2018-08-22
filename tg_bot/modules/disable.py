@@ -146,7 +146,7 @@ if is_module_loaded(FILENAME):
         return build_curr_disabled(chat_id)
 
 
-    __mod_name__ = "Deshabilitar comandos"
+    __mod_name__ = ""
 
     __help__ = """
  - /cmds: verifica el estado actual de los comandos desactivados.

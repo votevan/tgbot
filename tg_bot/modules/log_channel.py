@@ -154,7 +154,7 @@ La configuración del canal de registro se realiza:
 - reenviar el / setlog al grupo.
 """
 
-    __mod_name__ = "Canales de logs"
+    __mod_name__ = "Registro"
 
     LOG_HANDLER = CommandHandler("logchannel", logging)
     SET_LOG_HANDLER = CommandHandler("setlog", setlog)

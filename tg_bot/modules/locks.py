@@ -311,7 +311,7 @@ pegatinas, etc.
 Bloquear bots evitará que los no-administradores agreguen bots al chat.
 """
 
-__mod_name__ = "Bloqueos"
+__mod_name__ = "Bloqueo"
 
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes)
 LOCK_HANDLER = CommandHandler("lock", lock, pass_args=True, filters=Filters.group)

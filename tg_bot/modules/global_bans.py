@@ -321,7 +321,7 @@ a ti y a tu grupo removiendo el flood de los spammers lo más pronto posible. Pu
 #you and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
 #/gbanstat
 #"""
-__mod_name__ = "Baneo global"
+__mod_name__ = "GBans"
 
 GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True,
                               filters=CustomFilters.sudo_filter | CustomFilters.support_filter)

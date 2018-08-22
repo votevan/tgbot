@@ -115,7 +115,7 @@ __help__ = """
 # - /purge: deletes all messages between this and the replied to message.
 # - /purge <integer X>: deletes the replied message, and X messages following it.
 
-__mod_name__ = "Eliminación" #Original: Purges
+__mod_name__ = "Borrado" #Original: Purges
 
 DELETE_HANDLER = CommandHandler("del", del_message, filters=Filters.group)
 PURGE_HANDLER = CommandHandler("purge", purge, filters=Filters.group, pass_args=True)
