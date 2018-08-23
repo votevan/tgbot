@@ -31,20 +31,20 @@ def gsupport(bot: Bot, update: Update, args: List[str]):
     banner = update.effective_user
     user_id = extract_user(message, args)
     if not user_id:
-         message.reply_text("You don't seems to be referring to a user.")
+         message.reply_text("No te estás refiriendo a nadie.")
          return
     elif int(user_id) in SUPPORT_USERS:
-         message.reply_text("The user is already a support user.")
+         message.reply_text("Este usuario ya es de soporte.")
          return
     elif int(user_id) in SUPPORT_USERS:
-         message.reply_text("The user is already a sudo user. So add him into support users? 😐")
+         message.reply_text("Este usuario ya es sudo. 😐")
          return
     elif int(user_id) == OWNER_ID:
-         message.reply_text("The specified user is my owner! No need add him to SUPPORT user list!")
+         message.reply_text("El usuario es mi creador, no necesitás agregarlo a la lista de soporte.")
          return
     else:
          add_to_support(user_id, bot)
-         message.reply_text("Succefully added to SUPPORT user list!")
+         message.reply_text("Agregado a la lista de *soporte* correctamente.")
          return
 
 @run_async
@@ -53,17 +53,17 @@ def ungsupport(bot: Bot, update: Update, args: List[str]):
     user_id = extract_user(message, args)
     user_chat = bot.get_chat(user_id)
     if not user_id:
-        message.reply_text("No user refered")
+        message.reply_text("No te estas refiriendo a nadie.")
         return
     if user_chat.type != 'private':
-        message.reply_text("That's not a user!")
+        message.reply_text("Eso no es un usuario.")
         return
     if user_id not in SUPPORT_USERS:
-        message.reply_text("{} is not a support user".format(user_chat.username))
+        message.reply_text("{} no es un usuario de soporte.".format(user_chat.username))
         return
     sql.ungsupport_user(user_id)
     SUPPORT_USERS.remove(user_id)
-    message.reply_text("Succefully removed from SUPPORT user list!")
+    message.reply_text("Removido correctamente de la lista de soporte.")
 
 
 
