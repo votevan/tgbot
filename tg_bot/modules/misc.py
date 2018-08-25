@@ -321,7 +321,7 @@ def ping(bot: Bot, update: Update):
     requests.get('https://api.telegram.org')
     end_time = time.time()
     ping_time = float(end_time - start_time)*1000
-    update.effective_message.reply_text("ℹ️ La velocidad es: `{}ms`".format(ping_time))
+    update.effective_message.reply_text("ℹ️ La velocidad es: {}ms".format(ping_time))
 
 @run_async
 def gdpr(bot: Bot, update: Update):
