@@ -228,31 +228,31 @@ def info(bot: Bot, update: Update, args: List[str]):
     else:
         return
 
-    text = "<b>Información del usuario:</b>" \
-           "\nID: <code>{}</code>" \
-           "\nNombre: {}".format(user.id, html.escape(user.first_name))
+    text = "<b>⬇️ Información del usuario:</b>" \
+           "\nℹ️ ID: <code>{}</code>" \
+           "\nℹ️ Nombre: {}".format(user.id, html.escape(user.first_name))
 
     if user.last_name:
-        text += "\nApellido: {}".format(html.escape(user.last_name))
+        text += "\nℹ️ Apellido: {}".format(html.escape(user.last_name))
 
     if user.username:
-        text += "\nUsuario: @{}".format(html.escape(user.username))
+        text += "\nℹ️ Usuario: @{}".format(html.escape(user.username))
 
-    text += "\nLink del usuario: {}".format(mention_html(user.id, "link"))
+    text += "\nℹ️ Link del usuario: {}".format(mention_html(user.id, "link"))
 
     if user.id == OWNER_ID:
-        text += "\n\nEsta persona es mi dueño. ¡Nunca haría nada contra el!"
+        text += "\n\n⚠️ Esta persona es mi creador. ¡Nunca haría nada contra el!"
     else:
         if user.id in SUDO_USERS:
-            text += "\nEsta persona es uno de mis usuarios sudo! Es" \
-                    "casi tan poderoso como mi dueño, así que ten cuidado."
+            text += "\n⚠️ ¡Esta persona es uno de mis usuarios sudo! Es " \
+                    "casi tan poderoso como mi dueño, así que tené cuidado."
         else:
             if user.id in SUPPORT_USERS:
-                text += "\n¡Esta persona es uno de mis usuarios de soporte! " \
-                        "No es exactamente un usuario sudo, pero puede eliminarte del mapa."
+                text += "\n⚠️ ¡Esta persona es uno de mis usuarios de soporte! " \
+                        "No es exactamente un usuario sudo, pero puede borrarte del mapa."
 
             if user.id in WHITELIST_USERS:
-                text += "\n¡Esta persona ha sido incluida en la lista blanca! " \
+                text += "\n⚠️ ¡Esta persona ha sido incluida en la lista blanca! " \
                         "Eso significa que no puedo banearlo/expulsarlo."
 
     for mod in USER_INFO:
@@ -321,7 +321,7 @@ def ping(bot: Bot, update: Update):
     requests.get('https://api.telegram.org')
     end_time = time.time()
     ping_time = float(end_time - start_time)*1000
-    update.effective_message.reply_text(" Ping speed was : {}ms".format(ping_time))
+    update.effective_message.reply_text("ℹ️ La velocidad es: `{}ms`".format(ping_time))
 
 @run_async
 def gdpr(bot: Bot, update: Update):
