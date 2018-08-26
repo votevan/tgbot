@@ -5,9 +5,8 @@ from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
 
 def wiki(bot: Bot, update: Update):
-        query = update.effective_message.text.split(None, 1)
-        match = wikipedia.summary
-        result = '**Search:**\n`' + str(query) + '`\n\n**Result:**\n`' + match
+        query = update.effective_message.text.split(None, 1) 
+        result = '**Search:**\n`' + str(query) + '`\n\n**Result:**\n`' + str(match)
         update.effective_message.reply_markdown(result)
 __help__ = """
  - /wiki: Query the Wikipedia
