@@ -244,15 +244,15 @@ def info(bot: Bot, update: Update, args: List[str]):
         text += "\n\n⚠️ Esta persona es mi creador. ¡Nunca haría nada contra el!"
     else:
         if user.id in SUDO_USERS:
-            text += "\n⚠️ ¡Esta persona es uno de mis usuarios sudo! Es " \
+            text += "\n\n⚠️ ¡Esta persona es uno de mis usuarios sudo! Es " \
                     "casi tan poderoso como mi dueño, así que tené cuidado."
         else:
             if user.id in SUPPORT_USERS:
-                text += "\n⚠️ ¡Esta persona es uno de mis usuarios de soporte! " \
+                text += "\n\n⚠️ ¡Esta persona es uno de mis usuarios de soporte! " \
                         "No es exactamente un usuario sudo, pero puede borrarte del mapa."
 
             if user.id in WHITELIST_USERS:
-                text += "\n⚠️ ¡Esta persona ha sido incluida en la lista blanca! " \
+                text += "\n\n⚠️ ¡Esta persona ha sido incluida en la lista blanca! " \
                         "Eso significa que no puedo banearlo/expulsarlo."
 
     for mod in USER_INFO:
