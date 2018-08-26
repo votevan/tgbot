@@ -9,7 +9,7 @@ def google(bot: Bot, update: Update):
         query = update.effective_message.text.split(None, 1)
         result_ = subprocess.run(['gsearch', str(query)], stdout=subprocess.PIPE)
         result = str(result_.stdout.decode())
-        update.effective_message.reply_markdown('ℹ️ Búsqueda: ' + str(query) + '\n\nℹ️ Resultados:\n' + result)
+        update.effective_message.reply_markdown('ℹ️ Búsqueda: ' + (query) + '\n\nℹ️ Resultados:\n' + result)
 
 __help__ = """
  - /google: Google search
