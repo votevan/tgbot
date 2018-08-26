@@ -8,7 +8,7 @@ def wiki(bot: Bot, update: Update):
         result = '**Search:**\n`' + query + '`\n\n**Result:**\n`' + wikipedia.summary(match)
         update.effective_message.reply_markdown(result)
 __help__ = """
- - /wiki: Busca en Wikipedia.
+ - /wiki: Query the Wikipedia
  """
 __mod_name__ = "Wikipedia"
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
