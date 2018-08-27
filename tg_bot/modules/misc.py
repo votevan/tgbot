@@ -224,7 +224,7 @@ def get_time(bot: Bot, update: Update, args: List[str]):
             if res.status_code == 200:
                 offset = json.loads(res.text)['dstOffset']
                 timestamp = json.loads(res.text)['rawOffset']
-                time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M:%S")
+                time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M")
                 update.message.reply_text("🌎 Lugar: {}\n🕒 Hora: {}".format(location, time_there))
 
 
