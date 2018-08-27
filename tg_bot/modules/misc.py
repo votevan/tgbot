@@ -301,7 +301,6 @@ def stats(bot: Bot, update: Update):
 __help__ = """
 ➡️ /id: obtener la ID del grupo actual. Si se usa respondiendo a un mensaje, obtiene la ID de ese usuario.
 ➡️ /runs: responde una cadena aleatoria de respuestas.
-➡️ /runs: responde una frase aleatoria cuando el comando es usado.
 ➡️ /slap: golpeá a un usuario, o sé golpeado si no respondes a nadie.
 ➡️ /time <lugar>: envía la hora local del lugar elegido.
 ➡️ /info: obtener información acerca de un usuario.
