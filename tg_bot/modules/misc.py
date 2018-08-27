@@ -252,7 +252,7 @@ def gdpr(bot: Bot, update: Update):
     for mod in GDPR:
         mod.__gdpr__(update.effective_user.id)
 
-    update.effective_message.reply_text("Your personal data has been deleted.\n\nNote that this will not unban "
+    update.effective_message.reply_text("ℹ️ Tu información ha sido eliminada.\n\nEsto no te desbaneará "
                                         "de ningún grupo ya que eso es información de Telegram, no del bot. "
                                         "El flood, los warns, y el gban son respaldados. Para saber más, tocá  "
                                         "[acá](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/).",parse_mode=ParseMode.MARKDOWN)
