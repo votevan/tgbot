@@ -18,98 +18,21 @@ from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.helper_funcs.filters import CustomFilters
 
 RUN_STRINGS = (
-    "¿A dónde crees que vas?",
-    "¿Huh? ¿Qué? se escaparon?",
-    "ZZzzZZzz... Huh? ¿Qué? oh, solo ellos otra vez, no importa.",
-    "¡Regresa aquí!",
-    "No tan rapido...",
-    "¡Cuidado con la pared!",
-    "¡No me dejes solo con ellos!",
-    "Usted corre, usted muere.",
-    "Bromas sobre ti, estoy en todas partes",
-    "Te arrepentirás de ...",
-    "También puedes probar / kickme, escuché que es divertido.",
-    "Ve a molestar a alguien más, aquí a nadie le importa..",
-    "Puedes correr, pero no puedes esconderte.",
-    "¿Es todo lo que tienes?",
-    "Estoy detrás tuyo...",
-    "¡Tienes compañía!",
-    "Podemos hacer esto de la manera fácil o por el camino difícil.",
-    "Simplemente no lo entiendes, ¿verdad?",
-    "Sí, será mejor que corras!",
-    "Por favor, recuérdame cuánto me importa??",
-    "Yo correría más rápido si fuera tú.",
-    "Ese es definitivamente el droide que estamos buscando.",
-    "Que las probabilidades estén siempre a tu favor.",
-    "¿Tus últimas palabras?",
-    "Y desaparecieron para siempre, nunca más serán vistos.",
-    "\"¡Oh, mírame! ¡Soy tan genial, puedo huir de un robot!\" - esta persona",
-    "Sí, sí, solo toca /kickme ya.",
-    "Aquí, toma este anillo y dirígete a Mordor mientras lo haces.",
-    "Cuenta la leyenda, todavía están funcionando ...",
-    "A diferencia de Harry Potter, tus padres no pueden protegerte de mí.",
-    "El miedo lleva a la ira. La ira conduce al odio. El odio lleva al sufrimiento. Si sigues corriendo con miedo, es posible que... "
-    "Sé el próximo Vader.",
-    "Múltiples cálculos más tarde, he decidido que mi interés en tus chistes y es exactamente 0.",
-    "Cuenta la leyenda, todavía están en ejecución.",
-    "Sigue así, no estoy seguro de que te queramos aquí de todos modos.",
-    "Eres una hechi... Oh. Espere. No, eres Harry.",
-    "NO HAY CORRER EN LOS PASILLOS!",
-    "Hasta la vista, baby.",
-    "¿Quién soltó los perros?",
-    "Es gracioso, porque a nadie le importa.",
-    "Ah, qué desperdicio. Me gustó ese.",
-    "Francamente, querida, no me importa nada.",
-    "Mi batido trae a todos los niños al patio ... ¡Así que corre más rápido!",
-    "¡No puedes MANEJAR la verdad!",
-    "Hace mucho tiempo, en una galaxia muy lejana ... Alguien se habría preocupado por eso. Sin embargo, a nadie le importo.",
-    "¡Oye, míralos! Están huyendo del inevitable y lindo banhammer...",
-    "Han disparó primero. Yo lo haré.",
-    "¿Qué estás persiguiendo, un conejo blanco?",
-    "Como el Doctor diría ... ¡CORRE!",
 )
 
 SLAP_TEMPLATES = (
     "{user1} se hizo el piola y {user2} le rompió la jeta.",
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
     "{user1} envió un meme y {admin} lo muteó.",
-    "que paja"
 )
 
 ITEMS = (
-     "un bate de béisbol",
-     "un amplificador",
-     "un Monitor CRT",
-     "un libro de texto de física",
-     "un Nokia 1100",
-     "un retrato",
-     "un televisor",
-     "un camión de cinco toneladas",
-     "un rollo de cinta adhesiva",
-     "un libro",
-     "un ordenador portátil",
-     "untelevisor antiguo",
-     "un saco de rocas",
-     "un pollo de goma",
-     "un bate de púas",
-     "un extintor de incendios",
-     "un pedazo de tierra",
-     "un pedazo de carne podrida",
-     "un oso de peluche",
-     "un ladrillo",
-     "un destornillador",
-     "una cuchara",
-     "una sartén",
 )
 
 THROW = (
-     " tira",
-     "arroja",
-     "lanza",
 )
 
 HIT = (
-     "golpea",
 )
 
 ADMIN = (
@@ -187,7 +110,7 @@ def get_id(bot: Bot, update: Update, args: List[str]):
             user1 = update.effective_message.reply_to_message.from_user
             user2 = update.effective_message.reply_to_message.forward_from
             update.effective_message.reply_text(
-                "El remitente original, {}, tiene la ID `{}`.\nEl reenviador, {}, tiene la ID `{}`.".format(
+                "ℹ️ ID de {}: `{}`.\nℹ️ ID del reenviador ({}): `{}`.".format(
                     escape_markdown(user2.first_name),
                     user2.id,
                     escape_markdown(user1.first_name),
@@ -195,16 +118,16 @@ def get_id(bot: Bot, update: Update, args: List[str]):
                 parse_mode=ParseMode.MARKDOWN)
         else:
             user = bot.get_chat(user_id)
-            update.effective_message.reply_text("La ID de {} es `{}`.".format(escape_markdown(user.first_name), user.id),
+            update.effective_message.reply_text("ℹ️ ID de {}: `{}`.".format(escape_markdown(user.first_name), user.id),
                                                 parse_mode=ParseMode.MARKDOWN)
     else:
         chat = update.effective_chat  # type: Optional[Chat]
         if chat.type == "private":
-            update.effective_message.reply_text("Tu ID es `{}`.".format(chat.id),
+            update.effective_message.reply_text("ℹ️ Tu ID es `{}`.".format(chat.id),
                                                 parse_mode=ParseMode.MARKDOWN)
 
         else:
-            update.effective_message.reply_text("La ID de este grupo es `{}`.".format(chat.id),
+            update.effective_message.reply_text("ℹ️ ID del grupo: `{}`.".format(chat.id),
                                                 parse_mode=ParseMode.MARKDOWN)
 
 
@@ -267,7 +190,7 @@ def info(bot: Bot, update: Update, args: List[str]):
 def get_time(bot: Bot, update: Update, args: List[str]):
     location = " ".join(args)
     if location.lower() == bot.first_name.lower():
-        update.effective_message.reply_text("¡Siempre hay tiempo del martillo de ban para mi!")
+        update.effective_message.reply_text("Hora del ban 🔨")
         bot.send_sticker(update.effective_chat.id, BAN_STICKER)
         return
 
@@ -301,8 +224,8 @@ def get_time(bot: Bot, update: Update, args: List[str]):
             if res.status_code == 200:
                 offset = json.loads(res.text)['dstOffset']
                 timestamp = json.loads(res.text)['rawOffset']
-                time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M:%S on %A %d %B")
-                update.message.reply_text("Son las {} en {}".format(time_there, location))
+                time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M:%S")
+                update.message.reply_text("ℹ️ Hora: {}\nℹ️Lugar: {}".format(time_there, location))
 
 
 @run_async
@@ -325,50 +248,46 @@ def ping(bot: Bot, update: Update):
 
 @run_async
 def gdpr(bot: Bot, update: Update):
-    update.effective_message.reply_text("Deleting identifiable data...")
+    update.effective_message.reply_text("ℹ️ Eliminando tu información...")
     for mod in GDPR:
         mod.__gdpr__(update.effective_user.id)
 
-    update.effective_message.reply_text("Your personal data has been deleted.\n\nNote that this will not unban "
-                                        "you from any chats, as that is telegram data, not Marie data. "
-                                        "Flooding, warns, and gbans are also preserved, as of "
-                                        "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
-                                        "which clearly states that the right to erasure does not apply "
-                                        "\"for the performance of a task carried out in the public interest\", as is "
-                                        "the case for the aforementioned pieces of data.",
-                                        parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text("Tu información almacenada ha sido eleminada.\n\nEsto no te va a desbanear"
+                                        "ya que eso es información de Telegram, no del bot. "
+                                        "Flood, warns, y gbans también son respaldados. Para saber más, tocá  "
+                                        "[acá](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/).".parse_mode=ParseMode.MARKDOWN)
 
 
 MARKDOWN_HELP = """
-Markdown es una herramienta de formato muy potente compatible con Telegram. {} tiene algunas mejoras para asegurarle de que \
-los mensajes guardados se analicen correctamente y permitirte crear botones.
+Markdown es una herramienta de formato compatible con Telegram. {} tiene algunas mejoras para asegurarte de que \
+los mensajes guardados se analicen correctamente y así permitirte crear botones.
 
-- <code>_italic _</code>: al envolver el texto con '_' generará texto en cursiva.
-- <code>*bold*</code>: al envolver el texto con '*' generará texto en negrita.
-- <code>`code`</code>: al envolver el texto con ''' generará texto monoespaciado, también conocido como 'code'.
-- <code>[texto](URL)</code>: esto creará un enlace; el mensaje solo mostrará <code>texto</code>, \
-y al tocarlo se abrirá la página en <code>URL</code>.
+➡️ <code>_italic_</code>: al envolver el texto con '_' se mostrará el texto en cursiva.
+➡️ <code>*bold*</code>: al envolver el texto con '*' se mostrará el texto en negrita.
+➡️ <code>`code`</code>: al envolver el texto con ''' se mostrará el texto monoespaciado, también conocido como 'código'.
+➡️ <code>[sometext](someURL)</code>: esto creará un enlace; el mensaje solo mostrará <code>sometext</code>, \
+y al tocarlo se abrirá la página en <code>someURL</code>.
 Ejemplo: <code>[test](example.com)</code>
 
-- <code>[buttontext](buttonurl:someURL)</code>: esta es una mejora especial para permitir que los usuarios tengan \
-botones en su markdown. <code>texto</code> será lo que se muestra en el botón, y <code>someurl</code> \
+➡️ <code>[buttontext](buttonurl:someURL)</code>: esto sirve para permitir que los usuarios tengan \
+botones en su markdown. <code>buttontext</code> será lo que se muestra en el botón, y <code>someURL</code> \
 será la URL que se abrirá.
 Ejemplo: <code>[Este es un botón](buttonurl:example.com)</code>
 
-Si desea tener varios botones en la misma línea, use :same, como tal:
+ℹ️ Si desea tener varios botones en la misma línea, use :same, como tal:
 <code>[one](buttonurl://example.com)
 [two](buttonurl://google.com:same)</code>
 Esto creará dos botones en una sola línea, en lugar de un botón por línea.
 
-¡Tenga en cuenta que su mensaje <b>DEBE</b> contener algún texto que no sea solo un botón!
+¡Tené en cuenta que tu mensaje <b>debe</b> contener algún texto que no sea solo un botón!
 """.format(dispatcher.bot.first_name)
 
 
 @run_async
 def markdown_help(bot: Bot, update: Update):
     update.effective_message.reply_text(MARKDOWN_HELP, parse_mode=ParseMode.HTML)
-    update.effective_message.reply_text("Intenta reenviar el siguiente mensaje a mí, ¡y lo verás!")
-    update.effective_message.reply_text("/save test This is a markdown test. _italics_, *bold*, `code`, "
+    update.effective_message.reply_text("Intentá reenviar el siguiente mensaje a mí, y lo verás!")
+    update.effective_message.reply_text("/save test Esta es una prueba de markdown. _cursiva_, *negrita*, `código`, "
                                         "[URL](example.com) [button](buttonurl:github.com) "
                                         "[button2](buttonurl://google.com:same)")
 
@@ -380,19 +299,15 @@ def stats(bot: Bot, update: Update):
 
 # /ip is for private use
 __help__ = """
-- /id: obtener la ID del grupo actual. Si se usa respondiendo a un mensaje, obtiene la ID de ese usuario.
-- /runs: responde una cadena aleatoria de respuestas.
-- /slap: abofetear a un usuario, o recibir una bofetada si no es una respuesta.
-- /time <lugar>: da la hora local en el lugar dado.
-- /info: obtener información sobre un usuario.
-=======
- - /id: get the current group id. If used by replying to a message, gets that user's id.
- - /runs: reply a random string from an array of replies.
- - /slap: slap a user, or get slapped if not a reply.
- - /time <place>: gives the local time at the given place.
- - /info: get information about a user.
- - /gdpr: deletes your information from the bot's database. Private chats only.
-  - /markdownhelp: resumen rápido de cómo funciona el markdown en telegram: solo se puede usar en chats privados.
+➡️ /id: obtener la ID del grupo actual. Si se usa respondiendo a un mensaje, obtiene la ID de ese usuario.
+➡️ /runs: responde una cadena aleatoria de respuestas.
+➡️ /runs: responde una frase aleatoria cuando el comando es usado.
+➡️ /slap: golpeá a un usuario, o sé golpeado si no respondes a nadie.
+➡️ /time <lugar>: envía la hora local del lugar elegido.
+➡️ /info: obtener información acerca de un usuario.
+➡️ /gdpr: eliminar tu información de la base de datos del bot. Solo funciona mediante chats privados.
+➡️ /markdownhelp: resumen rápido de cómo funciona el markdown en telegram: sólo se puede usar en chats privados.
+➡️ /ping: conocer la velocidad de respuesta del bot.
 """
 
 __mod_name__ = "Misc."
