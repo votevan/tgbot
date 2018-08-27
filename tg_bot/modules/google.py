@@ -20,5 +20,3 @@ __mod_name__ = "Google"
 GOOGLE_HANDLER = DisableAbleCommandHandler("google", google)
 
 dispatcher.add_handler(GOOGLE_HANDLER)
-
-        update.effective_message.reply_markdown('ℹ️ Búsqueda: ' + str(query) + '\nℹ️ Resultados:\n' + result)
