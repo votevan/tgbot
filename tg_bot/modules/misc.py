@@ -225,7 +225,7 @@ def get_time(bot: Bot, update: Update, args: List[str]):
                 offset = json.loads(res.text)['dstOffset']
                 timestamp = json.loads(res.text)['rawOffset']
                 time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M:%S")
-                update.message.reply_text("ℹ️ Hora: {}\nℹ️Lugar: {}".format(time_there, location))
+                update.message.reply_text("🌎 Lugar: {}\n🕒 Hora: {}".format(location, time_there))
 
 
 @run_async
