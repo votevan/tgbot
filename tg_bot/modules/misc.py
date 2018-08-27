@@ -252,9 +252,9 @@ def gdpr(bot: Bot, update: Update):
     for mod in GDPR:
         mod.__gdpr__(update.effective_user.id)
 
-    update.effective_message.reply_text("Tu información almacenada ha sido eleminada.\n\nEsto no te va a desbanear"
-                                        "ya que eso es información de Telegram, no del bot. "
-                                        "Flood, warns, y gbans también son respaldados. Para saber más, tocá  "
+    update.effective_message.reply_text("Tu información almacenada ha sido eleminada.\n\nEsto no te va a desbanear "
+                                        "de ningún grupo ya que eso es información de Telegram, no del bot. "
+                                        "El flood, warns, y gbans son respaldados. Para saber más, tocá  "
                                         "[acá](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/).".parse_mode=ParseMode.MARKDOWN)
 
 
