@@ -5,33 +5,14 @@ from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
 
 def wiki(bot: Bot, update: Update):
-        query = update.effective_message.text.split(None, 1)
-
-        result = '**Search:**\n`' + str(query) + '`\n\n**Result:**\n`' + str(match)
+        query = str(update.effective_message.text[6:])
+        result = '**Búsqueda:**\n' + query + '\n\n**Resultado:**\n' + str(wikipedia.summary(query))
         update.effective_message.reply_markdown(result)
-#__help__ = """
- #- /wiki: Query the Wikipedia
- #"""
-#__mod_name__ = "Wikipedia Search"
+
+__help__ = """
+ ➡️ /wiki: Buscá en Wikipedia.
+ """
+__mod_name__ = "Wikipedia Search"
+
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 dispatcher.add_handler(WIKI_HANDLER)
-
-
-
-
-
-#def google(bot: Bot, update: Update):
-#        query = update.effective_message.text.split(None, 1)
-#        result_ = subprocess.run(['gsearch', str(query)], stdout=subprocess.PIPE)
-#        result = str(result_.stdout.decode())
-#        update.effective_message.reply_markdown('ℹ️ Búsqueda: ' + str(query) + '\nℹ️ Resultados:\n' + result)
-#
-#__help__ = """
-# - /google: Google search
-# """
-
-#__mod_name__ = "Google"
-
-#GOOGLE_HANDLER = DisableAbleCommandHandler("google", google)
-
-#dispatcher.add_handler(GOOGLE_HANDLER)
