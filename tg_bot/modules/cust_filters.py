@@ -18,7 +18,7 @@ from tg_bot.modules.helper_funcs.string_handling import split_quotes, button_mar
 from tg_bot.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 10
-BASIC_FILTER_STRING = "*Filtros del chat:*\n"
+BASIC_FILTER_STRING = "*ℹ️ Filtros del chat:*\n"
 
 
 @run_async
@@ -73,7 +73,7 @@ def filters(bot: Bot, update: Update):
         content, buttons = button_markdown_parser(extracted[1], entities=msg.parse_entities(), offset=offset)
         content = content.strip()
         if not content:
-            msg.reply_text("No hay ninguna nota - no puedes SOLO tener botones, necesitas una nota que lo acompañe!")
+            msg.reply_text("No hay ninguna nota.")
             return
 
     elif msg.reply_to_message and msg.reply_to_message.sticker:
@@ -129,7 +129,7 @@ def stop_filter(bot: Bot, update: Update):
     chat_filters = sql.get_chat_triggers(chat.id)
 
     if not chat_filters:
-        update.effective_message.reply_text("NO hay filtros activos aqui!")
+        update.effective_message.reply_text("No hay filtros activos acá!")
         return
 
     for keyword in chat_filters:
@@ -138,7 +138,7 @@ def stop_filter(bot: Bot, update: Update):
             update.effective_message.reply_text("Dejaré de responder a eso.")
             raise DispatcherHandlerStop
 
-    update.effective_message.reply_text("Eso no es un filtro actual. Utiliza /filters para ver todos los filtros activos.")
+    update.effective_message.reply_text("ℹ️ Eso no es un filtro actual. Usá /filters para ver todos los filtros activos.")
 
 
 @run_async
@@ -177,16 +177,14 @@ def reply_filter(bot: Bot, update: Update):
                                        reply_markup=keyboard)
                 except BadRequest as excp:
                     if excp.message == "Unsupported url protocol":
-                        message.reply_text("Parece que intentas usar un protocolo de url no compatible. Telegram no admite "
-                                           "botones para algunos protocolos, como tg://. Por favor, inténtelo de nuevo o solicite "
-                                           "ayuda a @votevan.")
+                        message.reply_text("Parece que intentás usar un protocolo de URL no compatible. Telegram no admite "
+                                           "botones para algunos protocolos, como tg://.")
                     elif excp.message == "Reply message not found":
                         bot.send_message(chat.id, filt.reply, parse_mode=ParseMode.MARKDOWN,
                                          disable_web_page_preview=True,
                                          reply_markup=keyboard)
                     else:
-                        message.reply_text("Esta nota no puede ser enviada ya que esta mal formulada. Preguntale a "
-                                           "@votevan si necesitas ayuda!")
+                        message.reply_text("Esta nota no puede ser enviada ya que esta mal formulada.")
                         LOGGER.warning("El mensaje %s no se pudo analizar.", str(filt.reply))
                         LOGGER.exception("No se pudo analizar %s en el chat %s", str(filt.keyword), str(chat.id))
 
@@ -213,21 +211,20 @@ __help__ = """
  - /filters: muestra la lista de todos los filtros activos en este chat.
 
 *Solo para administradores:*
- - /filter <palabraclave> <mensajederespuesta>: agregar un filtro a este chat. El bot ahora responderá ese mensaje siempre que 'palabraclave' \
-es mencionada. Si respondes a un sticker con una palabra clave, el bot responderá con ese sticker. NOTA: todo filtro donde \
-las palabras clave están en minúsculas, si desea que su palabra clave sea una oración, use comillas. por ejemplo: /filtro "oye allí" cómo \
-estas?
+ - /addfilter <palabra> <mensaje>: agregar un filtro a ese chat. El bot responderá ese mensaje siempre que 'palabra'
+es mencionada. Si respondés a un sticker con una palabra clave, el bot responderá con ese sticker. *NOTA*: Si querés
+que tu palabra clave sea una oración, usá comillas. por ejemplo: /filtro "Hola" ¿Cómo estas?
  - /stop <palabraclave>: detiene ese filtro.
 """
 
 __mod_name__ = "Filtros"
 
-FILTER_HANDLER = CommandHandler("filter", filters)
+FILTER_HANDLER = CommandHandler("addfilter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
 LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=True)
 CUST_FILTER_HANDLER = MessageHandler(CustomFilters.has_text, reply_filter)
 
-dispatcher.add_handler(FILTER_HANDLER)
+dispatcher.add_handler(addfilter_HANDLER)
 dispatcher.add_handler(STOP_HANDLER)
 dispatcher.add_handler(LIST_HANDLER)
 dispatcher.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
