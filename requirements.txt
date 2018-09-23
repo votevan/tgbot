@@ -13,3 +13,4 @@ gTTS
 telegram
 gsearch
 wikipedia
+googletrans
