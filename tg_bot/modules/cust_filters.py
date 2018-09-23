@@ -213,8 +213,8 @@ __help__ = """
 *Solo para administradores:*
  ➡️ /addfilter <palabra> <mensaje>: agregar un filtro a ese chat. El bot responderá ese mensaje siempre que 'palabra' \
 es mencionada. Si respondés a un sticker con una palabra clave, el bot responderá con ese sticker. *NOTA*: Si querés \
-que tu palabra clave sea una oración, usá comillas. por ejemplo: /filtro "Hola" ¿Cómo estas? 
- - /stop <palabraclave>: detiene ese filtro.
+que tu palabra clave sea una oración, usá comillas. por ejemplo: /filtro "Hola" ¿Cómo estas?
+ ➡️ /stop <palabraclave>: detiene ese filtro.
 """
 
 __mod_name__ = "Filtros"
