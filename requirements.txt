@@ -14,3 +14,4 @@ telegram
 gsearch
 wikipedia
 googletrans
+feedparser
