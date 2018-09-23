@@ -224,7 +224,7 @@ STOP_HANDLER = CommandHandler("stop", stop_filter)
 LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=True)
 CUST_FILTER_HANDLER = MessageHandler(CustomFilters.has_text, reply_filter)
 
-dispatcher.add_handler(ADDFILTER_HANDLER)
+dispatcher.add_handler(FILTER_HANDLER)
 dispatcher.add_handler(STOP_HANDLER)
 dispatcher.add_handler(LIST_HANDLER)
 dispatcher.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
