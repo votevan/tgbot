@@ -12,7 +12,7 @@ def wiki(bot: Bot, update: Update):
 __help__ = """
  ➡️ /wiki: Buscá en Wikipedia.
  """
-__mod_name__ = "Wikipedia Search"
+__mod_name__ = "Wikipedia"
 
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 dispatcher.add_handler(WIKI_HANDLER)
