@@ -51,13 +51,6 @@ DONATE_STRING = """
 -
 """
 
-#Original:
-#Heya, glad to hear you want to donate!
-#It took lots of work for [my creator](t.me/SonOfLars) to get me to where I am now, and every donation helps \
-#motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
-#(see his bio!). He's just a poor student, so every little helps!
-#There are two ways of paying him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen).
-
 IMPORTED = {}
 MIGRATEABLE = []
 HELPABLE = {}
@@ -195,7 +188,7 @@ def help_button(bot: Bot, update: Update):
     try:
         if mod_match:
             module = mod_match.group(1)
-            text = "Módulo *{}*:\n".format(HELPABLE[module].__mod_name__) + HELPABLE[module].__help__
+            text = "ℹ️ Módulo *{}*:\n".format(HELPABLE[module].__mod_name__) + HELPABLE[module].__help__
                    #Original: Here is the help for the *{}* module:
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
@@ -268,7 +261,7 @@ def send_settings(chat_id, user_id, user=False):
         if USER_SETTINGS:
             settings = "\n\n".join(
                 "*{}*:\n{}".format(mod.__mod_name__, mod.__user_settings__(user_id)) for mod in USER_SETTINGS.values())
-            dispatcher.bot.send_message(user_id, "Estas son tus configuraciones actuales:" + "\n\n" + settings,
+            dispatcher.bot.send_message(user_id, "ℹ️ Estas son tus configuraciones actuales:" + "\n\n" + settings,
                                                  #Original: These are your current settings:
                                         parse_mode=ParseMode.MARKDOWN)
 
@@ -309,7 +302,7 @@ def settings_button(bot: Bot, update: Update):
             chat_id = mod_match.group(1)
             module = mod_match.group(2)
             chat = bot.get_chat(chat_id)
-            text = "*{}* has the following settings for the *{}* module:\n\n".format(escape_markdown(chat.title),
+            text = "ℹ️ *{}* has the following settings for the *{}* module:\n\n".format(escape_markdown(chat.title),
                                                                                      CHAT_SETTINGS[
                                                                                          module].__mod_name__) + \
                    CHAT_SETTINGS[module].__chat_settings__(chat_id, user.id)
@@ -375,14 +368,14 @@ def get_settings(bot: Bot, update: Update):
     # ONLY send settings in PM
     if chat.type != chat.PRIVATE:
         if is_user_admin(chat, user.id):
-            text = "Tocá abajo ver la configuración del chat." #Original: Click here to get this chat's settings, as well as yours.
+            text = "ℹ️ Tocá abajo ver la configuración del chat." #Original: Click here to get this chat's settings, as well as yours.
             msg.reply_text(text,
                            reply_markup=InlineKeyboardMarkup(
                                [[InlineKeyboardButton(text="Configuración ⚙️", #Original: Settings
                                                       url="t.me/{}?start=stngs_{}".format(
                                                           bot.username, chat.id))]]))
         else:
-            text = "Tocá acá para ver tu configuración." #Original: Click here to check your settings.
+            text = "ℹ️ Tocá acá para ver tu configuración." #Original: Click here to check your settings.
 
     else:
         send_settings(chat.id, user.id, True)
@@ -397,7 +390,7 @@ def donate(bot: Bot, update: Update):
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
         if OWNER_ID != 495341018 and DONATION_LINK:
-            update.effective_message.reply_text("Podés donar a la persona a la que obedezco "
+            update.effective_message.reply_text("💵 Podés donar a la persona a la que obedezco "
                                                 "[acá]({}).".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
 
