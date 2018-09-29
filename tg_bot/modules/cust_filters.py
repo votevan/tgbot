@@ -143,7 +143,6 @@ def stop_filter(bot: Bot, update: Update):
 
 @run_async
 def reply_filter(bot: Bot, update: Update):
-    elif  msg.reply_to_message:
           chat = update.effective_chat  # type: Optional[Chat]
           message = update.effective_message # type: Optional[Message]
     to_match = extract_text(message)
