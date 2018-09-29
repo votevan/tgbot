@@ -171,7 +171,6 @@ def reply_filter(bot: Bot, update: Update):
                 buttons = sql.get_buttons(chat.id, filt.keyword)
                 keyb = build_keyboard(buttons)
                 keyboard = InlineKeyboardMarkup(keyb)
-                chat_id = update.effective_chat.id
 
                 try:
                     message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
