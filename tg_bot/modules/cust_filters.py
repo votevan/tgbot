@@ -144,7 +144,7 @@ def stop_filter(bot: Bot, update: Update):
 @run_async
 def reply_filter(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-    message = update.effective_message  # type: Optional[Message]
+    message = msg.reply_to_message.update.effective_message  # type: Optional[Message]
     to_match = extract_text(message)
     if not to_match:
         return
@@ -155,17 +155,17 @@ def reply_filter(bot: Bot, update: Update):
         if re.search(pattern, to_match, flags=re.IGNORECASE):
             filt = sql.get_filter(chat.id, keyword)
             if filt.is_sticker:
-                msg.reply_to_message and msg.reply_to_message.sticker(filt.reply)
+                message.reply_sticker(filt.reply)
             elif filt.is_document:
-                msg.reply_to_message and msg.reply_to_message.document(filt.reply)
+                message.reply_document(filt.reply)
             elif filt.is_image:
-                msg.reply_to_message and msg.reply_to_message.photo(filt.reply)
+                message.reply_photo(filt.reply)
             elif filt.is_audio:
-                msg.reply_to_message and msg.reply_to_message.audio(filt.reply)
+                message.reply_audio(filt.reply)
             elif filt.is_voice:
-                msg.reply_to_message and msg.reply_to_message.voice(filt.reply)
+                message.reply_voice(filt.reply)
             elif filt.is_video:
-                msg.reply_to_message and msg.reply_to_message.video(filt.reply)
+                message.reply_video(filt.reply)
             elif filt.has_markdown:
                 buttons = sql.get_buttons(chat.id, filt.keyword)
                 keyb = build_keyboard(buttons)
