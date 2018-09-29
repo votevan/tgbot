@@ -144,7 +144,8 @@ def stop_filter(bot: Bot, update: Update):
 @run_async
 def reply_filter(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-    message = update.effective_message and message.reply_to_message # type: Optional[Message]
+    message = update.effective_message # type: Optional[Message]
+    message = msg.reply_to_message
     to_match = extract_text(message)
     if not to_match:
         return
