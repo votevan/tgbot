@@ -155,17 +155,17 @@ def reply_filter(bot: Bot, update: Update):
         if re.search(pattern, to_match, flags=re.IGNORECASE):
             filt = sql.get_filter(chat.id, keyword)
             if filt.is_sticker:
-                message.reply_sticker(filt.reply)
+                msg.reply_to_message and message.reply_sticker(filt.reply)
             elif filt.is_document:
-                message.reply_document(filt.reply)
+                msg.reply_to_message and message.reply_document(filt.reply)
             elif filt.is_image:
-                message.reply_photo(filt.reply)
+                msg.reply_to_message and message.reply_photo(filt.reply)
             elif filt.is_audio:
-                message.reply_audio(filt.reply)
+                msg.reply_to_message and message.reply_audio(filt.reply)
             elif filt.is_voice:
-                message.reply_voice(filt.reply)
+                msg.reply_to_message and message.reply_voice(filt.reply)
             elif filt.is_video:
-                message.reply_video(filt.reply)
+                msg.reply_to_message and message.reply_video(filt.reply)
             elif filt.has_markdown:
                 buttons = sql.get_buttons(chat.id, filt.keyword)
                 keyb = build_keyboard(buttons)
