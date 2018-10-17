@@ -42,7 +42,7 @@ def send_rules(update, chat_id, from_pm=False):
     elif rules:
         update.effective_message.reply_text("ℹ️ Contáctame mediante chat privado para obtener las reglas del grupo.",
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="Reglas 📚",
+                                                [[InlineKeyboardButton(text="Rules",
                                                                        url="t.me/{}?start={}".format(bot.username,
                                                                                                      chat_id))]]))
     else:
