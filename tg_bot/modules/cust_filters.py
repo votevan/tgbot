@@ -172,9 +172,9 @@ def reply_filter(bot: Bot, update: Update):
                 keyboard = InlineKeyboardMarkup(keyb)
 
                 try:
-                    update.message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
-                                       disable_web_page_preview=True,
-                                       quote=True, reply_markup=keyboard)
+                    message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
+                                       disable_web_page_preview=False,
+                                       reply_markup=keyboard)
                 except BadRequest as excp:
                     if excp.message == "Unsupported url protocol":
                         message.reply_text("Parece que intentás usar un protocolo de URL no compatible. Telegram no admite "
