@@ -27,7 +27,7 @@ def send_rules(update, chat_id, from_pm=False):
         chat = bot.get_chat(chat_id)
     except BadRequest as excp:
         if excp.message == "Chat not found" and from_pm:
-            bot.send_message(user.id, "❌ El atajo no ha sido configurado correctamente.")
+            bot.send_message(user.id, "⚠️ El atajo no ha sido configurado correctamente.")
             return
         else:
             raise
@@ -38,12 +38,11 @@ def send_rules(update, chat_id, from_pm=False):
     if from_pm and rules:
         bot.send_message(user.id, text, parse_mode=ParseMode.MARKDOWN)
     elif from_pm:
-        bot.send_message(user.id, "The group admins haven't set any rules for this chat yet. "
-                                  "This probably doesn't mean it's lawless though...!")
+        bot.send_message(user.id, "❌ Los administradores del grupo no han configurado las reglas todavía.")
     elif rules:
-        update.effective_message.reply_text("Contact me in PM to get this group's rules.",
+        update.effective_message.reply_text("ℹ️ Contáctame por privado para obtener las reglas del grupo.",
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="Rules",
+                                                [[InlineKeyboardButton(text="Reglas 📚",
                                                                        url="t.me/{}?start={}".format(bot.username,
                                                                                                      chat_id))]]))
     else:
