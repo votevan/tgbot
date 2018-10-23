@@ -46,8 +46,7 @@ def send_rules(update, chat_id, from_pm=False):
                                                                        url="t.me/{}?start={}".format(bot.username,
                                                                                                      chat_id))]]))
     else:
-        update.effective_message.reply_text("The group admins haven't set any rules for this chat yet. "
-                                            "This probably doesn't mean it's lawless though...!")
+        update.effective_message.reply_text("❌ Los administradores del grupo no han configurado las reglas todavía.")
 
 
 @run_async
@@ -63,7 +62,7 @@ def set_rules(bot: Bot, update: Update):
         markdown_rules = markdown_parser(txt, entities=msg.parse_entities(), offset=offset)
 
         sql.set_rules(chat_id, markdown_rules)
-        update.effective_message.reply_text("Successfully set rules for this group.")
+        update.effective_message.reply_text("✅ Reglas configuradas con éxito.")
 
 
 @run_async
@@ -71,11 +70,11 @@ def set_rules(bot: Bot, update: Update):
 def clear_rules(bot: Bot, update: Update):
     chat_id = update.effective_chat.id
     sql.set_rules(chat_id, "")
-    update.effective_message.reply_text("Successfully cleared rules!")
+    update.effective_message.reply_text("✅ Reglas eliminadas con éxito.")
 
 
 def __stats__():
-    return "{} chats have rules set.".format(sql.num_chats())
+    return "➡️ {} chats tienen las reglas configuradas.".format(sql.num_chats())
 
 
 def __import_data__(chat_id, data):
