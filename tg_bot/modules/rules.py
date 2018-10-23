@@ -27,13 +27,13 @@ def send_rules(update, chat_id, from_pm=False):
         chat = bot.get_chat(chat_id)
     except BadRequest as excp:
         if excp.message == "Chat not found" and from_pm:
-            bot.send_message(user.id, "El atajo no ha sido configurado correctamente.")
+            bot.send_message(user.id, "❌ El atajo no ha sido configurado correctamente.")
             return
         else:
             raise
 
     rules = sql.get_rules(chat_id)
-    text = "The rules for *{}* are:\n\n{}".format(escape_markdown(chat.title), rules)
+    text = "ℹ️ Las reglas de *{}* son:\n\n{}".format(escape_markdown(chat.title), rules)
 
     if from_pm and rules:
         bot.send_message(user.id, text, parse_mode=ParseMode.MARKDOWN)
