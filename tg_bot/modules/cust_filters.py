@@ -142,7 +142,7 @@ def stop_filter(bot: Bot, update: Update):
 @run_async
 def reply_filter(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-    message = update.effective_message  # type: Optional[Message]
+    message = reply_to_message.update.effective_message  # type: Optional[Message]
     to_match = extract_text(message)
     if not to_match:
         return
@@ -155,15 +155,15 @@ def reply_filter(bot: Bot, update: Update):
             if filt.is_sticker:
                 message.reply_to_message.reply_sticker(filt.reply)
             elif filt.is_document:
-                message.reply_document(filt.reply)
+                message.reply_to_message.reply_document(filt.reply)
             elif filt.is_image:
-                message.reply_photo(filt.reply)
+                message.reply_to_message.reply_photo(filt.reply)
             elif filt.is_audio:
-                message.reply_audio(filt.reply)
+                message.reply_to_message.reply_audio(filt.reply)
             elif filt.is_voice:
-                message.reply_voice(filt.reply)
+                message.reply_to_message.reply_voice(filt.reply)
             elif filt.is_video:
-                message.reply_video(filt.reply)
+                message.reply_to_message.reply_video(filt.reply)
             elif filt.has_markdown:
                 buttons = sql.get_buttons(chat.id, filt.keyword)
                 keyb = build_keyboard(buttons)
