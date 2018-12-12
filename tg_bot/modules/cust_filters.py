@@ -47,7 +47,7 @@ def list_handlers(bot: Bot, update: Update):
 @user_admin
 def filters(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-    msg = update.effective_message.reply_to_message  # type: Optional[Message]
+    msg = update.effective_message  # type: Optional[Message]
     args = msg.text.split(None, 1)  # use python's maxsplit to separate Cmd, keyword, and reply_text
 
     if len(args) < 2:
@@ -115,7 +115,6 @@ def filters(bot: Bot, update: Update):
 
     raise DispatcherHandlerStop #innecesario?
 
-
 # NOT ASYNC BECAUSE DISPATCHER HANDLER RAISED
 @user_admin
 def stop_filter(bot: Bot, update: Update):
@@ -171,7 +170,7 @@ def reply_filter(bot: Bot, update: Update):
                 keyboard = InlineKeyboardMarkup(keyb)
 
                 try:
-                    message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
+                    update.message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
                                        disable_web_page_preview=False,
                                        reply_markup=keyboard, quote=True)
                 except BadRequest as excp:
