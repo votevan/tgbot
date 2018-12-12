@@ -47,7 +47,7 @@ def list_handlers(bot: Bot, update: Update):
 @user_admin
 def filters(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-    msg = update.effective_message  # type: Optional[Message]
+    msg = update.effective_message.reply_to_message  # type: Optional[Message]
     args = msg.text.split(None, 1)  # use python's maxsplit to separate Cmd, keyword, and reply_text
 
     if len(args) < 2:
@@ -113,7 +113,7 @@ def filters(bot: Bot, update: Update):
     sql.add_filter(chat.id, keyword, content, is_sticker, is_document, is_image, is_audio, is_voice, is_video,
                    buttons)
 
-    raise DispatcherHandlerStop
+    raise DispatcherHandlerStop #innecesario?
 
 
 # NOT ASYNC BECAUSE DISPATCHER HANDLER RAISED
