@@ -9,6 +9,7 @@ from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
+
 from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS, BAN_STICKER
 from tg_bot.__main__ import STATS, USER_INFO
 from tg_bot.modules.disable import DisableAbleCommandHandler
@@ -21,26 +22,16 @@ RUN_STRINGS = (
 SLAP_TEMPLATES = (
     "{user1} se hizo el piola y {user2} le rompió la jeta.",
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
-    "{user1} envió un meme y {admin} lo muteó.",
-)
-
-ITEMS = (
-)
-
-THROW = (
-)
-
-HIT = (
+    "{user1} envió un meme y {admin} lo muteó."
 )
 
 ADMIN = (
      "@GastiRevol",
-     "@manaosypitusas",
-     "@manuell_15",
+     "@palegaortito",
+     "@manuellgh",
      "@SebAt0mix",
-     "Francisco Zorat",
-     "@Santy_TrabajadorDeSamsung",
-     "@Gatica1996",
+     "@ElMasPijud0",
+     "@Santy_TrabajadorDeSamsung"
 )
 
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
@@ -81,9 +72,6 @@ def slap(bot: Bot, update: Update, args: List[str]):
         user2 = curr_user
 
     temp = random.choice(SLAP_TEMPLATES)
-    item = random.choice(ITEMS)
-    hit = random.choice(HIT)
-    throw = random.choice(THROW)
     admin = random.choice(ADMIN)
 
     repl = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw, admin=admin)
