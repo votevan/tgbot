@@ -132,7 +132,7 @@ def info(bot: Bot, update: Update, args: List[str]):
     elif not msg.reply_to_message and (not args or (
             len(args) >= 1 and not args[0].startswith("@") and not args[0].isdigit() and not msg.parse_entities(
         [MessageEntity.TEXT_MENTION]))):
-        msg.reply_text("No puedo extraer la información de un usuario a partir de la información proporcionada.")
+        msg.reply_text("❌ No puedo extraer la información de un usuario a partir de la información proporcionada.")
         return
 
     else:
@@ -228,7 +228,7 @@ def ping(bot: Bot, update: Update):
     requests.get('https://api.telegram.org')
     end_time = time.time()
     ping_time = float(end_time - start_time)*1000
-    update.effective_message.reply_text("Es ping salames, igual aca te va la velocidad: {}ms".format(ping_time))
+    update.effective_message.reply_text("Pong.\n ℹ️ {}ms".format(ping_time))
 
 @run_async
 def gdpr(bot: Bot, update: Update):
