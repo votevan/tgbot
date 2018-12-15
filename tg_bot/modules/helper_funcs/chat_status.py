@@ -53,10 +53,10 @@ def bot_can_delete(func):
     def delete_rights(bot: Bot, update: Update, *args, **kwargs):
         if can_delete(update.effective_chat, bot.id):
             return func(bot, update, *args, **kwargs)
-        else:
+        #else:
 
-            update.effective_message.reply_text("No puedo borrar mensajes acá, "
-                                                "verificá si soy admin y mis permisos.")
+            #update.effective_message.reply_text("No puedo borrar mensajes acá, "
+            #                                    "verificá si soy admin y mis permisos.")
 
     return delete_rights
 
@@ -66,9 +66,9 @@ def can_pin(func):
     def pin_rights(bot: Bot, update: Update, *args, **kwargs):
         if update.effective_chat.get_member(bot.id).can_pin_messages:
             return func(bot, update, *args, **kwargs)
-        else:
-            update.effective_message.reply_text("No puedo anclar mensajes acá, "
-                                                "verificá si soy admin y mis permisos. ")
+        #else:
+            #update.effective_message.reply_text("No puedo anclar mensajes acá, "
+            #                                    "verificá si soy admin y mis permisos. ")
 
     return pin_rights
 
@@ -78,9 +78,9 @@ def can_promote(func):
     def promote_rights(bot: Bot, update: Update, *args, **kwargs):
         if update.effective_chat.get_member(bot.id).can_promote_members:
             return func(bot, update, *args, **kwargs)
-        else:
-            update.effective_message.reply_text("No puedo degradar o ascender usuarios acá, "
-                                                "verificá si soy admin y mis permisos.")
+        #else:
+            #update.effective_message.reply_text("No puedo degradar o ascender usuarios acá, "
+            #                                    "verificá si soy admin y mis permisos.")
 
     return promote_rights
 
@@ -90,9 +90,9 @@ def can_restrict(func):
     def promote_rights(bot: Bot, update: Update, *args, **kwargs):
         if update.effective_chat.get_member(bot.id).can_restrict_members:
             return func(bot, update, *args, **kwargs)
-        else:
-            update.effective_message.reply_text("No puedo banear usuarios acá, "
-                                                "verificá si soy admin y mis permisos.")
+        #else:
+            #update.effective_message.reply_text("No puedo banear usuarios acá, "
+            #                                    "verificá si soy admin y mis permisos.")
 
     return promote_rights
 
@@ -102,8 +102,8 @@ def bot_admin(func):
     def is_admin(bot: Bot, update: Update, *args, **kwargs):
         if is_bot_admin(update.effective_chat, bot.id):
             return func(bot, update, *args, **kwargs)
-        else:
-            update.effective_message.reply_text("No soy administrador.")
+        #else:
+        #    update.effective_message.reply_text("No soy administrador.")
 
     return is_admin
 
@@ -122,7 +122,7 @@ def user_admin(func):
             update.effective_message.delete()
 
         else:
-            update.effective_message.reply_text("lo haria por una scooby-galleta")
+            update.effective_message.reply_text("Lo haria por una scooby-galleta")
 
     return is_admin
 
