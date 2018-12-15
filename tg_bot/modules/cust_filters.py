@@ -153,7 +153,7 @@ def reply_filter(bot: Bot, update: Update):
         if re.search(pattern, to_match, flags=re.IGNORECASE):
             filt = sql.get_filter(chat.id, keyword)
             if filt.is_sticker:
-                message.reply_to_message and message.reply_sticker(filt.reply)
+                message.reply_sticker(filt.reply)
             elif filt.is_document:
                 message.reply_document(filt.reply)
             elif filt.is_image:
@@ -170,7 +170,7 @@ def reply_filter(bot: Bot, update: Update):
                 keyboard = InlineKeyboardMarkup(keyb)
 
                 try:
-                    message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
+                    message.reply_to_message and message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
                                        disable_web_page_preview=False,
                                        reply_markup=keyboard)
                 except BadRequest as excp:
