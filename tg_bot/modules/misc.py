@@ -74,7 +74,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
     temp = random.choice(SLAP_TEMPLATES)
     admin = random.choice(ADMIN)
 
-    repl = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw, admin=admin)
+    repl = temp.format(user1=user1, user2=user2, admin=admin)
 
     reply_text(repl, parse_mode=ParseMode.MARKDOWN)
 
