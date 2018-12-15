@@ -30,7 +30,6 @@ LOCK_TYPES = {'stickers': Filters.sticker,
               'bots': Filters.status_update.new_chat_members,
               'reenvios': Filters.forwarded,
               'juegos': Filters.game
-              'forward': Filters.forwarded,
               'game': Filters.game,
               'location': Filters.location,
               }
