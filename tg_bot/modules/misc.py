@@ -151,19 +151,16 @@ def info(bot: Bot, update: Update, args: List[str]):
     text += "\nℹ️ Link del usuario: {}".format(mention_html(user.id, "link"))
 
     if user.id == OWNER_ID:
-        text += "\n\n⚠️ Esta persona es mi creador. ¡Nunca haría nada contra el!"
+        text += "\n\n⚠️ Este es mi creador, ojito eh"
     else:
         if user.id in SUDO_USERS:
-            text += "\n\n⚠️ ¡Esta persona es uno de mis usuarios sudo! Es " \
-                    "casi tan poderoso como mi dueño, así que tené cuidado."
+            text += "\n\n⚠️ Este es sudo, me contaron que son copados"
         else:
             if user.id in SUPPORT_USERS:
-                text += "\n\n⚠️ ¡Esta persona es uno de mis usuarios de soporte! " \
-                        "No es exactamente un usuario sudo, pero puede borrarte del mapa."
+                text += "\n\n⚠️ Este me maneja los gbans"
 
             if user.id in WHITELIST_USERS:
-                text += "\n\n⚠️ ¡Esta persona ha sido incluida en la lista blanca! " \
-                        "Eso significa que no puedo banearlo/expulsarlo."
+                text += "\n\n⚠️ Este es inbaneable"
 
     for mod in USER_INFO:
         mod_info = mod.__user_info__(user.id).strip()
