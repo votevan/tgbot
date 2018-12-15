@@ -17,12 +17,13 @@ from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.helper_funcs.filters import CustomFilters
 
 RUN_STRINGS = (
+    "esto solo esta para que el bot no crashee",
 )
 
 SLAP_TEMPLATES = (
     "{user1} se hizo el piola y {user2} le rompió la jeta.",
     "{user1} usó los poderes de @votevan para romperle el celular a {user2}.",
-    "{user1} envió un meme y {admin} lo muteó."
+    "{user1} envió un meme y {admin} lo muteó.",
 )
 
 ADMIN = (
@@ -31,7 +32,7 @@ ADMIN = (
      "@manuellgh",
      "@SebAt0mix",
      "@ElMasPijud0",
-     "@Santy_TrabajadorDeSamsung"
+     "@Santy_TrabajadorDeSamsung",
 )
 
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
