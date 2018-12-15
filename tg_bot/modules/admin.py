@@ -28,16 +28,16 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("no te estas refiriendo a nadie salame")
+        message.reply_text("No te estas refiriendo a nadie.")
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text("como voy a ascender a alguien que ya es admin?")
+        message.reply_text("Como voy a ascender a alguien que ya es admin?")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("no me puedo auto-ascender, salame")
+        message.reply_text("No me puedo auto-ascender.")
         return ""
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -74,12 +74,12 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("no te estas refiriendo a nadie salame")
+        message.reply_text("No te estas refiriendo a nadie.")
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("este men creo el grupo, tampoco para tanto")
+        message.reply_text("Este es el creador, media pila")
         return ""
 
     if not user_member.status == 'administrator':
