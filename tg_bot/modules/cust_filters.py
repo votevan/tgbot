@@ -18,7 +18,7 @@ from tg_bot.modules.helper_funcs.string_handling import split_quotes, button_mar
 from tg_bot.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 10
-BASIC_FILTER_STRING = "*ℹ️ Filtros del chat:*\n"
+BASIC_FILTER_STRING = "ℹ️ Filtros el chat:\n"
 
 
 @run_async
@@ -27,12 +27,12 @@ def list_handlers(bot: Bot, update: Update):
     all_handlers = sql.get_chat_triggers(chat.id)
 
     if not all_handlers:
-        update.effective_message.reply_text("No hay filtros activos.")
+        update.effective_message.reply_text("❌ No hay filtros configurados en el chat.")
         return
 
     filter_list = BASIC_FILTER_STRING
     for keyword in all_handlers:
-        entry = " ➡️ {}\n".format(escape_markdown(keyword))
+        entry = " - {}\n".format(escape_markdown(keyword))
         if len(entry) + len(filter_list) > telegram.MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(filter_list, parse_mode=telegram.ParseMode.MARKDOWN)
             filter_list = entry
@@ -73,7 +73,7 @@ def filters(bot: Bot, update: Update):
         content, buttons = button_markdown_parser(extracted[1], entities=msg.parse_entities(), offset=offset)
         content = content.strip()
         if not content:
-            msg.reply_text("No hay ninguna nota.")
+            msg.reply_text("❌ No hay contenido. No podés tener solo botones, necesitás un texto que lo acompañe.")
             return
 
     elif msg.reply_to_message and msg.reply_to_message.sticker:
@@ -101,7 +101,7 @@ def filters(bot: Bot, update: Update):
         is_video = True
 
     else:
-        msg.reply_text("No especificaste con qué responder.")
+        msg.reply_text("❌ No especificaste con qué responder.")
         return
 
     # Add the filter
@@ -113,7 +113,9 @@ def filters(bot: Bot, update: Update):
     sql.add_filter(chat.id, keyword, content, is_sticker, is_document, is_image, is_audio, is_voice, is_video,
                    buttons)
 
-    raise DispatcherHandlerStop #innecesario?
+    msg.reply_text("✅ Se ha añadido el filtro '{}' correctamente.".format(keyword))
+    raise DispatcherHandlerStop
+
 
 # NOT ASYNC BECAUSE DISPATCHER HANDLER RAISED
 @user_admin
@@ -127,16 +129,16 @@ def stop_filter(bot: Bot, update: Update):
     chat_filters = sql.get_chat_triggers(chat.id)
 
     if not chat_filters:
-        update.effective_message.reply_text("No hay filtros activos acá.")
+        update.effective_message.reply_text("❌ No hay filtros activos.")
         return
 
     for keyword in chat_filters:
         if keyword == args[1]:
             sql.remove_filter(chat.id, args[1])
-            update.effective_message.reply_text("Dejaré de responder a eso.")
+            update.effective_message.reply_text("✅ Filtro eliminado correctamente.")
             raise DispatcherHandlerStop
 
-    update.effective_message.reply_text("ℹ️ Eso no es un filtro actual. Usá /filters para ver todos los filtros activos.")
+    update.effective_message.reply_text("❌ Eso no es filtro. Usá /filters para ver todos los filtros activos.")
 
 
 @run_async
@@ -170,21 +172,21 @@ def reply_filter(bot: Bot, update: Update):
                 keyboard = InlineKeyboardMarkup(keyb)
 
                 try:
-                    message.reply_to_message and message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
-                                       disable_web_page_preview=False,
+                    message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
+                                       disable_web_page_preview=True,
                                        reply_markup=keyboard)
                 except BadRequest as excp:
                     if excp.message == "Unsupported url protocol":
-                        message.reply_text("Parece que intentás usar un protocolo de URL no compatible. Telegram no admite "
-                                           "botones para algunos protocolos, como tg://.")
+                        message.reply_text("You seem to be trying to use an unsupported url protocol. Telegram "
+                                           "doesn't support buttons for some protocols, such as tg://.")
                     elif excp.message == "Reply message not found":
                         bot.send_message(chat.id, filt.reply, parse_mode=ParseMode.MARKDOWN,
                                          disable_web_page_preview=True,
                                          reply_markup=keyboard)
                     else:
-                        message.reply_text("Esta nota no puede ser enviada ya que esta mal formulada.")
-                        LOGGER.warning("El mensaje %s no se pudo analizar.", str(filt.reply))
-                        LOGGER.exception("No se pudo analizar %s en el chat %s", str(filt.keyword), str(chat.id))
+                        message.reply_text("This note could not be sent, as it is incorrectly formatted.")
+                        LOGGER.warning("Message %s could not be parsed", str(filt.reply))
+                        LOGGER.exception("Could not parse filter %s in chat %s", str(filt.keyword), str(chat.id))
 
             else:
                 # LEGACY - all new filters will have has_markdown set to True.
@@ -193,7 +195,7 @@ def reply_filter(bot: Bot, update: Update):
 
 
 def __stats__():
-    return "{} filtros, entre {} chats.".format(sql.num_filters(), sql.num_chats())
+    return "➡️ {} filtros, entre {} chats.".format(sql.num_filters(), sql.num_chats())
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -202,17 +204,16 @@ def __migrate__(old_chat_id, new_chat_id):
 
 def __chat_settings__(chat_id, user_id):
     cust_filters = sql.get_chat_triggers(chat_id)
-    return "Hay `{}` filtros personalizados aqui.".format(len(cust_filters))
+    return "ℹ️ Hay `{}` filtros acá.".format(len(cust_filters))
 
 
 __help__ = """
-➡️ /filters: muestra la lista de todos los filtros activos en este chat.
-
-*Solo para administradores:*
- ➡️ /addfilter <palabra> <mensaje>: agregar un filtro a ese chat. El bot responderá ese mensaje siempre que 'palabra' \
-es mencionada. Si respondés a un sticker con una palabra clave, el bot responderá con ese sticker. *NOTA*: Si querés \
-que tu palabra clave sea una oración, usá comillas. por ejemplo: /filtro "Hola" ¿Cómo estas?
- ➡️ /stop <palabraclave>: detiene ese filtro.
+ ➡️ /filters: muestra todos los filtros del chat.
+*Admin only:*
+ ➡️ /addfilter <palabra clave> <mensaje de respuesta>: agrega un filtro al chat. El bot va a responder con \
+'mensajederespuesta' cada vez que 'palabraclave' es mencionada. Si eñ filtro es una oración, usá commilas. \
+Por ejemplo: /filter "hola a todos" Como estás?
+ ➡️ /stop <palabra clave del filtro>: detiene el filtro.
 """
 
 __mod_name__ = "Filtros"
