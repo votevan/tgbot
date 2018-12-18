@@ -15,3 +15,4 @@ gsearch
 wikipedia
 googletrans
 feedparser
+pyowm
