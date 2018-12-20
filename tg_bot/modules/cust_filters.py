@@ -110,11 +110,11 @@ def filters(bot: Bot, update: Update):
         if handler.filters == (keyword, chat.id):
             dispatcher.remove_handler(handler, HANDLER_GROUP)
 
-    sql.add_filter(chat.id, keyword, content, is_sticker, is_document, is_image, is_audio, is_voice, is_video,
+    sql.add_filter(chat.id, name, keyword, content, is_sticker, is_document, is_image, is_audio, is_voice, is_video,
                    buttons)
 
     msg.reply_text("✅ Se ha añadido el filtro '{}' correctamente.\n\n ℹ️ (Filtro agregado "
-                   "por el usuario {}).".format((keyword), name)) 
+                   "por el usuario {}).".format(keyword), name) 
     raise DispatcherHandlerStop
 
 

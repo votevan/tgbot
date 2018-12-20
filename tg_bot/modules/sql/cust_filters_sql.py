@@ -8,7 +8,7 @@ from tg_bot.modules.sql import BASE, SESSION
 class CustomFilters(BASE):
     __tablename__ = "cust_filters"
     chat_id = Column(String(14), primary_key=True)
-    name = Column(String(14), primary_key=True)
+    name = Column(UnicodeText, primary_key=True)
     keyword = Column(UnicodeText, primary_key=True, nullable=False)
     reply = Column(UnicodeText, nullable=False)
     is_sticker = Column(Boolean, nullable=False, default=False)
@@ -25,6 +25,7 @@ class CustomFilters(BASE):
     def __init__(self, chat_id, keyword, reply, is_sticker=False, is_document=False, is_image=False, is_audio=False,
                  is_voice=False, is_video=False, has_buttons=False):
         self.chat_id = str(chat_id)  # ensure string
+        self.name = str(user)
         self.keyword = keyword
         self.reply = reply
         self.is_sticker = is_sticker
