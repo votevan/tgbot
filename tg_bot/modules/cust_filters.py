@@ -113,7 +113,8 @@ def filters(bot: Bot, update: Update):
     sql.add_filter(chat.id, keyword, content, is_sticker, is_document, is_image, is_audio, is_voice, is_video,
                    buttons)
 
-    msg.reply_text("✅ Se ha añadido el filtro '{}' correctamente.".format(keyword))
+    msg.reply_text("✅ Se ha añadido el filtro '{}' correctamente.\n\n ℹ️ (Filtro agregado "
+                   "por el usuario {}).".format((keyword), name)) 
     raise DispatcherHandlerStop
 
 
@@ -211,7 +212,7 @@ __help__ = """
  ➡️ /filters: muestra todos los filtros del chat.
 *Admin only:*
  ➡️ /addfilter <palabra clave> <mensaje de respuesta>: agrega un filtro al chat. El bot va a responder con \
-'mensajederespuesta' cada vez que 'palabraclave' es mencionada. Si eñ filtro es una oración, usá commilas. \
+'mensajederespuesta' cada vez que 'palabraclave' es mencionada. Si el filtro es una oración, usá comillas. \
 Por ejemplo: /filter "hola a todos" Como estás?
  ➡️ /stop <palabra clave del filtro>: detiene el filtro.
 """
