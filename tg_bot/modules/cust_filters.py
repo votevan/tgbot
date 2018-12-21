@@ -114,7 +114,7 @@ def filters(bot: Bot, update: Update):
                    buttons)
 
     msg.reply_text("✅ Se ha añadido el filtro '{}' correctamente.".format(keyword))
-raise DispatcherHandlerStop
+    raise DispatcherHandlerStop
 
 
 # NOT ASYNC BECAUSE DISPATCHER HANDLER RAISED
