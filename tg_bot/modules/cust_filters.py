@@ -147,7 +147,7 @@ def reply_filter(bot: Bot, update: Update):
     message = update.effective_message  # type: Optional[Message]
     to_match = extract_text(message)
     if not to_match:
-        return
+return
 
     chat_filters = sql.get_chat_triggers(chat.id)
     for keyword in chat_filters:
