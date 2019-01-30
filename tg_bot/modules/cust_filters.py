@@ -48,7 +48,7 @@ def list_handlers(bot: Bot, update: Update):
 def filters(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
-    args = msg.text.split(None, 1)  # use python's maxsplit to separate Cmd, keyword, and reply_text
+    args = msg.text.split(None, 1) # use python's maxsplit to separate Cmd, keyword, and reply_text
 
     if len(args) < 2:
         return
