@@ -8,14 +8,14 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 
-from IHbot import dispatcher, LOGGER
-from IHbot.modules.disable import DisableAbleCommandHandler
-from IHbot.modules.helper_funcs.chat_status import user_admin
-from IHbot.modules.helper_funcs.extraction import extract_text
-from IHbot.modules.helper_funcs.filters import CustomFilters
-from IHbot.modules.helper_funcs.misc import build_keyboard
-from IHbot.modules.helper_funcs.string_handling import split_quotes, button_markdown_parser
-from IHbot.modules.sql import cust_filters_sql as sql
+from tgbot import dispatcher, LOGGER
+from tgbot.modules.disable import DisableAbleCommandHandler
+from tgbot.modules.helper_funcs.chat_status import user_admin
+from tgbot.modules.helper_funcs.extraction import extract_text
+from tgbot.modules.helper_funcs.filters import CustomFilters
+from tgbot.modules.helper_funcs.misc import build_keyboard
+from tgbot.modules.helper_funcs.string_handling import split_quotes, button_markdown_parser
+from tgbot.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 10
 BASIC_FILTER_STRING = "ℹ️ Filtros el chat:\n"
