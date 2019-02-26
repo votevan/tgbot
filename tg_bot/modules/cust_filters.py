@@ -8,14 +8,14 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 
-from tg_bot import dispatcher, LOGGER
-from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.chat_status import user_admin
-from tg_bot.modules.helper_funcs.extraction import extract_text
-from tg_bot.modules.helper_funcs.filters import CustomFilters
-from tg_bot.modules.helper_funcs.misc import build_keyboard
-from tg_bot.modules.helper_funcs.string_handling import split_quotes, button_markdown_parser
-from tg_bot.modules.sql import cust_filters_sql as sql
+from IHbot import dispatcher, LOGGER
+from IHbot.modules.disable import DisableAbleCommandHandler
+from IHbot.modules.helper_funcs.chat_status import user_admin
+from IHbot.modules.helper_funcs.extraction import extract_text
+from IHbot.modules.helper_funcs.filters import CustomFilters
+from IHbot.modules.helper_funcs.misc import build_keyboard
+from IHbot.modules.helper_funcs.string_handling import split_quotes, button_markdown_parser
+from IHbot.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 10
 BASIC_FILTER_STRING = "ℹ️ Filtros el chat:\n"
@@ -27,7 +27,7 @@ def list_handlers(bot: Bot, update: Update):
     all_handlers = sql.get_chat_triggers(chat.id)
 
     if not all_handlers:
-        update.effective_message.reply_text("❌ No hay filtros configurados en el chat.")
+        update.effective_message.reply_text("❌ No hay filtros activos en el chat.")
         return
 
     filter_list = BASIC_FILTER_STRING
@@ -48,7 +48,7 @@ def list_handlers(bot: Bot, update: Update):
 def filters(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
-    args = msg.text.split(None, 1) # use python's maxsplit to separate Cmd, keyword, and reply_text
+    args = msg.text.split(None, 1)  # use python's maxsplit to separate Cmd, keyword, and reply_text
 
     if len(args) < 2:
         return
@@ -195,7 +195,7 @@ def reply_filter(bot: Bot, update: Update):
 
 
 def __stats__():
-    return "➡️ {} filtros, entre {} chats.".format(sql.num_filters(), sql.num_chats())
+    return "➡️ {} filtros entre {} chats.".format(sql.num_filters(), sql.num_chats())
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -208,22 +208,22 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- ➡️ /filters: muestra todos los filtros del chat.
+➡️ /filters: muestra todos los filtros del chat.
 *Admin only:*
- ➡️ /addfilter <palabra clave> <mensaje de respuesta>: agrega un filtro al chat. El bot va a responder con \
+➡️ /addfilter <palabra clave> <mensaje de respuesta>: agrega un filtro al chat. El bot va a responder con \
 'mensajederespuesta' cada vez que 'palabraclave' es mencionada. Si el filtro es una oración, usá comillas. \
 Por ejemplo: /filter "hola a todos" Como estás?
- ➡️ /stop <palabra clave del filtro>: detiene el filtro.
+➡️ /delfilter <palabra clave>: detiene el filtro.
 """
 
 __mod_name__ = "Filtros"
 
 FILTER_HANDLER = CommandHandler("addfilter", filters)
-STOP_HANDLER = CommandHandler("stop", stop_filter)
-LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=True)
+STOP_HANDLER = CommandHandler("delfilter", stop_filter)
+LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=False)
 CUST_FILTER_HANDLER = MessageHandler(CustomFilters.has_text, reply_filter)
 
-dispatcher.add_handler(FILTER_HANDLER)
-dispatcher.add_handler(STOP_HANDLER)
+dispatcher.add_handler(ADDFILTER_HANDLER)
+dispatcher.add_handler(DELFILTER_HANDLER)
 dispatcher.add_handler(LIST_HANDLER)
 dispatcher.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
