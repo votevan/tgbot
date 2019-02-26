@@ -220,7 +220,7 @@ __mod_name__ = "Filtros"
 
 FILTER_HANDLER = CommandHandler("addfilter", filters)
 STOP_HANDLER = CommandHandler("delfilter", stop_filter)
-LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=False)
+LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=True)
 CUST_FILTER_HANDLER = MessageHandler(CustomFilters.has_text, reply_filter)
 
 dispatcher.add_handler(FILTER_HANDLER)
