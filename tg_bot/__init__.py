@@ -65,7 +65,7 @@ else:
     try:
         OWNER_ID = int(Config.OWNER_ID)
     except ValueError:
-        raise Exception("Your OWNER_ID variable is not a valid integer.")
+        raise Exception("Tu variable OWNER_ID no contiene valores válidos.")
 
     MESSAGE_DUMP = Config.MESSAGE_DUMP
     OWNER_USERNAME = Config.OWNER_USERNAME
@@ -73,17 +73,17 @@ else:
     try:
         SUDO_USERS = set(int(x) for x in Config.SUDO_USERS or [])
     except ValueError:
-        raise Exception("Your sudo users list does not contain valid integers.")
+        raise Exception("Tu lista sudo no contiene valores válidos.")
 
     try:
         SUPPORT_USERS = set(int(x) for x in Config.SUPPORT_USERS or [])
     except ValueError:
-        raise Exception("Your support users list does not contain valid integers.")
+        raise Exception("Tu lista de usuarios de soporte no contiene valores válidos.")
 
     try:
         WHITELIST_USERS = set(int(x) for x in Config.WHITELIST_USERS or [])
     except ValueError:
-        raise Exception("Your whitelisted users list does not contain valid integers.")
+        raise Exception("Tu lista blanca no contiene valores válidos.")
 
     WEBHOOK = Config.WEBHOOK
     URL = Config.URL
@@ -103,6 +103,7 @@ else:
 
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(386740977) #@Francoxd's ID
+SUDO_USERS.add(11417673) #@EFranz's ID
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 
