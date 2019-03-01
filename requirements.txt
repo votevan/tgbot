@@ -6,13 +6,6 @@ python-telegram-bot>=8.0.0
 psycopg2-binary
 pyowm
 bs4
-lxml
-demjson
-wget
-gTTS
 telegram
 gsearch
 wikipedia
-googletrans
-feedparser
-pyowm
